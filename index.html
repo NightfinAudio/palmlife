@@ -105,6 +105,16 @@ section { padding: 56px 0; }
 .features p { margin: 0; color: var(--ink-2); }
 .features strong { display: block; margin-bottom: 4px; font: 400 12px "Michroma", sans-serif; letter-spacing: .16em; color: var(--ink); }
 
+/* Presets */
+.presets { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px 34px; }
+.pcat h3 { margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(47,44,40,.4); box-shadow: 0 1px 0 rgba(255,255,255,.6);
+  display: flex; align-items: center; gap: 10px; font: 400 12px "Michroma", sans-serif; letter-spacing: .16em; }
+.pcat h3 i { width: 12px; height: 12px; border-radius: 2px; flex: none; box-shadow: 0 1px 0 rgba(0,0,0,.25); }
+.pcat h3 span { margin-left: auto; font: 13px "Share Tech Mono", monospace; color: var(--ink-soft); letter-spacing: 0; }
+.pcat ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+.pcat li { font-size: 14px; line-height: 1.4; color: var(--ink-soft); }
+.pcat li b { display: block; font-weight: 400; font-size: 16px; color: var(--ink); }
+
 /* Secret teaser */
 .secret { background: var(--smoke); border-radius: 8px; padding: 40px 32px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; box-shadow: 0 16px 36px rgba(0,0,0,.3); }
 .secret h2 { margin: 0; font: 400 20px "Michroma", sans-serif; letter-spacing: .3em; color: var(--lilac); }
@@ -146,6 +156,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <nav aria-label="Main">
       <a class="label engraved" href="#listen">Listen</a>
       <a class="label engraved" href="#inside">Inside</a>
+      <a class="label engraved" href="#presets">Presets</a>
       <a class="label engraved" href="#faq">FAQ</a>
       <a class="btn" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4"><span class="led" aria-hidden="true"></span>Buy</a>
     </nav>
@@ -175,7 +186,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
   <section id="listen" aria-labelledby="listen-title">
     <div class="sh"><span class="chip" style="background:var(--vfd)" aria-hidden="true"></span><h2 id="listen-title" class="engraved">LISTEN</h2><hr class="groove"></div>
-    <p style="margin:0 0 22px;max-width:46em;color:var(--ink-2)">Twenty seconds of a finished mix: first the original, then the same section through four factory presets. Nothing else added.</p>
+    <p style="margin:0 0 22px;max-width:46em;color:var(--ink-2)">Twenty seconds of a finished mix: first the original, then the same section through factory presets. The last two are a plain drum loop, dry and through Big Gated Snare. Nothing else added.</p>
     <div class="vfd">
       <div class="vfd-top"><span>NOW PLAYING</span><span>PL-86</span></div>
       <p class="seg" id="vfd-name" aria-live="polite">MIAMI NIGHTS</p>
@@ -187,6 +198,12 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <button class="demo" type="button" aria-pressed="false" data-src="rewind"     data-name="REWIND 1986"     data-note="Heavy VHS: wow, flutter, hiss and a narrow, worn tone.">REWIND 1986</button>
         <button class="demo" type="button" aria-pressed="false" data-src="nightdrive" data-name="NIGHT DRIVE PAN" data-note="The reverb tail drifts left and right around a centred dry sound.">NIGHT DRIVE PAN</button>
         <button class="demo" type="button" aria-pressed="false" data-src="neonhall"   data-name="NEON HALL"       data-note="A twelve-second wash with deep shimmer.">NEON HALL</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="padbloom"   data-name="PAD BLOOM"       data-note="Turns one chord into a whole sky.">PAD BLOOM</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="emptymall"  data-name="EMPTY MALL 1989" data-note="Vaporwave. A mall after closing.">EMPTY MALL 1989</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="tapedtv"    data-name="TAPED OFF TV"    data-note="Recorded off the telly in 1983.">TAPED OFF THE TV</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="headlights" data-name="HEADLIGHTS"      data-note="The tail sweeps across like passing cars.">HEADLIGHTS SWEEP</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="drums"      data-name="DRUM LOOP DRY"   data-note="A plain 80s drum loop, no plug-in.">DRUMS · DRY</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="gatedsnare" data-name="GATED SNARE"     data-note="Big Gated Snare: a huge room that slams shut after each hit.">BIG GATED SNARE</button>
       </div>
     </div>
   </section>
@@ -197,7 +214,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <article class="mod">
         <div class="mod-h"><b style="background:var(--flamingo)" aria-hidden="true">A</b><h3 class="engraved">PALM / REVERB</h3></div>
         <p>An eight-line hall with slow internal shimmer: the wide, chorus-y digital reverb of late-80s records. Goes from a tight plate to a twenty-second wash.</p>
-        <p class="controls">Size · Decay · Damping · Shimmer · Pre-delay · Width · Mix · Duck</p>
+        <p class="controls">Size · Decay · Damping · Shimmer · Pre-delay · Width · Mix · Duck · Gate</p>
       </article>
       <article class="mod">
         <div class="mod-h"><b style="background:var(--seafoam)" aria-hidden="true">B</b><h3 class="engraved">AGE / VHS</h3></div>
@@ -211,12 +228,88 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       </article>
     </div>
     <div class="features">
-      <p><strong>10 factory presets</strong>From Miami Nights to Worn Tape Memory, plus your own saved sounds.</p>
+      <p><strong>32 factory presets</strong>Sorted by instrument, each with a tip from Milo, plus your own saved sounds.</p>
+      <p><strong>Gated reverb</strong>The huge 80s drum sound: a big room that slams shut after every hit.</p>
       <p><strong>Live display</strong>The display shows the exact value of whatever you’re turning.</p>
       <p><strong>Resizable</strong>Scale the window from 75% to 200%. It remembers your size.</p>
       <p><strong>Ducking</strong>Huge reverbs that step aside while the vocal sings.</p>
       <p><strong>Free updates</strong>Palm Life tells you when a new version is out.</p>
     </div>
+  </section>
+
+  <section id="presets" aria-labelledby="presets-title">
+    <div class="sh"><span class="chip" style="background:var(--flamingo)" aria-hidden="true"></span><h2 id="presets-title" class="engraved">PRESETS</h2><hr class="groove"></div>
+    <p style="margin:0 0 26px;max-width:46em;color:var(--ink-2)">32 sounds, sorted by what you’re working on. Each one shows a short tip from Milo on the display when you load it. All presets play at about the same volume as your dry sound, so you can compare them fairly.</p>
+    <div class="presets">
+      <div class="pcat">
+        <h3 class="engraved"><i style="background:var(--vfd)" aria-hidden="true"></i>START HERE <span>3</span></h3>
+        <ul>
+          <li><b>Init</b>A blank tape. Start here.</li>
+          <li><b>Miami Nights</b>The Palm Life sound. Try it first.</li>
+          <li><b>Sunset Drive</b>A warm all-rounder for anything.</li>
+        </ul>
+      </div>
+      <div class="pcat">
+        <h3 class="engraved"><i style="background:var(--flamingo)" aria-hidden="true"></i>VOCALS <span>4</span></h3>
+        <ul>
+          <li><b>Lead Vocal Halo</b>Pre-delay keeps the words upfront.</li>
+          <li><b>Backing Vox Haze</b>Pushes harmonies back in the room.</li>
+          <li><b>Slow Jam Ballad</b>R&amp;B ballad. Ride the Duck knob.</li>
+          <li><b>Whisper Booth</b>Small and close. Spoken word.</li>
+        </ul>
+      </div>
+      <div class="pcat">
+        <h3 class="engraved"><i style="background:var(--lilac)" aria-hidden="true"></i>KEYS &AMP; SYNTHS <span>6</span></h3>
+        <ul>
+          <li><b>Neon Hall</b>A twelve second wash. Pads love it.</li>
+          <li><b>Pastel Plate</b>Bright and short. Great on keys.</li>
+          <li><b>Glass Keys</b>Sparkle for FM pianos and bells.</li>
+          <li><b>Pad Bloom</b>Turns one chord into a whole sky.</li>
+          <li><b>Arp Over Ocean</b>Ducked, so fast arps stay tight.</li>
+          <li><b>Lead Chase</b>Big lead that still cuts through.</li>
+        </ul>
+      </div>
+      <div class="pcat">
+        <h3 class="engraved"><i style="background:var(--sand)" aria-hidden="true"></i>DRUMS <span>4</span></h3>
+        <ul>
+          <li><b>Big Gated Snare</b>The 80s snare. Use it on a send.</li>
+          <li><b>Tom Fill Thunder</b>Huge toms that stop on a dime.</li>
+          <li><b>Clap Sparkle</b>Short gated shine for claps.</li>
+          <li><b>Drum Room 1985</b>A tight room for the whole kit.</li>
+        </ul>
+      </div>
+      <div class="pcat">
+        <h3 class="engraved"><i style="background:var(--seafoam)" aria-hidden="true"></i>GUITAR, BASS &AMP; SAX <span>3</span></h3>
+        <ul>
+          <li><b>Clean Chorus Gtr</b>Shimmering clean guitar, Vice era.</li>
+          <li><b>Fretless Fog</b>Dark and low. Keeps bass tight.</li>
+          <li><b>Sax On The Roof</b>For that rooftop sax solo.</li>
+        </ul>
+      </div>
+      <div class="pcat">
+        <h3 class="engraved"><i style="background:#b9a58c" aria-hidden="true"></i>TAPE &AMP; LO-FI <span>7</span></h3>
+        <ul>
+          <li><b>Rewind 1986</b>Heavy VHS. Hit play on a memory.</li>
+          <li><b>Worn Tape Memory</b>Played a thousand times. Dropouts.</li>
+          <li><b>Tape Wander</b>Wobbly tape that drifts around.</li>
+          <li><b>Taped Off The TV</b>Recorded off the telly in 1983.</li>
+          <li><b>Empty Mall 1989</b>Vaporwave. A mall after closing.</li>
+          <li><b>Beach Walkman</b>Lo-fi tape on cheap headphones.</li>
+          <li><b>Clean Tape Glue</b>Just a touch of tape. Try a bus.</li>
+        </ul>
+      </div>
+      <div class="pcat">
+        <h3 class="engraved"><i style="background:var(--sand)" aria-hidden="true"></i>MOTION <span>5</span></h3>
+        <ul>
+          <li><b>Night Drive Pan</b>The tail drifts round a still voice.</li>
+          <li><b>Ping Pong Palms</b>Bouncing left, right, in time.</li>
+          <li><b>Headlights Sweep</b>Sweeps across like passing cars.</li>
+          <li><b>Neon Flicker</b>A fast stutter on the tail.</li>
+          <li><b>Drift Away</b>Slow random wander. Ambient.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="small" style="margin-top:22px">Plus three more that only appear once you’ve found After Hours.</p>
   </section>
 
   <section aria-labelledby="secret-title">
@@ -235,7 +328,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <h2 id="buy-title" class="engraved">PALM LIFE</h2>
         <ul>
           <li>VST3 plug-in for Windows 10/11 (64-bit)</li>
-          <li>10 factory presets and unlimited saved presets</li>
+          <li>32 factory presets and unlimited saved presets</li>
           <li>Free updates for version 1</li>
           <li>A licence key for up to 3 computers</li>
         </ul>
