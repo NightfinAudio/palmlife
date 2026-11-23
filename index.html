@@ -16,6 +16,7 @@
 <style>
 @font-face { font-family: "Michroma"; src: url(assets/fonts/Michroma-Regular.ttf) format("truetype"); font-display: swap; }
 @font-face { font-family: "Share Tech Mono"; src: url(assets/fonts/ShareTechMono-Regular.ttf) format("truetype"); font-display: swap; }
+@font-face { font-family: "Chakra Petch"; src: url(assets/fonts/ChakraPetch-SemiBold.ttf) format("truetype"); font-weight: 600; font-display: swap; }
 @font-face { font-family: "DSEG14"; src: url(assets/fonts/DSEG14Classic-Bold.ttf) format("truetype"); font-display: swap; }
 
 /* ---- Themes: the same four looks as the plug-in ---- */
@@ -66,7 +67,7 @@ a { color: var(--ink); }
 a:hover { color: var(--link-hover); }
 :focus-visible { outline: 2px solid var(--vfd); outline-offset: 3px; }
 .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-.label { font-family: "Michroma", sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.label { font-family: "Chakra Petch", sans-serif; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
 .engraved { text-shadow: 0 1px 0 var(--lift); }
 .groove { border: 0; height: 1px; background: var(--rule); margin: 0; }
 
@@ -79,14 +80,14 @@ a:hover { color: var(--link-hover); }
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 14px 22px;
-  font: 12px/1 "Michroma", sans-serif; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--btn-ink);
+  font: 600 14px/1 "Chakra Petch", sans-serif; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--btn-ink);
   border-radius: 5px; background: linear-gradient(var(--btn-top), var(--btn-bot));
   box-shadow: 0 2px 0 rgba(0,0,0,.35), inset 0 1px 0 var(--btn-hi); border: 0; cursor: pointer;
   transition: filter .12s, transform .08s;
 }
 .btn:hover { filter: brightness(1.08); color: var(--btn-ink); }
 .btn:active { transform: translateY(1px); }
-.btn.big { font-size: 13px; padding: 17px 26px; }
+.btn.big { font-size: 15px; padding: 17px 26px; }
 .led { width: 9px; height: 9px; border-radius: 50%; background: var(--flamingo); box-shadow: 0 0 8px var(--flamingo); flex: none; }
 
 /* Header */
@@ -99,7 +100,7 @@ header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
 .brand img { border-radius: 50%; }
 .brand span { font: 18px "Michroma", sans-serif; letter-spacing: .22em; }
 nav { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
-nav a.label { font-size: 11px; text-decoration: none; }
+nav a.label { font-size: 13px; text-decoration: none; }
 
 /* Theme switcher */
 .themes { display: flex; align-items: center; gap: 8px; }
@@ -131,7 +132,7 @@ h1 { margin: 0; font: 400 clamp(34px, 5vw, 56px)/1.12 "Michroma", sans-serif; le
 section { padding: 30px 0; }
 .sh { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
 .sh .chip { width: 18px; height: 18px; border-radius: 3px; background: var(--ink); flex: none; }
-.sh h2 { margin: 0; font: 400 20px "Michroma", sans-serif; letter-spacing: .22em; }
+.sh h2 { margin: 0; font: 600 23px "Chakra Petch", sans-serif; letter-spacing: .22em; }
 .sh hr { flex: 1; }
 .intro { margin: 0 0 24px; max-width: 46em; color: var(--ink-2); }
 
@@ -150,7 +151,7 @@ section { padding: 30px 0; }
 .meter i { flex: 1; border-radius: 1px; background: rgba(var(--vfd-rgb), .1); transition: background .06s; }
 .meter i.on { background: rgba(var(--vfd-rgb), .9); box-shadow: 0 0 6px rgba(var(--vfd-rgb), .6); }
 .demos { display: flex; flex-wrap: wrap; gap: 10px; }
-.demo { font: 11px/1 "Michroma", sans-serif; letter-spacing: .14em; padding: 12px 16px; min-height: 44px; border-radius: 4px; cursor: pointer;
+.demo { font: 600 13px/1 "Chakra Petch", sans-serif; letter-spacing: .14em; padding: 12px 16px; min-height: 44px; border-radius: 4px; cursor: pointer;
   display: inline-flex; align-items: center; gap: 10px; color: var(--vfd); background: transparent; border: 1px solid rgba(var(--vfd-rgb), .45); }
 .demo::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: rgba(var(--vfd-rgb), .35); }
 .demo[aria-pressed="true"] { color: var(--glass); background: var(--vfd); border-color: var(--vfd); }
@@ -160,26 +161,26 @@ section { padding: 30px 0; }
 .grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 28px; }
 .mod { display: flex; flex-direction: column; gap: 12px; padding-top: 18px; border-top: 1px solid var(--rule); }
 .mod-h { display: flex; align-items: center; gap: 10px; }
-.mod-h b { width: 22px; height: 22px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font: 11px "Michroma", sans-serif; color: #2f2c28; }
-.mod h3 { margin: 0; font: 400 14px "Michroma", sans-serif; letter-spacing: .2em; }
+.mod-h b { width: 22px; height: 22px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font: 600 12px "Chakra Petch", sans-serif; color: #2f2c28; }
+.mod h3 { margin: 0; font: 600 16px "Chakra Petch", sans-serif; letter-spacing: .2em; }
 .mod p { margin: 0; color: var(--ink-2); }
 .mod .controls { font-size: 14px; color: var(--ink-soft); }
 .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 28px; margin-top: 44px; }
 .features p { margin: 0; color: var(--ink-2); }
-.features strong { display: block; margin-bottom: 4px; font: 400 12px "Michroma", sans-serif; letter-spacing: .16em; color: var(--ink); }
+.features strong { display: block; margin-bottom: 4px; font: 600 14px "Chakra Petch", sans-serif; letter-spacing: .16em; color: var(--ink); }
 
 /* Looks gallery */
 .looks { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
 .look { margin: 0; cursor: pointer; border: 0; padding: 0; background: none; color: inherit; text-align: left; font: inherit; }
 .look img { width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: 0 10px 26px rgba(0,0,0,.3); transition: transform .2s; }
 .look:hover img { transform: translateY(-3px); }
-.look span { display: block; margin-top: 10px; font: 11px "Michroma", sans-serif; letter-spacing: .18em; }
+.look span { display: block; margin-top: 10px; font: 600 13px "Chakra Petch", sans-serif; letter-spacing: .18em; }
 .look[aria-pressed="true"] span::after { content: "  ●"; color: var(--vfd); }
 
 /* Presets */
 .presets { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px 34px; }
 .pcat h3 { margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--rule);
-  display: flex; align-items: center; gap: 10px; font: 400 12px "Michroma", sans-serif; letter-spacing: .16em; }
+  display: flex; align-items: center; gap: 10px; font: 600 14px "Chakra Petch", sans-serif; letter-spacing: .16em; }
 .pcat h3 i { width: 12px; height: 12px; border-radius: 2px; flex: none; box-shadow: 0 1px 0 rgba(0,0,0,.25); }
 .pcat h3 span { margin-left: auto; font: 13px "Share Tech Mono", monospace; color: var(--ink-soft); letter-spacing: 0; }
 .pcat ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
@@ -188,7 +189,7 @@ section { padding: 30px 0; }
 
 /* Secret teaser */
 .secret { background: var(--smoke); border-radius: 14px; padding: 40px 32px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; box-shadow: 0 16px 36px rgba(0,0,0,.3); border: 1px solid rgba(201,187,246,.15); }
-.secret h2 { margin: 0; font: 400 20px "Michroma", sans-serif; letter-spacing: .3em; color: var(--lilac); }
+.secret h2 { margin: 0; font: 600 23px "Chakra Petch", sans-serif; letter-spacing: .3em; color: var(--lilac); }
 .secret p { margin: 0; color: #d9d0f7; max-width: 38em; }
 .secret .hint { font-size: 14px; letter-spacing: .2em; color: #b3a6dc; }
 
@@ -196,7 +197,7 @@ section { padding: 30px 0; }
 .buy { display: flex; flex-wrap: wrap; gap: 40px; }
 [data-theme="studio"] .buy { background: rgba(255,255,255,.22); border-radius: 10px; padding: 36px; box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 1px 0 rgba(0,0,0,.2); }
 .buy .what { flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
-.buy h2 { margin: 0; font: 400 26px "Michroma", sans-serif; letter-spacing: .14em; }
+.buy h2 { margin: 0; font: 600 28px "Chakra Petch", sans-serif; letter-spacing: .14em; }
 .buy ul { margin: 0; padding-left: 20px; color: var(--ink-2); display: flex; flex-direction: column; gap: 6px; }
 .buy .pay { flex: 0 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
 .price { background: var(--glass); border-radius: 8px; padding: 18px 20px; color: var(--vfd); box-shadow: inset 0 4px 10px rgba(0,0,0,.6); }
@@ -207,7 +208,7 @@ section { padding: 30px 0; }
 
 /* FAQ */
 .faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px 40px; }
-.faq h3 { margin: 0 0 6px; font: 400 13px "Michroma", sans-serif; letter-spacing: .14em; }
+.faq h3 { margin: 0 0 6px; font: 600 15px "Chakra Petch", sans-serif; letter-spacing: .14em; }
 .faq p { margin: 0; color: var(--ink-2); }
 
 /* Footer + horizon */
@@ -221,8 +222,8 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   background: radial-gradient(closest-side, var(--sun), transparent); opacity: calc(.35 + var(--pulse) * .6); }
 .horizon svg { position: absolute; right: 6%; bottom: 0; height: 120px; width: auto; }
 .horizon .palm { transform-box: fill-box; transform-origin: 50% 100%; }
-.badge { font: 10px "Michroma", sans-serif; letter-spacing: .2em; padding: 6px 12px; border: 1px solid var(--ink); }
-.credit { margin: 0; font: 11px "Michroma", sans-serif; letter-spacing: .2em; display: flex; align-items: center; gap: 10px; }
+.badge { font: 600 12px "Chakra Petch", sans-serif; letter-spacing: .2em; padding: 6px 12px; border: 1px solid var(--ink); }
+.credit { margin: 0; font: 600 13px "Chakra Petch", sans-serif; letter-spacing: .2em; display: flex; align-items: center; gap: 10px; }
 .credit i { width: 7px; height: 7px; border-radius: 2px; background: var(--flamingo); display: inline-block; }
 .legal { width: 100%; margin: 0; font-size: 13px; color: var(--ink-soft); }
 
@@ -295,6 +296,8 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
         <button class="demo" type="button" aria-pressed="false" data-src="emptymall"  data-name="EMPTY MALL 1989" data-note="Vaporwave. A mall after closing.">EMPTY MALL 1989</button>
         <button class="demo" type="button" aria-pressed="false" data-src="tapedtv"    data-name="TAPED OFF TV"    data-note="Recorded off the telly in 1983.">TAPED OFF THE TV</button>
         <button class="demo" type="button" aria-pressed="false" data-src="headlights" data-name="HEADLIGHTS"      data-note="The tail sweeps across like passing cars.">HEADLIGHTS SWEEP</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="stringsky"  data-name="STRING MACHINE"  data-note="Ensemble chorus shimmering on a big hall.">STRING MACHINE SKY</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="phase87"    data-name="PHASE SHIFT 87"  data-note="A slow phaser sweep with a little tape wear.">PHASE SHIFT 1987</button>
         <button class="demo" type="button" aria-pressed="false" data-src="outsideclub" data-name="OUTSIDE CLUB"   data-note="The party's on the other side of the wall.">OUTSIDE THE CLUB</button>
         <button class="demo" type="button" aria-pressed="false" data-src="bleachers"   data-name="BLEACHERS"      data-note="Prom night, under the bleachers. The music's out there.">UNDER THE BLEACHERS</button>
         <button class="demo" type="button" aria-pressed="false" data-src="drums"      data-name="DRUM LOOP DRY"   data-note="A plain 80s drum loop, no plug-in.">DRUMS · DRY</button>
@@ -328,10 +331,15 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
         <p>One big Nostalgia knob that pushes everything towards a worn, faraway memory. Plus the tools a mix needs: tail EQ, tempo-synced pre-delay and sidechain ducking.</p>
         <p class="controls">Nostalgia · Low Cut · High Cut · Pre-delay Sync · Duck to sidechain</p>
       </article>
+      <article class="mod">
+        <div class="mod-h"><b style="background:var(--vfd)" aria-hidden="true">+</b><h3 class="engraved">CHORUS / PHASER</h3></div>
+        <p>The lush section, one button away. A chorus with three characters and a slow, liquid phaser, on everything or only the reverb. Switch it on and the whole faceplate glows in time with it.</p>
+        <p class="controls">Chorus · Dimension · Ensemble · Rate · Depth · Feedback · Mix</p>
+      </article>
     </div>
     <div class="features">
-      <p><strong>37 factory presets</strong>Sorted by instrument, plus rooms like a tiled bathroom, outside the club, and under the bleachers on prom night.</p>
-      <p><strong>Nostalgia</strong>One big knob that turns any sound into a worn, faraway memory.</p>
+      <p><strong>42 factory presets</strong>Sorted by instrument, plus rooms like a tiled bathroom, outside the club and under the bleachers on prom night, and lush chorus and phaser sounds.</p>
+      <p><strong>Nostalgia</strong>One big knob that turns any sound into a lush, worn, faraway memory: chorus, shimmer and bloom all at once.</p>
       <p><strong>Made for mixing</strong>Low and high cut on the tail, pre-delay locked to your tempo, sidechain ducking, A/B compare and undo.</p>
       <p><strong>Four looks</strong>Studio, Midnight, Sunset and Dusk. The sky themes come alive with the music.</p>
       <p><strong>A faceplate that moves</strong>Cassette reels that spin and waver with the tape, a live tail monitor, and knobs that glow with your sound.</p>
@@ -361,7 +369,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   <section id="presets" aria-labelledby="presets-title">
     <div class="panel">
     <div class="sh"><span class="chip" style="background:var(--flamingo)" aria-hidden="true"></span><h2 id="presets-title" class="engraved">PRESETS</h2><hr class="groove"></div>
-    <p class="intro">37 sounds, sorted by what you’re working on. All presets play at about the same volume as your dry sound, so you can compare them fairly.</p>
+    <p class="intro">42 sounds, sorted by what you’re working on. All presets play at about the same volume as your dry sound, so you can compare them fairly.</p>
     <div class="presets">
       <div class="pcat">
         <h3 class="engraved"><i style="background:var(--vfd)" aria-hidden="true"></i>START HERE <span>3</span></h3>
@@ -440,6 +448,16 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
           <li><b>Concrete Stairwell</b>Hard and ringing. Try it on claps.</li>
         </ul>
       </div>
+      <div class="pcat">
+        <h3 class="engraved"><i style="background:#a184ff" aria-hidden="true"></i>LUSH <span>5</span></h3>
+        <ul>
+          <li><b>Silk Chorus Vocal</b>Dimension chorus: wide, never wobbly.</li>
+          <li><b>String Machine Sky</b>Ensemble shimmer on a big hall.</li>
+          <li><b>Phase Shift 1987</b>A slow phaser sweep with tape wear.</li>
+          <li><b>Liquid Guitar</b>Chorus and phaser together. Clean gtr.</li>
+          <li><b>Dream Sequence</b>Nostalgia up, the tail swirls.</li>
+        </ul>
+      </div>
     </div>
     <p class="small" style="margin-top:22px">Plus three more that only appear once you’ve found After Hours.</p>
     </div>
@@ -461,7 +479,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
         <h2 id="buy-title" class="engraved">PALM LIFE</h2>
         <ul>
           <li>VST3 plug-in for Windows 10/11 (64-bit)</li>
-          <li>37 factory presets and unlimited saved presets</li>
+          <li>42 factory presets and unlimited saved presets</li>
           <li>Free updates for version 1</li>
           <li>A licence key for up to 3 computers</li>
         </ul>
