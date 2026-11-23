@@ -2,7 +2,7 @@
 
 The product page for **Palm Life**, the 80s hi-fi reverb / VHS age / auto-pan plug-in by NightFin.
 
-Live at: https://palmermilo-ship-it.github.io/palmlife/
+Live at: https://nightfinaudio.com/
 
 - `index.html`: the whole page (edit text here)
 - `assets/audio/`: demo clips
