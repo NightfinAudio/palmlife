@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palm Life: 80s hi-fi reverb, VHS age &amp; auto-pan plug-in by NightFin</title>
+<meta name="description" content="Palm Life is a VST3 plug-in: lush 1980s reverb, worn-videotape ageing and slow stereo drift in one. Made by NightFin.">
+<link rel="icon" href="assets/img/palm.svg" type="image/svg+xml">
+<meta property="og:type" content="product">
+<meta property="og:title" content="Palm Life: reverb that sounds like a memory">
+<meta property="og:description" content="Lush 80s halls, worn videotape and slow stereo drift in one VST3 plug-in. By NightFin.">
+<meta property="og:image" content="https://palmermilo-ship-it.github.io/palmlife/assets/img/og.jpg">
+<meta property="og:url" content="https://palmermilo-ship-it.github.io/palmlife/">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+@font-face { font-family: "Michroma"; src: url(assets/fonts/Michroma-Regular.ttf) format("truetype"); font-display: swap; }
+@font-face { font-family: "Share Tech Mono"; src: url(assets/fonts/ShareTechMono-Regular.ttf) format("truetype"); font-display: swap; }
+@font-face { font-family: "DSEG14"; src: url(assets/fonts/DSEG14Classic-Bold.ttf) format("truetype"); font-display: swap; }
+
+:root {
+  --plate: #d6d0c4; --ink: #2f2c28; --ink-2: #3d3a35; --ink-soft: #55504a;
+  --glass: #0b1315; --vfd: #86f5df; --flamingo: #ee9d95; --seafoam: #83cdb8; --sand: #f0c27a;
+  --smoke: #15121a; --lilac: #c9bbf6;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--ink); font: 17px/1.55 "Share Tech Mono", ui-monospace, monospace;
+  background-color: var(--plate);
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.10) 0 1px, rgba(0,0,0,.035) 2px, transparent 3px);
+}
+a { color: var(--ink); }
+a:hover { color: #000; }
+:focus-visible { outline: 2px solid #1f6f62; outline-offset: 3px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.label { font-family: "Michroma", sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.engraved { text-shadow: 0 1px 0 rgba(255,255,255,.75); }
+.groove { border: 0; height: 1px; background: rgba(47,44,40,.35); box-shadow: 0 1px 0 rgba(255,255,255,.7); margin: 0; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 14px 22px;
+  font: 12px/1 "Michroma", sans-serif; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--ink);
+  border-radius: 4px; background: linear-gradient(#f4f1ea, #bfb8aa);
+  box-shadow: 0 2px 0 rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.85);
+  transition: filter .12s, transform .08s;
+}
+.btn:hover { filter: brightness(1.04); color: var(--ink); }
+.btn:active { transform: translateY(1px); }
+.btn.big { font-size: 13px; padding: 17px 26px; }
+.led { width: 9px; height: 9px; border-radius: 50%; background: var(--flamingo); box-shadow: 0 0 8px var(--flamingo); flex: none; }
+
+/* Header */
+header { border-bottom: 1px solid rgba(47,44,40,.35); box-shadow: 0 1px 0 rgba(255,255,255,.7); }
+header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; padding-bottom: 16px; }
+.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.brand span { font: 18px "Michroma", sans-serif; letter-spacing: .22em; }
+nav { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
+nav a.label { font-size: 11px; text-decoration: none; }
+
+/* Hero */
+.hero { display: flex; flex-wrap: wrap; gap: 48px; align-items: center; padding: 72px 0 40px; }
+.hero .copy { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 22px; }
+.kicker { margin: 0; font-size: 14px; letter-spacing: .24em; color: var(--ink-soft); }
+h1 { margin: 0; font: 400 clamp(34px, 5vw, 56px)/1.12 "Michroma", sans-serif; letter-spacing: .04em; }
+.lead { margin: 0; font-size: 19px; max-width: 34em; color: var(--ink-2); }
+.ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding-top: 6px; }
+.small { margin: 0; font-size: 14px; color: var(--ink-soft); }
+.hero figure { flex: 1 1 520px; min-width: 0; margin: 0; }
+.hero img { width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: 0 2px 0 rgba(255,255,255,.6), 0 18px 40px rgba(0,0,0,.28); }
+
+/* Section headings */
+section { padding: 56px 0; }
+.sh { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+.sh .chip { width: 18px; height: 18px; border-radius: 3px; background: var(--ink); flex: none; }
+.sh h2 { margin: 0; font: 400 20px "Michroma", sans-serif; letter-spacing: .22em; }
+.sh hr { flex: 1; }
+
+/* Player (VFD) */
+.vfd { background: var(--glass); border-radius: 8px; padding: 26px; color: var(--vfd);
+  box-shadow: 0 1px 0 rgba(255,255,255,.8), inset 0 6px 14px rgba(0,0,0,.6); display: flex; flex-direction: column; gap: 18px; }
+.vfd-top { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: .18em; opacity: .75; }
+.seg { margin: 0; font: clamp(22px, 4vw, 40px) "DSEG14", "Share Tech Mono", monospace; letter-spacing: .04em;
+  text-shadow: 0 0 6px rgba(134,245,223,.55), 0 0 1px rgba(134,245,223,.9); overflow-wrap: anywhere; }
+.vfd .note { margin: 0; font-size: 15px; opacity: .75; }
+.vfd audio { width: 100%; height: 40px; }
+.demos { display: flex; flex-wrap: wrap; gap: 10px; }
+.demo { font: 11px/1 "Michroma", sans-serif; letter-spacing: .14em; padding: 12px 16px; min-height: 44px; border-radius: 4px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 10px; color: var(--vfd); background: transparent; border: 1px solid rgba(134,245,223,.45); }
+.demo::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: rgba(134,245,223,.35); }
+.demo[aria-pressed="true"] { color: var(--glass); background: var(--vfd); border-color: var(--vfd); }
+.demo[aria-pressed="true"]::before { background: var(--glass); }
+
+/* Modules */
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+.mod { display: flex; flex-direction: column; gap: 12px; padding-top: 18px; border-top: 1px solid rgba(47,44,40,.4); }
+.mod-h { display: flex; align-items: center; gap: 10px; }
+.mod-h b { width: 22px; height: 22px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font: 11px "Michroma", sans-serif; }
+.mod h3 { margin: 0; font: 400 15px "Michroma", sans-serif; letter-spacing: .2em; }
+.mod p { margin: 0; color: var(--ink-2); }
+.mod .controls { font-size: 14px; color: var(--ink-soft); }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 28px; margin-top: 44px; }
+.features p { margin: 0; color: var(--ink-2); }
+.features strong { display: block; margin-bottom: 4px; font: 400 12px "Michroma", sans-serif; letter-spacing: .16em; color: var(--ink); }
+
+/* Secret teaser */
+.secret { background: var(--smoke); border-radius: 8px; padding: 40px 32px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; box-shadow: 0 16px 36px rgba(0,0,0,.3); }
+.secret h2 { margin: 0; font: 400 20px "Michroma", sans-serif; letter-spacing: .3em; color: var(--lilac); }
+.secret p { margin: 0; color: #d9d0f7; max-width: 38em; }
+.secret .hint { font-size: 14px; letter-spacing: .2em; color: #b3a6dc; }
+
+/* Buy */
+.buy { display: flex; flex-wrap: wrap; gap: 40px; background: rgba(255,255,255,.22); border-radius: 8px; padding: 36px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 1px 0 rgba(0,0,0,.2); }
+.buy .what { flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.buy h2 { margin: 0; font: 400 26px "Michroma", sans-serif; letter-spacing: .14em; }
+.buy ul { margin: 0; padding-left: 20px; color: var(--ink-2); display: flex; flex-direction: column; gap: 6px; }
+.buy .pay { flex: 0 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.price { background: var(--glass); border-radius: 6px; padding: 18px 20px; color: var(--vfd); box-shadow: inset 0 4px 10px rgba(0,0,0,.6); }
+.price p { margin: 0; }
+.price .seg { font-size: 34px; margin: 6px 0; }
+.price .was { font-size: 14px; opacity: .75; }
+.pay .btn { justify-content: center; }
+
+/* FAQ */
+.faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px 40px; }
+.faq h3 { margin: 0 0 6px; font: 400 13px "Michroma", sans-serif; letter-spacing: .14em; }
+.faq p { margin: 0; color: var(--ink-2); }
+
+/* Footer */
+footer { border-top: 1px solid rgba(47,44,40,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.7); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; padding-top: 26px; padding-bottom: 26px; }
+.badge { font: 10px "Michroma", sans-serif; letter-spacing: .2em; padding: 6px 12px; border: 1px solid var(--ink); }
+.credit { margin: 0; font: 11px "Michroma", sans-serif; letter-spacing: .2em; display: flex; align-items: center; gap: 10px; }
+.credit i { width: 7px; height: 7px; border-radius: 2px; background: var(--flamingo); display: inline-block; }
+.legal { width: 100%; margin: 0; font-size: 13px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand engraved" href="#top"><img src="assets/img/palm.svg" width="40" height="40" alt=""><span>PALM LIFE</span></a>
+    <nav aria-label="Main">
+      <a class="label engraved" href="#listen">Listen</a>
+      <a class="label engraved" href="#inside">Inside</a>
+      <a class="label engraved" href="#faq">FAQ</a>
+      <a class="btn" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4"><span class="led" aria-hidden="true"></span>Buy</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="copy">
+      <p class="kicker engraved">MODEL PL-86 — HI-FI REVERB / VHS AGE / AUTO PAN</p>
+      <h1 id="hero-title" class="engraved">Reverb that sounds like a memory.</h1>
+      <p class="lead">Lush 1980s halls, worn videotape and slow stereo drift in one plug-in. Put it on synths, vocals or a whole beat and it comes back sounding like it was taped off late-night TV in 1986.</p>
+      <div class="ctas">
+        <a class="btn big" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4"><span class="led" aria-hidden="true"></span>Get Palm Life — £19</a>
+        <a class="label engraved" href="#listen" style="font-size:12px;padding:14px 6px">Hear it first</a>
+      </div>
+      <p class="small">VST3 · Windows 10/11 (64-bit) · macOS coming soon</p>
+    </div>
+    <figure>
+      <picture>
+        <source srcset="assets/img/palm-life.webp" type="image/webp">
+        <img src="assets/img/palm-life.jpg" width="1260" height="1050"
+             alt="The Palm Life plug-in: a brushed-aluminium faceplate with knurled knobs, a glowing green display and three sections: Palm reverb, Age VHS and Drift auto pan.">
+      </picture>
+    </figure>
+  </section>
+
+  <section id="listen" aria-labelledby="listen-title">
+    <div class="sh"><span class="chip" style="background:var(--vfd)" aria-hidden="true"></span><h2 id="listen-title" class="engraved">LISTEN</h2><hr class="groove"></div>
+    <p style="margin:0 0 22px;max-width:46em;color:var(--ink-2)">Twenty seconds of a finished mix: first the original, then the same section through four factory presets. Nothing else added.</p>
+    <div class="vfd">
+      <div class="vfd-top"><span>NOW PLAYING</span><span>PL-86</span></div>
+      <p class="seg" id="vfd-name" aria-live="polite">MIAMI NIGHTS</p>
+      <p class="note" id="vfd-note">Big, wide hall with a little tape warmth.</p>
+      <audio id="player" controls preload="none" src="assets/audio/miami.mp3"></audio>
+      <div class="demos" role="group" aria-label="Choose a demo">
+        <button class="demo" type="button" aria-pressed="false" data-src="dry"        data-name="ORIGINAL MIX"    data-note="The original mix, no plug-in.">ORIGINAL</button>
+        <button class="demo" type="button" aria-pressed="true"  data-src="miami"      data-name="MIAMI NIGHTS"    data-note="Big, wide hall with a little tape warmth.">MIAMI NIGHTS</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="rewind"     data-name="REWIND 1986"     data-note="Heavy VHS: wow, flutter, hiss and a narrow, worn tone.">REWIND 1986</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="nightdrive" data-name="NIGHT DRIVE PAN" data-note="The reverb tail drifts left and right around a centred dry sound.">NIGHT DRIVE PAN</button>
+        <button class="demo" type="button" aria-pressed="false" data-src="neonhall"   data-name="NEON HALL"       data-note="A twelve-second wash with deep shimmer.">NEON HALL</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="inside" aria-labelledby="inside-title">
+    <div class="sh"><span class="chip" aria-hidden="true"></span><h2 id="inside-title" class="engraved">WHAT’S INSIDE</h2><hr class="groove"></div>
+    <div class="grid3">
+      <article class="mod">
+        <div class="mod-h"><b style="background:var(--flamingo)" aria-hidden="true">A</b><h3 class="engraved">PALM / REVERB</h3></div>
+        <p>An eight-line hall with slow internal shimmer: the wide, chorus-y digital reverb of late-80s records. Goes from a tight plate to a twenty-second wash.</p>
+        <p class="controls">Size · Decay · Damping · Shimmer · Pre-delay · Width · Mix · Duck</p>
+      </article>
+      <article class="mod">
+        <div class="mod-h"><b style="background:var(--seafoam)" aria-hidden="true">B</b><h3 class="engraved">AGE / VHS</h3></div>
+        <p>Puts the sound on an old tape: warped pitch drift, transport flutter, soft saturation, hiss and a narrowing frequency range. Age everything, or only the reverb tail.</p>
+        <p class="controls">Wow · Flutter · Warmth · Hiss · Fade · Output</p>
+      </article>
+      <article class="mod">
+        <div class="mod-h"><b style="background:var(--sand)" aria-hidden="true">C</b><h3 class="engraved">DRIFT / AUTO PAN</h3></div>
+        <p>Moves the sound between the speakers, free-running or locked to your song’s tempo. Pan the whole sound, or keep your dry signal centred while only the reverb drifts around it.</p>
+        <p class="controls">Rate · Depth · Sync · Sine / Triangle / Square / Random</p>
+      </article>
+    </div>
+    <div class="features">
+      <p><strong>10 factory presets</strong>From Miami Nights to Worn Tape Memory, plus your own saved sounds.</p>
+      <p><strong>Live display</strong>The display shows the exact value of whatever you’re turning.</p>
+      <p><strong>Resizable</strong>Scale the window from 75% to 200%. It remembers your size.</p>
+      <p><strong>Ducking</strong>Huge reverbs that step aside while the vocal sings.</p>
+      <p><strong>Free updates</strong>Palm Life tells you when a new version is out.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="secret-title">
+    <div class="secret">
+      <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:10px">
+        <h2 id="secret-title">AFTER HOURS</h2>
+        <p>There are more controls on this faceplate than you can see. We won’t say where they are. Find them, and the night gets longer.</p>
+      </div>
+      <p class="hint">HINT: LOOK CLOSER</p>
+    </div>
+  </section>
+
+  <section id="buy" aria-labelledby="buy-title">
+    <div class="buy">
+      <div class="what">
+        <h2 id="buy-title" class="engraved">PALM LIFE</h2>
+        <ul>
+          <li>VST3 plug-in for Windows 10/11 (64-bit)</li>
+          <li>10 factory presets and unlimited saved presets</li>
+          <li>Free updates for version 1</li>
+          <li>A licence key for up to 3 computers</li>
+        </ul>
+      </div>
+      <div class="pay">
+        <div class="price">
+          <p style="font-size:13px;letter-spacing:.18em;opacity:.75">LAUNCH PRICE</p>
+          <p class="seg">£19</p>
+          <p class="was">Normally £29. Launch price until 7 December.</p>
+        </div>
+        <a class="btn big" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4"><span class="led" aria-hidden="true"></span>Buy now</a>
+        <p class="small" style="text-align:center">Secure checkout by Polar. VAT handled at checkout.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="faq-title">
+    <div class="sh"><span class="chip" aria-hidden="true"></span><h2 id="faq-title" class="engraved">FAQ</h2><hr class="groove"></div>
+    <div class="faq">
+      <div><h3 class="engraved">WHICH DAWS WORK?</h3><p>Any Windows DAW that loads VST3 plug-ins, including Ableton Live, FL Studio, Reaper, Cubase, Studio One and Bitwig.</p></div>
+      <div><h3 class="engraved">IS THERE A MAC VERSION?</h3><p>It’s on the way. Buyers will get it free when it’s released.</p></div>
+      <div><h3 class="engraved">HOW DO I INSTALL IT?</h3><p>Copy the Palm Life.vst3 folder into C:\Program Files\Common Files\VST3 and rescan plug-ins in your DAW. If Windows shows a warning, choose More info, then Run anyway. Then click REGISTER and paste your key.</p></div>
+      <div><h3 class="engraved">ARE UPDATES FREE?</h3><p>Yes, every 1.x update. Palm Life shows an UPDATE button when one is out, and you download it from your <a href="https://polar.sh/nightfin/portal">customer portal</a>.</p></div>
+      <div><h3 class="engraved">NEW COMPUTER?</h3><p>In Palm Life click LICENCE, then DEACTIVATE, and register on the new one. You can also free up computers from your customer portal.</p></div>
+      <div><h3 class="engraved">REFUNDS?</h3><p>Full refund within 14 days if Palm Life doesn’t work on your system. Email <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a>. Refunded licence keys are deactivated.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="badge">HI-FI STEREO</span>
+    <p class="credit engraved"><i aria-hidden="true"></i>DESIGNED &amp; BUILT BY MILO · NIGHTFIN</p>
+    <a href="mailto:palmlifesupport@gmail.com" style="font-size:14px">palmlifesupport@gmail.com</a>
+    <p class="legal">Orders are processed by Polar, our online reseller and merchant of record. VST is a trademark of Steinberg Media Technologies GmbH.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var player = document.getElementById('player');
+  var nameEl = document.getElementById('vfd-name');
+  var noteEl = document.getElementById('vfd-note');
+  var buttons = document.querySelectorAll('.demo');
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var wasPlaying = !player.paused;
+      var t = player.currentTime || 0;
+      buttons.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      nameEl.textContent = b.dataset.name;
+      noteEl.textContent = b.dataset.note;
+      player.src = 'assets/audio/' + b.dataset.src + '.mp3';
+      // Keep the same position so you can A/B the presets
+      player.addEventListener('loadedmetadata', function once() {
+        player.removeEventListener('loadedmetadata', once);
+        try { player.currentTime = Math.min(t, player.duration || t); } catch (e) {}
+        player.play().catch(function () {});
+      });
+      player.load();
+      if (!wasPlaying && t === 0) player.play().catch(function () {});
+    });
+  });
+})();
+</script>
+</body>
+</html>
