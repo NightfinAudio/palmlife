@@ -215,7 +215,8 @@ footer { position: relative; margin-top: 40px; border-top: 1px solid var(--rule)
 footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; padding-top: 26px; padding-bottom: 26px; }
 .horizon { display: none; position: absolute; inset: 0; pointer-events: none; }
 [data-theme="sunset"] .horizon, [data-theme="dusk"] .horizon { display: block; }
-[data-theme="sunset"] footer, [data-theme="dusk"] footer { min-height: 170px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.25)); }
+[data-theme="sunset"] footer, [data-theme="dusk"] footer { background: linear-gradient(180deg, transparent, rgba(0,0,0,.25)); }
+[data-theme="sunset"] footer .wrap, [data-theme="dusk"] footer .wrap { padding-bottom: 140px; }   /* the horizon sits below the text */
 .horizon .glow { position: absolute; left: 50%; bottom: -120px; width: 900px; height: 260px; transform: translateX(-50%);
   background: radial-gradient(closest-side, var(--sun), transparent); opacity: calc(.35 + var(--pulse) * .6); }
 .horizon svg { position: absolute; right: 6%; bottom: 0; height: 120px; width: auto; }
