@@ -157,6 +157,8 @@ section { padding: 30px 0; }
 .demo[aria-pressed="true"] { color: var(--glass); background: var(--vfd); border-color: var(--vfd); }
 .demo[aria-pressed="true"]::before { background: var(--glass); }
 
+.demo-video { width: 100%; height: auto; display: block; border-radius: 10px; background: #000; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+
 /* Modules */
 .grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 28px; }
 .mod { display: flex; flex-direction: column; gap: 12px; padding-top: 18px; border-top: 1px solid var(--rule); }
@@ -238,6 +240,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   <div class="wrap">
     <a class="brand engraved" href="#top"><img src="assets/img/palm.svg" width="40" height="40" alt=""><span>PALM LIFE</span></a>
     <nav aria-label="Main">
+      <a class="label engraved" href="#watch">Watch</a>
       <a class="label engraved" href="#listen">Listen</a>
       <a class="label engraved" href="#inside">Inside</a>
       <a class="label engraved" href="#presets">Presets</a>
@@ -274,6 +277,16 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       </picture>
       <figcaption id="hero-cap">Sunset theme. Try the others with the swatches at the top.</figcaption>
     </figure>
+  </section>
+
+  <section id="watch" aria-labelledby="watch-title">
+    <div class="panel">
+    <div class="sh"><span class="chip" style="background:var(--sunset)" aria-hidden="true"></span><h2 id="watch-title" class="engraved">WATCH</h2><hr class="groove"></div>
+    <p class="intro">One minute of Palm Life on NightFin's own track: the tape, the Nostalgia knob, chorus and phaser lighting up, rooms, and all four looks.</p>
+    <video class="demo-video" controls preload="none" playsinline poster="assets/video/poster.jpg" width="1920" height="1080">
+      <source src="assets/video/palm-life-demo.mp4" type="video/mp4">
+    </video>
+    </div>
   </section>
 
   <section id="listen" aria-labelledby="listen-title">
