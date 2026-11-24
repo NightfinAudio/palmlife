@@ -6,7 +6,7 @@
 <title>Palm Life: 80s hi-fi reverb, VHS age &amp; auto-pan plug-in by NightFin</title>
 <meta name="description" content="Palm Life: an 80s reverb VST3 plug-in with VHS tape ageing, chorus, phaser and auto-pan. Lush synthwave and vaporwave space for Windows DAWs. By NightFin.">
 <meta name="theme-color" content="#0a1630">
-<link rel="icon" href="assets/img/palm.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://nightfinaudio.com/">
 <script type="application/ld+json">
 {
@@ -112,7 +112,7 @@ section { padding: 22px 0; }
 header { position: sticky; top: 0; z-index: 10; background: var(--header); border-bottom: 1px solid var(--rule); }
 header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 22px; padding-top: 12px; padding-bottom: 12px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.brand img { border-radius: 50%; }
+.brand img { display: block; }
 .brand span { font: 17px "Michroma", var(--sans); letter-spacing: .2em; }
 nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
 nav a.label { font-size: 13px; text-decoration: none; }
@@ -243,14 +243,14 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
 @keyframes sway { from { transform: rotate(-2deg); } to { transform: rotate(2deg); } }
 .badge { font: 600 12px var(--label); letter-spacing: .2em; padding: 6px 12px; border: 1px solid var(--ink); }
 .credit { font: 600 13px var(--label); letter-spacing: .2em; display: flex; align-items: center; gap: 10px; }
-.credit i { width: 7px; height: 7px; border-radius: 2px; background: var(--flamingo); display: inline-block; }
+.credit img { display: block; }
 .legal { width: 100%; font-size: 14px; color: var(--ink-soft); }
 
 @media (max-width: 760px) {
   body { font-size: 17px; }
   header { position: static; }
   header .wrap { gap: 10px 16px; }
-  .brand img { width: 30px; height: 30px; }
+  .brand img { width: 36px; height: 18px; }
   .brand span { font-size: 15px; }
   nav { gap: 8px 14px; }
   .swatch { width: 24px; height: 24px; }
@@ -267,7 +267,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
 
 <header>
   <div class="wrap">
-    <a class="brand" href="#top"><img src="assets/img/palm.svg" width="38" height="38" alt=""><span>PALM LIFE</span></a>
+    <a class="brand" href="#top"><img src="assets/img/nightfin-mark.svg" width="44" height="22" alt="NightFin"><span>PALM LIFE</span></a>
     <nav aria-label="Main">
       <a class="label" href="#watch">Watch</a>
       <a class="label" href="#listen">Listen</a>
@@ -311,7 +311,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       <div class="sh"><span class="chip" style="background:var(--sunset)" aria-hidden="true"></span><h2 id="watch-title">WATCH</h2><hr class="groove"></div>
       <p class="intro">One minute of Palm Life on NightFin's own track: the tape, the Nostalgia knob, chorus and phaser lighting up, the rooms, and all four looks.</p>
       <video class="demo-video" controls preload="none" playsinline poster="assets/video/poster.webp" width="1920" height="1080">
-        <source src="assets/video/palm-life-demo.mp4?v=153" type="video/mp4">
+        <source src="assets/video/palm-life-demo.mp4?v=155" type="video/mp4">
       </video>
     </div>
   </section>
@@ -583,7 +583,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   </div>
   <div class="wrap">
     <span class="badge">HI-FI STEREO</span>
-    <p class="credit"><i aria-hidden="true"></i>DESIGNED &amp; BUILT BY NIGHTFIN</p>
+    <p class="credit"><img src="assets/img/nightfin-mark.svg" width="28" height="14" alt="">DESIGNED &amp; BUILT BY NIGHTFIN</p>
     <a href="mailto:palmlifesupport@gmail.com" style="font-size:15px">palmlifesupport@gmail.com</a>
     <p class="legal">Orders are processed by Polar, our online reseller and merchant of record. VST is a trademark of Steinberg Media Technologies GmbH.</p>
   </div>
