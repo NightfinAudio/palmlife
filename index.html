@@ -56,10 +56,10 @@ body { margin: 0; color: var(--ink); background-color: var(--bg);
 img, video, svg { max-width: 100%; }
 
 /* Sky (Sunset / Dusk): one fixed layer, painted once */
-.sky { position: fixed; inset: 0; z-index: -1; background: var(--sky); display: none; pointer-events: none; }
+.sky { position: fixed; inset: 0; z-index: -1; background: var(--sky); display: none; pointer-events: none; transform: translateZ(0); }
 [data-theme="sunset"] .sky, [data-theme="dusk"] .sky { display: block; }
-.sky svg { position: absolute; inset: 0; width: 100%; height: 60%; }
-.sky .tw { animation: twinkle 6s ease-in-out infinite; will-change: opacity; }
+.sky .stars { position: absolute; left: 0; top: 0; width: 100%; height: 60%; background-repeat: no-repeat; background-size: 100% 100%; will-change: opacity; }
+.sky .tw { animation: twinkle 6s ease-in-out infinite; }
 .sky .tw2 { animation-duration: 8s; animation-delay: -3s; }
 @keyframes twinkle { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
 
@@ -127,9 +127,10 @@ h1 { margin: 0; font: 400 clamp(32px, 4.6vw, 52px)/1.15 "Michroma", var(--sans);
 .intro { margin-bottom: 28px; max-width: 38em; color: var(--ink-2); font-size: 18px; }
 
 /* Player (VFD) */
-.vfd { background: var(--glass); border-radius: 10px; padding: 24px; color: var(--vfd); --pulse: 0;
-  box-shadow: inset 0 6px 14px rgba(0,0,0,.6), 0 0 calc(var(--pulse) * 50px) rgba(var(--vfd-rgb), calc(var(--pulse) * .22));
-  display: flex; flex-direction: column; gap: 16px; }
+.vfd { position: relative; background: var(--glass); border-radius: 10px; padding: 24px; color: var(--vfd);
+  box-shadow: inset 0 6px 14px rgba(0,0,0,.6); display: flex; flex-direction: column; gap: 16px; }
+.vfd-glow { position: absolute; inset: 0; border-radius: 10px; pointer-events: none; opacity: 0; will-change: opacity;
+  box-shadow: 0 0 50px rgba(var(--vfd-rgb), .22); }
 .vfd-top { display: flex; justify-content: space-between; font: 13px var(--mono); letter-spacing: .18em; opacity: .8; }
 .seg { font-size: clamp(22px, 4vw, 40px); line-height: 1; color: var(--vfd); }
 .seg svg { display: block; max-width: 100%; height: auto; overflow: visible; }
@@ -205,16 +206,16 @@ h1 { margin: 0; font: 400 clamp(32px, 4.6vw, 52px)/1.15 "Michroma", var(--sans);
 .faq p { color: var(--ink-2); }
 
 /* Footer + horizon */
-footer { position: relative; margin-top: 40px; border-top: 1px solid var(--rule); overflow: hidden; --pulse: 0; }
+footer { position: relative; margin-top: 40px; border-top: 1px solid var(--rule); overflow: hidden; }
 footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; padding-top: 26px; padding-bottom: 26px; }
 .horizon { display: none; position: absolute; inset: 0; pointer-events: none; }
 [data-theme="sunset"] .horizon, [data-theme="dusk"] .horizon { display: block; }
 [data-theme="sunset"] footer, [data-theme="dusk"] footer { background: rgba(0,0,0,.25); }
 [data-theme="sunset"] footer .wrap, [data-theme="dusk"] footer .wrap { padding-bottom: 140px; }
 .horizon .glow { position: absolute; left: 50%; bottom: -120px; width: 900px; height: 260px; transform: translateX(-50%);
-  background: radial-gradient(closest-side, var(--sun), transparent); opacity: calc(.35 + var(--pulse) * .6); }
-.horizon svg { position: absolute; right: 6%; bottom: 0; height: 120px; width: auto; }
-.horizon .palm { transform-box: fill-box; transform-origin: 50% 100%; animation: sway 7s ease-in-out infinite alternate; }
+  background: radial-gradient(closest-side, var(--sun), transparent); opacity: .35; will-change: opacity; }
+.horizon .palms { position: absolute; right: 6%; bottom: 0; width: 260px; height: 120px; }
+.horizon .palm { position: absolute; bottom: 0; left: 0; width: 260px; height: 120px; transform-origin: var(--ox) 100%; will-change: transform; animation: sway 7s ease-in-out infinite alternate; }
 .horizon .palm:nth-child(2) { animation-duration: 8.5s; animation-delay: -2s; }
 .horizon .palm:nth-child(3) { animation-duration: 6.2s; animation-delay: -4s; }
 @keyframes sway { from { transform: rotate(-2deg); } to { transform: rotate(2deg); } }
@@ -298,6 +299,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       <div class="sh"><span class="chip" style="background:var(--vfd)" aria-hidden="true"></span><h2 id="listen-title">LISTEN</h2><hr class="groove"></div>
       <p class="intro">Twenty seconds of a finished mix: first the original, then the same section through factory presets. The last two are a plain drum loop, dry and through Big Gated Snare. Nothing else added. Switch presets while it plays to compare them at the same spot.</p>
       <div class="vfd" id="vfd">
+        <div class="vfd-glow" id="vfd-glow" aria-hidden="true"></div>
         <div class="vfd-top"><span>NOW PLAYING</span><span>PL-86</span></div>
         <p class="seg" id="vfd-name" aria-live="polite">MIAMI NIGHTS</p>
         <p class="note" id="vfd-note">Big, wide hall with a little tape warmth.</p>
@@ -551,11 +553,11 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
 <footer id="footer">
   <div class="horizon" aria-hidden="true">
     <div class="glow"></div>
-    <svg viewBox="0 0 260 120" fill="rgba(20,6,10,.9)">
-      <g class="palm"><path d="M60 120 Q66 70 72 30 L75 30 Q70 72 66 120 Z"/><path d="M73 30 q-30-8-52 8 q24-14 52-6Z M73 30 q-26 6-38 30 q16-24 38-28Z M73 30 q8-22 34-24 q-28 8-32 26Z M73 30 q30-6 48 14 q-22-16-46-12Z M73 30 q20 10 24 34 q-8-22-26-32Z M73 30 q-10-20-30-26 q22 4 32 24Z"/></g>
-      <g class="palm"><path d="M112 120 Q115 90 118 66 L120 66 Q118 92 116 120 Z"/><path d="M119 66 q-22-6-38 6 q18-10 38-4Z M119 66 q-18 4-26 22 q12-18 26-20Z M119 66 q6-16 26-18 q-20 6-24 20Z M119 66 q22-4 34 10 q-16-12-32-8Z M119 66 q14 8 16 24 q-6-16-18-22Z"/></g>
-      <g class="palm"><path d="M200 120 Q194 76 186 40 L189 40 Q198 76 205 120 Z"/><path d="M187 40 q-28-8-50 6 q24-12 50-4Z M187 40 q-22 6-34 28 q14-22 34-26Z M187 40 q8-20 32-22 q-26 8-30 24Z M187 40 q28-6 46 12 q-22-14-44-10Z M187 40 q18 10 22 32 q-8-20-24-30Z M187 40 q-8-18-28-24 q20 4 30 22Z"/></g>
-    </svg>
+    <div class="palms">
+      <svg class="palm" style="--ox:28%" viewBox="0 0 260 120" fill="rgba(20,6,10,.9)"><path d="M60 120 Q66 70 72 30 L75 30 Q70 72 66 120 Z"/><path d="M73 30 q-30-8-52 8 q24-14 52-6Z M73 30 q-26 6-38 30 q16-24 38-28Z M73 30 q8-22 34-24 q-28 8-32 26Z M73 30 q30-6 48 14 q-22-16-46-12Z M73 30 q20 10 24 34 q-8-22-26-32Z M73 30 q-10-20-30-26 q22 4 32 24Z"/></svg>
+      <svg class="palm" style="--ox:45%" viewBox="0 0 260 120" fill="rgba(20,6,10,.9)"><path d="M112 120 Q115 90 118 66 L120 66 Q118 92 116 120 Z"/><path d="M119 66 q-22-6-38 6 q18-10 38-4Z M119 66 q-18 4-26 22 q12-18 26-20Z M119 66 q6-16 26-18 q-20 6-24 20Z M119 66 q22-4 34 10 q-16-12-32-8Z M119 66 q14 8 16 24 q-6-16-18-22Z"/></svg>
+      <svg class="palm" style="--ox:74%" viewBox="0 0 260 120" fill="rgba(20,6,10,.9)"><path d="M200 120 Q194 76 186 40 L189 40 Q198 76 205 120 Z"/><path d="M187 40 q-28-8-50 6 q24-12 50-4Z M187 40 q-22 6-34 28 q14-22 34-26Z M187 40 q8-20 32-22 q-26 8-30 24Z M187 40 q28-6 46 12 q-22-14-44-10Z M187 40 q18 10 22 32 q-8-20-24-30Z M187 40 q-8-18-28-24 q20 4 30 22Z"/></svg>
+    </div>
   </div>
   <div class="wrap">
     <span class="badge">HI-FI STEREO</span>
@@ -593,10 +595,13 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     var g = ['', '', ''];
     for (var i = 0; i < 60; i++) {
       var r = rnd() < 0.12 ? 1.5 : 1;
-      g[i % 3] += '<circle cx="' + (rnd() * 100).toFixed(2) + '%" cy="' + (Math.pow(rnd(), 1.6) * 100).toFixed(2) + '%" r="' + r + '"/>';
+      g[i % 3] += '<circle cx="' + (rnd() * 1000).toFixed(1) + '" cy="' + (Math.pow(rnd(), 1.6) * 600).toFixed(1) + '" r="' + r + '"/>';
     }
-    document.querySelector('.sky').innerHTML = '<svg fill="#fff">' +
-      '<g opacity=".55">' + g[0] + '</g><g class="tw">' + g[1] + '</g><g class="tw tw2">' + g[2] + '</g></svg>';
+    var layer = function (cls, dots, extra) {
+      var url = "url(\"data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" fill="#fff">' + dots + '</svg>') + "\")";
+      return '<div class="stars ' + cls + '" style="' + (extra || '') + 'background-image:' + url.replace(/"/g, '&quot;') + '"></div>';
+    };
+    document.querySelector('.sky').innerHTML = layer('', g[0], 'opacity:.55;') + layer('tw', g[1]) + layer('tw tw2', g[2]);
   }
   document.querySelectorAll('[data-t]').forEach(function (b) { b.addEventListener('click', function () { setTheme(b.dataset.t); }); });
   setTheme(root.dataset.theme || 'sunset');
@@ -672,7 +677,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   });
 
   // ---- The page reacts to the music, only while it plays ----
-  var vfd = document.getElementById('vfd'), footer = document.getElementById('footer');
+  var vfdGlow = document.getElementById('vfd-glow'), sunGlow = document.querySelector('.horizon .glow');
   var meter = document.getElementById('meter'), bars = [], lastLit = -1;
   for (var m = 0; m < 24; m++) { var bar = document.createElement('i'); meter.appendChild(bar); bars.push(bar); }
   var ctx = null, analyser = null, data = null, level = 0, running = false;
@@ -686,13 +691,12 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       target = Math.max(0, Math.min(1, (db + 48) / 42));
     }
     level += (target - level) * (target > level ? 0.35 : 0.06);
-    var p = level.toFixed(2);
-    vfd.style.setProperty('--pulse', p);
-    footer.style.setProperty('--pulse', p);
+    vfdGlow.style.opacity = level.toFixed(2);
+    sunGlow.style.opacity = (0.35 + level * 0.6).toFixed(2);
     var lit = Math.round(level * bars.length);
     if (lit !== lastLit) { for (var b = 0; b < bars.length; b++) bars[b].className = b < lit ? 'on' : ''; lastLit = lit; }
     if (!player.paused || level > 0.01) requestAnimationFrame(frame);
-    else { running = false; level = 0; vfd.style.setProperty('--pulse', 0); footer.style.setProperty('--pulse', 0); }
+    else { running = false; level = 0; vfdGlow.style.opacity = 0; sunGlow.style.opacity = 0.35; }
   }
   player.addEventListener('play', function () {
     try {
