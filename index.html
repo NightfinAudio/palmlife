@@ -22,7 +22,7 @@
   "image": "https://nightfinaudio.com/assets/img/og.jpg",
   "screenshot": "https://nightfinaudio.com/assets/img/pl-sunset-1560.webp",
   "url": "https://nightfinaudio.com/",
-  "author": { "@type": "Organization", "name": "NightFin", "url": "https://nightfinaudio.com/" },
+  "author": { "@type": "Organization", "name": "NightFin", "url": "https://nightfinaudio.com/", "sameAs": ["https://open.spotify.com/artist/6GoEO9hz9h4lw1dHGUgewz"] },
   "offers": { "@type": "Offer", "price": "19.00", "priceCurrency": "GBP", "availability": "https://schema.org/InStock",
               "url": "https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4" }
 }
@@ -221,6 +221,15 @@ h1 { margin: 0; font: 400 clamp(32px, 4.6vw, 52px)/1.15 "Michroma", var(--sans);
 .price .amount { font: 600 44px/1.1 var(--label); letter-spacing: .04em; margin: 6px 0; text-shadow: 0 0 10px rgba(var(--vfd-rgb), .5); }
 .price .was { font-size: 15px; opacity: .85; }
 .pay .btn { justify-content: center; }
+
+/* Artist */
+.artist { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 36px; align-items: center; }
+.artist-copy { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+.artist-copy p { color: var(--ink-2); max-width: 34em; }
+.artist-copy .sh { width: 100%; margin-bottom: 0; }
+.artist-player iframe { display: block; border: 0; border-radius: 12px; background: rgba(0,0,0,.25); }
+.foot-links { font-size: 15px; }
+@media (max-width: 860px) { .artist { grid-template-columns: 1fr; } }
 
 /* FAQ */
 .faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px 44px; }
@@ -561,6 +570,21 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     </div>
   </section>
 
+  <section id="artist" class="below" aria-labelledby="artist-title">
+    <div class="panel artist">
+      <div class="artist-copy">
+        <div class="sh"><span class="chip" style="background:var(--sunset)" aria-hidden="true"></span><h2 id="artist-title">MADE BY NIGHTFIN</h2><hr class="groove"></div>
+        <p>NightFin is Milo, a UK producer. Palm Life started as the reverb I wanted on my own tracks: the wide, warm, slightly worn sound of the 80s. The demos on this page use one of my songs.</p>
+        <a class="btn" href="https://open.spotify.com/artist/6GoEO9hz9h4lw1dHGUgewz" target="_blank" rel="noopener"><span class="led" aria-hidden="true"></span>Listen on Spotify</a>
+      </div>
+      <div class="artist-player">
+        <iframe title="NightFin on Spotify" src="https://open.spotify.com/embed/artist/6GoEO9hz9h4lw1dHGUgewz?utm_source=generator&amp;theme=0"
+                width="100%" height="352" frameborder="0" loading="lazy"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+    </div>
+  </section>
+
   <section id="faq" class="below" aria-labelledby="faq-title">
     <div class="panel">
       <div class="sh"><span class="chip" aria-hidden="true"></span><h2 id="faq-title">FAQ</h2><hr class="groove"></div>
@@ -588,7 +612,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   <div class="wrap">
     <span class="badge">HI-FI STEREO</span>
     <p class="credit"><img src="assets/img/nightfin-mark.svg" width="28" height="14" alt="">DESIGNED &amp; BUILT BY NIGHTFIN</p>
-    <a href="mailto:palmlifesupport@gmail.com" style="font-size:15px">palmlifesupport@gmail.com</a>
+    <span class="foot-links"><a href="https://open.spotify.com/artist/6GoEO9hz9h4lw1dHGUgewz" target="_blank" rel="noopener">NightFin on Spotify</a> · <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a></span>
     <p class="legal">Orders are processed by Polar, our online reseller and merchant of record. VST is a trademark of Steinberg Media Technologies GmbH.</p>
   </div>
 </footer>
