@@ -143,8 +143,8 @@ section { padding: 30px 0; }
 .vfd-top { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: .18em; opacity: .75; }
 .seg { margin: 0; font: clamp(22px, 4vw, 40px) "DSEG14", "Share Tech Mono", monospace; letter-spacing: .04em;
   text-shadow: 0 0 6px rgba(var(--vfd-rgb), .55), 0 0 1px rgba(var(--vfd-rgb), .9); overflow-wrap: anywhere; }
-/* DSEG14's X is only the inner diagonals, so stretch it to the height of the other letters */
-.seg .x { display: inline-block; transform: scale(1.75, 1.28); }
+.seg .segsvg { display: block; max-width: 100%; height: auto; overflow: visible; }
+.seg .segsvg .lit { filter: drop-shadow(0 0 3px rgba(var(--vfd-rgb), .6)); }
 .vfd .note { margin: 0; font-size: 15px; opacity: .75; }
 .vfd audio { width: 100%; height: 40px; }
 .meter { display: flex; gap: 3px; height: 8px; }
@@ -582,13 +582,51 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   var nameEl = document.getElementById('vfd-name');
   var noteEl = document.getElementById('vfd-note');
   var buttons = document.querySelectorAll('.demo');
-  function setSeg(el, text) {
-    el.textContent = '';
-    text.split(/(X)/).forEach(function (part) {
-      if (part === 'X') { var x = document.createElement('span'); x.className = 'x'; x.textContent = 'X'; el.appendChild(x); }
-      else if (part) el.appendChild(document.createTextNode(part));
-    });
-  }
+  // Hand-drawn 14-segment glyphs (same set as the plug-in's display)
+  var SEG = (function () {
+    var A=1,B=2,C=4,D=8,E=16,F=32,G=64,H=128,I=256,J=512,K=1024,L=2048,M=4096,N=8192;
+    var map = { A:A|B|C|E|F|G|H, B:A|B|C|D|E|F|H, C:A|D|E|F, D:A|B|C|D|J|M, E:A|D|E|F|G|H, F:A|E|F|G,
+      G:A|C|D|E|F|H, H:B|C|E|F|G|H, I:A|D|J|M, J:B|C|D|E, K:E|F|G|K|N, L:D|E|F, M:B|C|E|F|I|K, N:B|C|E|F|I|N,
+      O:A|B|C|D|E|F, P:A|B|E|F|G|H, Q:A|B|C|D|E|F|N, R:A|B|E|F|G|H|N, S:A|C|D|F|G|H, T:A|J|M, U:B|C|D|E|F,
+      V:E|F|K|L, W:B|C|E|F|L|N, X:I|K|L|N, Y:I|K|M, Z:A|D|K|L,
+      '0':A|B|C|D|E|F|K|L, '1':B|C|K, '2':A|B|D|E|G|H, '3':A|B|C|D|H, '4':B|C|F|G|H, '5':A|C|D|F|G|H,
+      '6':A|C|D|E|F|G|H, '7':A|B|C, '8':A|B|C|D|E|F|G|H, '9':A|B|C|D|F|G|H,
+      '-':G|H, '+':G|H|J|M, '/':K|L, "'":J, '?':A|B|H|M, '%':C|F|K|L, '~':16383 };
+    var w = 10, h = 16, t = 1.55, gap = t * .22, ht = t / 2;
+    var Lx = t/2, Rx = w - t/2, Ty = t/2, By = h - t/2, My = h/2, Cx = w/2;
+    function hs(x0, x1, y) { x0 += gap; x1 -= gap; return 'M'+x0+' '+y+'L'+(x0+ht)+' '+(y-ht)+'L'+(x1-ht)+' '+(y-ht)+'L'+x1+' '+y+'L'+(x1-ht)+' '+(y+ht)+'L'+(x0+ht)+' '+(y+ht)+'Z'; }
+    function vs(x, y0, y1) { y0 += gap; y1 -= gap; return 'M'+x+' '+y0+'L'+(x+ht)+' '+(y0+ht)+'L'+(x+ht)+' '+(y1-ht)+'L'+x+' '+y1+'L'+(x-ht)+' '+(y1-ht)+'L'+(x-ht)+' '+(y0+ht)+'Z'; }
+    function ds(x0, y0, x1, y1) {
+      var sx = x1 > x0 ? 1 : -1, sy = y1 > y0 ? 1 : -1, i = t * .95;
+      var ax = x0 + sx*i, ay = y0 + sy*i, bx = x1 - sx*i*.55, by = y1 - sy*i*.55;
+      var dx = bx-ax, dy = by-ay, len = Math.hypot(dx, dy), nx = -dy/len*t*.41, ny = dx/len*t*.41;
+      return 'M'+(ax+nx)+' '+(ay+ny)+'L'+(bx+nx)+' '+(by+ny)+'L'+(bx-nx)+' '+(by-ny)+'L'+(ax-nx)+' '+(ay-ny)+'Z';
+    }
+    function glyph(bits) {
+      var d = '';
+      if (bits&A) d += hs(Lx,Rx,Ty); if (bits&D) d += hs(Lx,Rx,By); if (bits&G) d += hs(Lx,Cx,My); if (bits&H) d += hs(Cx,Rx,My);
+      if (bits&F) d += vs(Lx,Ty,My); if (bits&E) d += vs(Lx,My,By); if (bits&B) d += vs(Rx,Ty,My); if (bits&C) d += vs(Rx,My,By);
+      if (bits&J) d += vs(Cx,Ty,My); if (bits&M) d += vs(Cx,My,By);
+      if (bits&I) d += ds(Lx,Ty,Cx,My); if (bits&K) d += ds(Rx,Ty,Cx,My); if (bits&L) d += ds(Lx,By,Cx,My); if (bits&N) d += ds(Rx,By,Cx,My);
+      return d;
+    }
+    return function (el, text) {
+      text = String(text).toUpperCase();
+      var adv = 13, n = text.length, on = '', ghost = '';
+      for (var i = 0; i < n; i++) {
+        var tr = ' transform="translate(' + (i*adv + 1.5) + ' 1) skewX(-5)"';
+        ghost += '<path' + tr + ' d="' + glyph(16383) + '"/>';
+        var bits = map[text[i]] || 0;
+        if (bits) on += '<path' + tr + ' d="' + glyph(bits) + '"/>';
+      }
+      el.setAttribute('aria-label', text);
+      el.innerHTML = '<svg class="segsvg" viewBox="0 0 ' + (n*adv) + ' 18" style="width:' + (n*0.81) + 'em" aria-hidden="true">' +
+        '<g fill="currentColor" opacity=".08">' + ghost + '</g><g fill="currentColor" class="lit">' + on + '</g></svg>';
+    };
+  })();
+  function setSeg(el, text) { SEG(el, text); }
+  setSeg(nameEl, nameEl.textContent);
+
   buttons.forEach(function (b) {
     b.addEventListener('click', function () {
       var wasPlaying = !player.paused;
