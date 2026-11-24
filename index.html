@@ -58,10 +58,11 @@ img, video, svg { max-width: 100%; }
 /* Sky (Sunset / Dusk): one fixed layer, painted once */
 .sky { position: fixed; inset: 0; z-index: -1; background: var(--sky); display: none; pointer-events: none; transform: translateZ(0); }
 [data-theme="sunset"] .sky, [data-theme="dusk"] .sky { display: block; }
-.sky .stars { position: absolute; left: 0; top: 0; width: 100%; height: 60%; opacity: .8; background-repeat: no-repeat; background-size: 100% 100%; }
-.sky .twk { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff; box-shadow: 0 0 4px #fff; will-change: opacity; animation: twinkle 6s ease-in-out infinite; }
+.sky .stars { position: absolute; left: 0; top: 0; width: 100%; height: 60%; opacity: .75; background-repeat: no-repeat; background-position: 0 0; }
+.sky .twk { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; box-shadow: 0 0 3px 1px rgba(255,255,255,.7); will-change: opacity, transform; animation: twinkle 5s ease-in-out infinite; }
+.sky .twk.big { width: 3px; height: 3px; }
 .scrolling .sky .twk, .scrolling .horizon .palm { animation-play-state: paused; }
-@keyframes twinkle { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@keyframes twinkle { 0%, 100% { opacity: .1; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.25); } }
 
 a { color: var(--ink); text-underline-offset: 3px; }
 a:hover { color: var(--link-hover); }
@@ -588,22 +589,30 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   }
 
   // ---- Stars: one SVG, drawn once, two twinkle groups ----
-  var starsDrawn = false;
+  // Stars: a still field drawn at the screen's real pixel size, plus small twinkling ones
+  var starsDrawn = false, starW = 0;
   function drawStars() {
-    if (starsDrawn) return; starsDrawn = true;
+    var w = Math.round(window.innerWidth), h = Math.round(window.innerHeight * 0.6);
+    if (starsDrawn && Math.abs(w - starW) < 80) return;
+    starsDrawn = true; starW = w;
     var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
-    var g = ['', '', ''];
-    for (var i = 0; i < 60; i++) {
-      var r = rnd() < 0.12 ? 1.5 : 1;
-      g[i % 3] += '<circle cx="' + (rnd() * 1000).toFixed(1) + '" cy="' + (Math.pow(rnd(), 1.6) * 600).toFixed(1) + '" r="' + r + '"/>';
+    var count = Math.round(w * h / 9000), dots = '';
+    for (var i = 0; i < count; i++) {
+      var r = rnd() < 0.1 ? 1.1 : 0.7, a = (0.35 + rnd() * 0.65).toFixed(2);
+      dots += '<circle cx="' + (rnd() * w).toFixed(1) + '" cy="' + (Math.pow(rnd(), 1.5) * h).toFixed(1) + '" r="' + r + '" opacity="' + a + '"/>';
     }
-    var url = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" fill="#fff">' + g.join('') + '</svg>');
+    var url = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" fill="#fff">' + dots + '</svg>');
     var html = '<div class="stars" style="background-image:url(&quot;' + url + '&quot;)"></div>';
-    for (var k = 0; k < 12; k++)
-      html += '<i class="twk" style="left:' + (rnd() * 100).toFixed(1) + '%;top:' + (Math.pow(rnd(), 1.5) * 55).toFixed(1) +
-              '%;animation-duration:' + (4 + rnd() * 4).toFixed(1) + 's;animation-delay:-' + (rnd() * 6).toFixed(1) + 's"></i>';
+    for (var k = 0; k < 28; k++)
+      html += '<i class="twk' + (rnd() < 0.3 ? ' big' : '') + '" style="left:' + (rnd() * 100).toFixed(1) + '%;top:' + (Math.pow(rnd(), 1.5) * 56).toFixed(1) +
+              '%;animation-duration:' + (2.5 + rnd() * 4).toFixed(1) + 's;animation-delay:-' + (rnd() * 6).toFixed(1) + 's"></i>';
     document.querySelector('.sky').innerHTML = html;
   }
+  var resizeT = 0;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(function () { var t = root.dataset.theme; if (t === 'sunset' || t === 'dusk') drawStars(); }, 250);
+  });
   document.querySelectorAll('[data-t]').forEach(function (b) { b.addEventListener('click', function () { setTheme(b.dataset.t); }); });
   var scrollTimer = 0;
   window.addEventListener('scroll', function () {
