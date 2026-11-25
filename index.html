@@ -221,6 +221,20 @@ h1 { margin: 0; font: 400 clamp(32px, 4.6vw, 52px)/1.15 "Michroma", var(--sans);
 .meter i { flex: 1; border-radius: 1px; background: rgba(var(--vfd-rgb), .12); }
 .meter i.on { background: rgba(var(--vfd-rgb), .9); }
 .demos { display: flex; flex-wrap: wrap; gap: 10px; }
+.demos[hidden] { display: none; }
+.demo-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 14px; border-bottom: 1px solid rgba(var(--vfd-rgb), .18); }
+.demo-tab { font: 600 12px/1 var(--label); letter-spacing: .16em; padding: 12px 14px 11px; min-height: 44px; cursor: pointer; background: none; border: 0;
+  border-bottom: 2px solid transparent; color: rgba(var(--vfd-rgb), .55); margin-bottom: -1px; }
+.demo-tab:hover { color: rgba(var(--vfd-rgb), .85); }
+.demo-tab[aria-selected="true"] { color: var(--vfd); border-bottom-color: var(--vfd); }
+.demo-tab:focus-visible { outline: 2px solid var(--vfd); outline-offset: 2px; }
+@media (max-width: 560px) { .hide-sm { display: none; } }
+.demo-tabs-label { align-self: center; font: 600 10px/1 var(--label); letter-spacing: .2em; color: rgba(var(--vfd-rgb), .4); margin-right: 6px; }
+@media (max-width: 560px) {
+  .demo-tabs { gap: 0; }
+  .demo-tabs-label { width: 100%; margin: 4px 0 2px; }
+  .demo-tab { padding: 12px 9px 11px; letter-spacing: .1em; font-size: 11px; }
+}
 .demo { font: 600 13px/1 var(--label); letter-spacing: .12em; padding: 12px 16px; min-height: 44px; border-radius: 4px; cursor: pointer;
   display: inline-flex; align-items: center; gap: 10px; color: var(--vfd); background: transparent; border: 1px solid rgba(var(--vfd-rgb), .45); }
 .demo::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: rgba(var(--vfd-rgb), .35); }
@@ -386,31 +400,53 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   <section id="listen" aria-labelledby="listen-title">
     <div class="panel">
       <div class="sh"><span class="chip" style="background:var(--vfd)" aria-hidden="true"></span><h2 id="listen-title">LISTEN</h2><hr class="groove"></div>
-      <p class="intro">Twenty seconds of a finished mix: first the original, then the same section through factory presets. The last two are a plain drum loop, dry and through Big Gated Snare. Nothing else added. Switch presets while it plays to compare them at the same spot.</p>
+      <p class="intro">A few examples of what Palm Life can do. It works on almost anything: vocals, synths, keys, guitars, drums or a whole mix, so treat these as a starting point. Pick a sound, then switch presets while it plays to compare them at the same spot. Every clip is matched in loudness, so you hear the space and not just a volume change.</p>
       <div class="vfd" id="vfd">
         <div class="vfd-glow" id="vfd-glow" aria-hidden="true"></div>
         <div class="vfd-top"><span>NOW PLAYING</span><span>PL-86</span></div>
         <p class="seg" id="vfd-name" aria-live="polite">MIAMI NIGHTS</p>
         <p class="note" id="vfd-note">Big, wide hall with a little tape warmth.</p>
         <div class="meter" id="meter" aria-hidden="true"></div>
-        <audio id="player" controls preload="none" src="assets/audio/miami.mp3"></audio>
-        <div class="demos" role="group" aria-label="Choose a demo">
-          <button class="demo" type="button" aria-pressed="false" data-src="dry"        data-name="ORIGINAL MIX"    data-note="The original mix, no plug-in.">ORIGINAL</button>
-          <button class="demo" type="button" aria-pressed="true"  data-src="miami"      data-name="MIAMI NIGHTS"    data-note="Big, wide hall with a little tape warmth.">MIAMI NIGHTS</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="rewind"     data-name="REWIND 1986"     data-note="Heavy VHS: wow, flutter, hiss and a narrow, worn tone.">REWIND 1986</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="nightdrive" data-name="NIGHT DRIVE PAN" data-note="The reverb tail drifts left and right around a centred dry sound.">NIGHT DRIVE PAN</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="neonhall"   data-name="NEON HALL"       data-note="A twelve-second wash with deep shimmer.">NEON HALL</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="padbloom"   data-name="PAD BLOOM"       data-note="Turns one chord into a whole sky.">PAD BLOOM</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="emptymall"  data-name="EMPTY MALL 1989" data-note="Vaporwave. A mall after closing.">EMPTY MALL 1989</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="tapedtv"    data-name="TAPED OFF TV"    data-note="Recorded off the telly in 1983, with TV static and buzz.">TAPED OFF THE TV</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="latenight"  data-name="LATE NIGHT RERUN" data-note="An old film on TV after midnight.">LATE NIGHT RERUN</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="headlights" data-name="HEADLIGHTS"      data-note="The tail sweeps across like passing cars.">HEADLIGHTS SWEEP</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="stringsky"  data-name="STRING MACHINE"  data-note="Ensemble chorus shimmering on a big hall.">STRING MACHINE SKY</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="phase87"    data-name="PHASE SHIFT 87"  data-note="A slow phaser sweep with a little tape wear.">PHASE SHIFT 1987</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="outsideclub" data-name="OUTSIDE CLUB"   data-note="The party's on the other side of the wall.">OUTSIDE THE CLUB</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="bleachers"   data-name="BLEACHERS"      data-note="Prom night, under the bleachers. The music's out there.">UNDER THE BLEACHERS</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="drums"      data-name="DRUM LOOP DRY"   data-note="A plain 80s drum loop, no plug-in.">DRUMS · DRY</button>
-          <button class="demo" type="button" aria-pressed="false" data-src="gatedsnare" data-name="GATED SNARE"     data-note="Big Gated Snare: a huge room that slams shut after each hit.">BIG GATED SNARE</button>
+        <audio id="player" controls preload="none" src="assets/audio/demos/song-miami.mp3"></audio>
+        <div class="demo-tabs" role="tablist" aria-label="Choose what to hear it on">
+          <span class="demo-tabs-label" aria-hidden="true">HEAR IT ON</span>
+          <button class="demo-tab" type="button" role="tab" id="tab-song" aria-controls="demos-song" aria-selected="true" data-group="song">SONG</button>
+          <button class="demo-tab" type="button" role="tab" id="tab-keys" aria-controls="demos-keys" aria-selected="false" data-group="keys">KEYS</button>
+          <button class="demo-tab" type="button" role="tab" id="tab-lead" aria-controls="demos-lead" aria-selected="false" data-group="lead"><span class="hide-sm">SYNTH </span>LEAD</button>
+          <button class="demo-tab" type="button" role="tab" id="tab-drums" aria-controls="demos-drums" aria-selected="false" data-group="drums">DRUMS</button>
+        </div>
+        <div class="demos" role="tabpanel" id="demos-song" aria-labelledby="tab-song" data-group="song">
+          <button class="demo" type="button" aria-pressed="false" data-src="song-dry" data-name="ORIGINAL MIX" data-note="The original mix, no plug-in.">ORIGINAL</button>
+          <button class="demo" type="button" aria-pressed="true" data-src="song-miami" data-name="MIAMI NIGHTS" data-note="Big, wide hall with a little tape warmth.">MIAMI NIGHTS</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="song-neonhall" data-name="NEON HALL" data-note="A twelve-second wash with deep shimmer.">NEON HALL</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="song-rewind" data-name="REWIND 1986" data-note="Heavy VHS: wow, flutter, hiss and a narrow, worn tone.">REWIND 1986</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="song-emptymall" data-name="EMPTY MALL 1989" data-note="Vaporwave. A mall after closing.">EMPTY MALL 1989</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="song-pumping" data-name="PUMPING NEON" data-note="New in 1.9: an LFO pumps the reverb on every beat.">PUMPING NEON</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="song-outsideclub" data-name="OUTSIDE CLUB" data-note="The party&#39;s on the other side of the wall.">OUTSIDE THE CLUB</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="song-bleachers" data-name="BLEACHERS" data-note="Prom night, under the bleachers. The music&#39;s out there.">UNDER THE BLEACHERS</button>
+        </div>
+        <div class="demos" role="tabpanel" id="demos-keys" aria-labelledby="tab-keys" data-group="keys" hidden>
+          <button class="demo" type="button" aria-pressed="false" data-src="keys-dry" data-name="KEYS DRY" data-note="FM electric piano chords, no plug-in.">DRY</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="keys-glass" data-name="GLASS KEYS" data-note="Sparkle for FM pianos and bells.">GLASS KEYS</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="keys-pastel" data-name="PASTEL PLATE" data-note="A bright, short plate. Great on keys.">PASTEL PLATE</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="keys-stringsky" data-name="STRING MACHINE" data-note="Ensemble chorus shimmering on a big hall.">STRING MACHINE SKY</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="keys-phase87" data-name="PHASE SHIFT 87" data-note="A slow phaser sweep with a little tape wear.">PHASE SHIFT 1987</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="keys-breathing" data-name="BREATHING HALL" data-note="New in 1.9: LFOs make the room slowly grow and shrink.">BREATHING HALL</button>
+        </div>
+        <div class="demos" role="tabpanel" id="demos-lead" aria-labelledby="tab-lead" data-group="lead" hidden>
+          <button class="demo" type="button" aria-pressed="false" data-src="lead-dry" data-name="LEAD DRY" data-note="A synth lead melody, no plug-in.">DRY</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="lead-chase" data-name="LEAD CHASE" data-note="A big lead that still cuts through.">LEAD CHASE</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="lead-nightdrive" data-name="NIGHT DRIVE PAN" data-note="The tail drifts left and right around the dry lead.">NIGHT DRIVE PAN</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="lead-headlights" data-name="HEADLIGHTS" data-note="The tail sweeps across like passing cars.">HEADLIGHTS SWEEP</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="lead-swell" data-name="SWELL EVERY BAR" data-note="New in 1.9: the reverb blooms into each bar.">SWELL EVERY BAR</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="lead-warped" data-name="WARPED CASSETTE" data-note="New in 1.9: a worn tape that never plays the same.">WARPED CASSETTE</button>
+        </div>
+        <div class="demos" role="tabpanel" id="demos-drums" aria-labelledby="tab-drums" data-group="drums" hidden>
+          <button class="demo" type="button" aria-pressed="false" data-src="drums-dry" data-name="DRUMS DRY" data-note="An 80s drum machine loop, no plug-in.">DRY</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="drums-gated" data-name="GATED SNARE" data-note="Big Gated Snare on the snare: a huge room that slams shut after each hit.">BIG GATED SNARE</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="drums-room85" data-name="DRUM ROOM 1985" data-note="A tight room for the whole kit.">DRUM ROOM 1985</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="drums-bathroom" data-name="TILED BATHROOM" data-note="Small, bright and tiled.">TILED BATHROOM</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="drums-stutter" data-name="STUTTER HALL" data-note="New in 1.9: trance-gate chops on a big tail.">STUTTER HALL</button>
         </div>
       </div>
     </div>
@@ -790,23 +826,31 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   var nameEl = document.getElementById('vfd-name');
   var noteEl = document.getElementById('vfd-note');
   var buttons = document.querySelectorAll('.demo');
+  var tabs = document.querySelectorAll('.demo-tab');
   SEG(nameEl, nameEl.textContent);
-  buttons.forEach(function (b) {
-    b.addEventListener('click', function () {
-      var wasPlaying = !player.paused;
-      var t = player.currentTime || 0;
-      buttons.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      SEG(nameEl, b.dataset.name);
-      noteEl.textContent = b.dataset.note;
-      player.src = 'assets/audio/' + b.dataset.src + '.mp3';
-      // Keep the same position so you can A/B the presets
-      player.addEventListener('loadedmetadata', function once() {
-        player.removeEventListener('loadedmetadata', once);
-        try { player.currentTime = Math.min(t, player.duration || t); } catch (e) {}
-        player.play().catch(function () {});
-      });
-      player.load();
-      if (!wasPlaying && t === 0) player.play().catch(function () {});
+  function choose(b, keepTime) {
+    var wasPlaying = !player.paused;
+    var t = keepTime ? (player.currentTime || 0) : 0;
+    buttons.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    SEG(nameEl, b.dataset.name);
+    noteEl.textContent = b.dataset.note;
+    player.src = 'assets/audio/demos/' + b.dataset.src + '.mp3';
+    // Keep the same position so you can A/B the presets on the same sound
+    player.addEventListener('loadedmetadata', function once() {
+      player.removeEventListener('loadedmetadata', once);
+      try { player.currentTime = Math.min(t, player.duration || t); } catch (e) {}
+      if (wasPlaying || keepTime) player.play().catch(function () {});
+    });
+    player.load();
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { choose(b, true); }); });
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (x) { x.setAttribute('aria-selected', x === tab ? 'true' : 'false'); });
+      document.querySelectorAll('.demos').forEach(function (p) { p.hidden = p.dataset.group !== tab.dataset.group; });
+      // A new sound starts from the top, on its first preset (not the dry one)
+      var first = document.querySelectorAll('#demos-' + tab.dataset.group + ' .demo')[1];
+      if (first) choose(first, false);
     });
   });
 
