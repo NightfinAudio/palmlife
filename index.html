@@ -54,17 +54,30 @@
    "publisher": {
     "@id": "https://nightfinaudio.com/#nightfin"
    },
-   "offers": {
-    "@type": "Offer",
-    "price": "14.99",
-    "priceCurrency": "GBP",
-    "priceValidUntil": "2026-12-07",
-    "availability": "https://schema.org/InStock",
-    "url": "https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4",
-    "seller": {
-     "@id": "https://nightfinaudio.com/#nightfin"
+   "offers": [
+    {
+     "@type": "Offer",
+     "price": "14.99",
+     "priceCurrency": "GBP",
+     "priceValidUntil": "2026-12-07",
+     "availability": "https://schema.org/InStock",
+     "url": "https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4",
+     "seller": {
+      "@id": "https://nightfinaudio.com/#nightfin"
+     }
+    },
+    {
+     "@type": "Offer",
+     "price": "19.99",
+     "priceCurrency": "USD",
+     "priceValidUntil": "2026-12-07",
+     "availability": "https://schema.org/InStock",
+     "url": "https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4",
+     "seller": {
+      "@id": "https://nightfinaudio.com/#nightfin"
+     }
     }
-   },
+   ],
    "subjectOf": {
     "@id": "https://nightfinaudio.com/#demo"
    }
@@ -290,6 +303,7 @@ h1 { margin: 0; font: 400 clamp(32px, 4.6vw, 52px)/1.15 "Michroma", var(--sans);
 .buy ul { margin: 0; padding-left: 22px; color: var(--ink-2); display: flex; flex-direction: column; gap: 8px; }
 .buy .pay { flex: 0 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
 .price { background: var(--glass); border-radius: 8px; padding: 18px 20px; color: var(--vfd); box-shadow: inset 0 4px 10px rgba(0,0,0,.6); font-family: var(--mono); }
+.price .alt-price { font: 600 15px/1.2 var(--label); letter-spacing: .1em; opacity: .75; margin: 0 0 6px; }
 .price .amount { font: 600 44px/1.1 var(--label); letter-spacing: .04em; margin: 6px 0; text-shadow: 0 0 10px rgba(var(--vfd-rgb), .5); }
 .price .was { font-size: 15px; opacity: .85; }
 .pay .btn { justify-content: center; }
@@ -430,9 +444,9 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       </div>
       <div class="ctas">
         <a class="btn big trial-link" href="#try"><span class="led" aria-hidden="true"></span>Try it free for 14 days</a>
-        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy <span class="price-now">£14.99</span></a>
+        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy <span class="price-now">£14.99 / $19.99</span></a>
       </div>
-      <p class="small">The full plug-in for 14 days. No card, no account. <span class="launch-left">Launch price £14.99, then £19.99 from 8 December.</span></p>
+      <p class="small">The full plug-in for 14 days. No card, no account. <span class="launch-left">Launch price £14.99 / $19.99, then £19.99 / $26.99 from 8 December.</span></p>
       <p class="small dim">Windows and Mac · VST3, AU (Mac) and standalone app · Apple Silicon and Intel</p>
     </div>
     <figure>
@@ -767,8 +781,9 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       <div class="pay">
         <div class="price">
           <p class="launch-only" style="font-size:13px;letter-spacing:.18em;opacity:.8">LAUNCH PRICE</p>
-          <p class="amount price-now">£14.99</p>
-          <p class="was launch-only">Normally £19.99. <span class="launch-left">Launch price until 7 December.</span></p>
+          <p class="amount price-main">£14.99</p>
+          <p class="alt-price price-alt">$19.99 in the US</p>
+          <p class="was launch-only">Normally <span class="price-normal">£19.99 / $26.99</span>. <span class="days-left">Launch price until 7 December.</span></p>
         </div>
         <a class="btn big" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4"><span class="led" aria-hidden="true"></span>Buy now</a>
         <p class="small" style="text-align:center">Secure checkout by Polar. VAT handled at checkout.<br>Already trying it? Your key unlocks the copy you have.</p>
@@ -808,7 +823,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
 </main>
 <div class="stickybar">
   <a class="btn trial-link" href="#try">Try free</a>
-  <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy <span class="price-now">£14.99</span></a>
+  <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy <span class="price-now">£14.99 / $19.99</span></a>
 </div>
 
 <footer id="footer">
@@ -1057,16 +1072,26 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     });
   });
 
-  // Launch price: count the days left
-  var end = new Date('2026-12-07T23:59:59Z'), days = Math.ceil((end - new Date()) / 86400000);
-  if (days <= 0) {
-    // Launch is over: the normal price everywhere, and no launch wording
-    document.querySelectorAll('.price-now').forEach(function (e) { e.textContent = '£19.99'; });
-    document.querySelectorAll('.launch-only, .launch-left').forEach(function (e) { e.style.display = 'none'; });
-  }
+  // Prices in pounds and dollars. US visitors see dollars first (that's what checkout charges them).
+  var end = new Date('2026-12-07T23:59:59Z'), days = Math.ceil((end - new Date()) / 86400000), launch = days > 0;
+  var us = false;
+  try { us = /^America\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone) && /-US$/i.test(navigator.language || ''); } catch (e) {}
+  var gbp = launch ? '£14.99' : '£19.99', usd = launch ? '$19.99' : '$26.99';
+  var both = us ? usd + ' / ' + gbp : gbp + ' / ' + usd;
+  document.querySelectorAll('.price-now').forEach(function (e) { e.textContent = both; });
+  document.querySelectorAll('.price-main').forEach(function (e) { e.textContent = us ? usd : gbp; });
+  document.querySelectorAll('.price-alt').forEach(function (e) { e.textContent = us ? gbp + ' in the UK' : usd + ' in the US'; });
+  document.querySelectorAll('.price-normal').forEach(function (e) { e.textContent = us ? '$26.99 / £19.99' : '£19.99 / $26.99'; });
+  if (! launch)   // launch is over: the normal price everywhere, and no launch wording
+    document.querySelectorAll('.launch-only, .launch-left, .days-left').forEach(function (e) { e.style.display = 'none'; });
+  document.querySelectorAll('.days-left').forEach(function (e) {
+    if (days > 1) e.innerHTML = '<b>' + days + ' days left</b> at this price.';
+    else if (days === 1) e.innerHTML = '<b>Last day</b> at this price.';
+  });
   document.querySelectorAll('.launch-left').forEach(function (e) {
-    if (days > 1) e.innerHTML = 'Launch price £14.99 for <b>' + days + ' more days</b>, then £19.99.';
-    else if (days === 1) e.innerHTML = '<b>Last day</b> of the £14.99 launch price.';
+    var later = us ? '$26.99 / £19.99' : '£19.99 / $26.99';
+    if (days > 1) e.innerHTML = 'Launch price ' + both + ' for <b>' + days + ' more days</b>, then ' + later + '.';
+    else if (days === 1) e.innerHTML = '<b>Last day</b> of the ' + both + ' launch price.';
   });
 
   // Phones: a buy bar once you've scrolled past the top
