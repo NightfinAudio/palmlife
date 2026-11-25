@@ -56,7 +56,7 @@
    },
    "offers": {
     "@type": "Offer",
-    "price": "19.00",
+    "price": "14.99",
     "priceCurrency": "GBP",
     "priceValidUntil": "2026-12-07",
     "availability": "https://schema.org/InStock",
@@ -430,9 +430,9 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       </div>
       <div class="ctas">
         <a class="btn big trial-link" href="#try"><span class="led" aria-hidden="true"></span>Try it free for 14 days</a>
-        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy £19</a>
+        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy <span class="price-now">£14.99</span></a>
       </div>
-      <p class="small">The full plug-in for 14 days. No card, no account. <span class="launch-left">Launch price £19, then £29 from 7 December.</span></p>
+      <p class="small">The full plug-in for 14 days. No card, no account. <span class="launch-left">Launch price £14.99, then £19.99 from 8 December.</span></p>
       <p class="small dim">Windows and Mac · VST3, AU (Mac) and standalone app · Apple Silicon and Intel</p>
     </div>
     <figure>
@@ -761,9 +761,9 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       </div>
       <div class="pay">
         <div class="price">
-          <p style="font-size:13px;letter-spacing:.18em;opacity:.8">LAUNCH PRICE</p>
-          <p class="amount">£19</p>
-          <p class="was">Normally £29. <span class="launch-left">Launch price until 7 December.</span></p>
+          <p class="launch-only" style="font-size:13px;letter-spacing:.18em;opacity:.8">LAUNCH PRICE</p>
+          <p class="amount price-now">£14.99</p>
+          <p class="was launch-only">Normally £19.99. <span class="launch-left">Launch price until 7 December.</span></p>
         </div>
         <a class="btn big" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4"><span class="led" aria-hidden="true"></span>Buy now</a>
         <p class="small" style="text-align:center">Secure checkout by Polar. VAT handled at checkout.<br>Already trying it? Your key unlocks the copy you have.</p>
@@ -803,7 +803,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
 </main>
 <div class="stickybar">
   <a class="btn trial-link" href="#try">Try free</a>
-  <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy £19</a>
+  <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy <span class="price-now">£14.99</span></a>
 </div>
 
 <footer id="footer">
@@ -1054,9 +1054,14 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
 
   // Launch price: count the days left
   var end = new Date('2026-12-07T23:59:59Z'), days = Math.ceil((end - new Date()) / 86400000);
+  if (days <= 0) {
+    // Launch is over: the normal price everywhere, and no launch wording
+    document.querySelectorAll('.price-now').forEach(function (e) { e.textContent = '£19.99'; });
+    document.querySelectorAll('.launch-only, .launch-left').forEach(function (e) { e.style.display = 'none'; });
+  }
   document.querySelectorAll('.launch-left').forEach(function (e) {
-    if (days > 1) e.innerHTML = 'Launch price £19 for <b>' + days + ' more days</b>, then £29.';
-    else if (days === 1) e.innerHTML = '<b>Last day</b> of the £19 launch price.';
+    if (days > 1) e.innerHTML = 'Launch price £14.99 for <b>' + days + ' more days</b>, then £19.99.';
+    else if (days === 1) e.innerHTML = '<b>Last day</b> of the £14.99 launch price.';
   });
 
   // Phones: a buy bar once you've scrolled past the top
