@@ -341,6 +341,50 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   .lead { font-size: 18px; }
 }
 @media (prefers-reduced-motion: reduce) { .sky .twk, .horizon .palm { animation: none; } html { scroll-behavior: auto; } }
+
+/* v1.9 hooks: new pill, before/after player, why cards, free trial, sticky bar */
+.newpill { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 7px; border-radius: 999px;
+  background: rgba(var(--vfd-rgb), .12); border: 1px solid rgba(var(--vfd-rgb), .35); color: var(--ink); text-decoration: none; font-size: 14px; }
+.newpill b { font: 600 11px/1 var(--label); letter-spacing: .14em; background: var(--vfd); color: #14121a; padding: 6px 9px; border-radius: 999px; }
+.newpill:hover { border-color: var(--vfd); }
+.btn.ghost { background: transparent; box-shadow: inset 0 0 0 1.5px rgba(var(--vfd-rgb), .55); color: var(--ink); }
+.btn.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--vfd); color: var(--ink); }
+.small.dim { font-size: 13px; opacity: .8; }
+.launch-left b { color: var(--vfd); font-weight: 600; }
+.hearit { display: flex; align-items: center; gap: 16px; padding: 12px 18px 12px 12px; border-radius: 14px; position: relative; overflow: hidden;
+  background: rgba(8, 10, 20, .55); border: 1px solid rgba(var(--vfd-rgb), .28); max-width: 520px; }
+.hear-play { flex: none; width: 58px; height: 58px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 35%, rgba(var(--vfd-rgb), 1), rgba(var(--vfd-rgb), .7)); box-shadow: 0 0 24px rgba(var(--vfd-rgb), .45); }
+.hear-play .ic { width: 0; height: 0; border-left: 17px solid #14121a; border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 5px; }
+.hearit.playing .hear-play .ic { width: 16px; height: 18px; border: 0; margin: 0; background: linear-gradient(90deg, #14121a 0 35%, transparent 35% 65%, #14121a 65%); }
+.hear-text { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.hear-title { font: 600 11px/1 var(--label); letter-spacing: .2em; color: rgba(var(--vfd-rgb), .8); }
+.hear-switch { display: inline-flex; border-radius: 8px; padding: 3px; background: rgba(0,0,0,.45); gap: 3px; }
+.hear-switch button { font: 600 12px/1 var(--label); letter-spacing: .12em; padding: 10px 12px; min-height: 38px; border: 0; border-radius: 6px; cursor: pointer;
+  background: transparent; color: rgba(255,255,255,.6); }
+.hear-switch button[aria-checked="true"] { background: var(--vfd); color: #14121a; box-shadow: 0 0 14px rgba(var(--vfd-rgb), .45); }
+.hear-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.06); }
+.hear-bar i { display: block; height: 100%; width: 0; background: var(--vfd); }
+.why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.why article { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+.why img { width: 100%; height: auto; display: block; border-bottom: 1px solid var(--panel-edge); }
+.why h3 { margin: 18px 22px 6px; font: 600 18px var(--label); letter-spacing: .08em; }
+.why p { margin: 0 22px 22px; color: var(--ink-2); }
+@media (max-width: 900px) { .why { grid-template-columns: 1fr; } }
+.try { display: flex; flex-wrap: wrap; gap: 36px; align-items: center; }
+.try-copy { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.try-dl { flex: 0 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.try-dl .btn { justify-content: center; }
+.try-dl .btn.suggested { box-shadow: 0 0 0 2px var(--vfd), 0 0 22px rgba(var(--vfd-rgb), .35); }
+.steps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; color: var(--ink-2); }
+.stickybar { display: none; }
+@media (max-width: 700px) {
+  .stickybar { display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: var(--header); border-top: 1px solid var(--rule); transform: translateY(110%); transition: transform .25s; }
+  .stickybar.show { transform: none; }
+  .stickybar .btn { flex: 1; justify-content: center; }
+  body { padding-bottom: 76px; }
+}
 </style>
 </head>
 <body>
@@ -369,14 +413,27 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
 <main id="top" class="wrap">
   <section class="hero" aria-labelledby="hero-title">
     <div class="copy">
+      <a class="newpill" href="#inside"><b>NEW IN 1.9</b> Draw your own LFOs <span aria-hidden="true">→</span></a>
       <p class="kicker">80S REVERB PLUG-IN · VST3 &amp; AU · WINDOWS &amp; MAC</p>
       <h1 id="hero-title">Reverb that sounds like <span class="glow">a memory.</span></h1>
       <p class="lead">Lush 1980s halls, worn videotape, chorus and slow stereo drift in one plug-in. Put it on synths, vocals or a whole beat and it comes back sounding like it was taped off late-night TV in 1986.</p>
-      <div class="ctas">
-        <a class="btn big" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4"><span class="led" aria-hidden="true"></span>Get Palm Life — £19</a>
-        <a class="label" href="#watch" style="font-size:13px;padding:14px 6px">Watch the demo</a>
+      <div class="hearit" aria-label="Hear Palm Life">
+        <button class="hear-play" type="button" aria-label="Play the before and after"><span class="ic" aria-hidden="true"></span></button>
+        <div class="hear-text">
+          <p class="hear-title">HEAR THE DIFFERENCE</p>
+          <div class="hear-switch" role="radiogroup" aria-label="Switch between the dry mix and Palm Life">
+            <button type="button" role="radio" aria-checked="false" data-v="dry">BEFORE</button>
+            <button type="button" role="radio" aria-checked="true" data-v="wet">WITH PALM LIFE</button>
+          </div>
+        </div>
+        <div class="hear-bar" aria-hidden="true"><i></i></div>
       </div>
-      <p class="small">Windows and Mac · VST3, AU (Mac) and standalone app · Apple Silicon and Intel</p>
+      <div class="ctas">
+        <a class="btn big trial-link" href="#try"><span class="led" aria-hidden="true"></span>Try it free for 14 days</a>
+        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy £19</a>
+      </div>
+      <p class="small">The full plug-in for 14 days. No card, no account. <span class="launch-left">Launch price £19, then £29 from 7 December.</span></p>
+      <p class="small dim">Windows and Mac · VST3, AU (Mac) and standalone app · Apple Silicon and Intel</p>
     </div>
     <figure>
       <img id="hero-img" src="assets/img/pl-sunset-1040.webp"
@@ -385,6 +442,26 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
            alt="The Palm Life plug-in in its Sunset theme: dark knobs on a navy-to-orange sky, a glowing display, a cassette window, a reverb tail monitor and a big Nostalgia knob.">
       <figcaption id="hero-cap">Sunset theme. Try the others with the swatches at the top.</figcaption>
     </figure>
+  </section>
+
+  <section id="why" aria-label="Why producers use Palm Life">
+    <div class="why">
+      <article>
+        <img src="assets/img/why-nostalgia.webp" width="720" height="450" loading="lazy" decoding="async" alt="The big Nostalgia knob.">
+        <h3>The 80s, on one knob</h3>
+        <p>Turn up <b>Nostalgia</b> and anything you play drifts from clean and modern to a warm, faraway memory: wider, softer, a little worn.</p>
+      </article>
+      <article>
+        <img src="assets/img/why-lfo.webp" width="720" height="450" loading="lazy" decoding="async" alt="An LFO with a Sidechain Pump shape moving the reverb mix.">
+        <h3>Make it move</h3>
+        <p>Drag an LFO onto any knob and watch it come alive. Pump the reverb on every beat, chop it like a trance gate, or <b>draw your own shape</b>.</p>
+      </article>
+      <article>
+        <img src="assets/img/why-tape.webp" width="720" height="450" loading="lazy" decoding="async" alt="The cassette deck and tail monitor.">
+        <h3>Tape that breathes</h3>
+        <p>Real wow and flutter, VHS and TV hiss, and a cassette that plays along. Hold <b>Rewind</b> and the whole tape spins backwards.</p>
+      </article>
+    </div>
   </section>
 
   <section id="watch" aria-labelledby="watch-title">
@@ -650,6 +727,25 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     </div>
   </section>
 
+  <section id="try" class="below" aria-labelledby="try-title">
+    <div class="panel try">
+      <div class="try-copy">
+        <div class="sh"><span class="chip" style="background:var(--vfd)" aria-hidden="true"></span><h2 id="try-title">TRY IT FREE</h2><hr class="groove"></div>
+        <p class="intro">Use the full Palm Life in your own songs for 14 days. Every preset, every feature, no card and no account. If you love it, buy a key and paste it in: nothing to reinstall.</p>
+        <ol class="steps">
+          <li><b>Download</b> for your computer.</li>
+          <li><b>Install</b>, then open your DAW and add Palm Life to a track.</li>
+          <li><b>Make something.</b> After 14 days it drops out for a moment every 45 seconds until you buy.</li>
+        </ol>
+      </div>
+      <div class="try-dl">
+        <a class="btn big dl-win" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.9.0-Windows.zip"><span class="led" aria-hidden="true"></span>Download for Windows</a>
+        <a class="btn big dl-mac" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.9.0-Mac.zip"><span class="led" aria-hidden="true"></span>Download for Mac</a>
+        <p class="small" style="text-align:center"><span class="dl-version">Version 1.9.0</span> · about 20 MB</p>
+      </div>
+    </div>
+  </section>
+
   <section id="buy" class="below" aria-labelledby="buy-title">
     <div class="buy panel">
       <div class="what">
@@ -667,10 +763,10 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
         <div class="price">
           <p style="font-size:13px;letter-spacing:.18em;opacity:.8">LAUNCH PRICE</p>
           <p class="amount">£19</p>
-          <p class="was">Normally £29. Launch price until 7 December.</p>
+          <p class="was">Normally £29. <span class="launch-left">Launch price until 7 December.</span></p>
         </div>
         <a class="btn big" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4"><span class="led" aria-hidden="true"></span>Buy now</a>
-        <p class="small" style="text-align:center">Secure checkout by Polar. VAT handled at checkout.</p>
+        <p class="small" style="text-align:center">Secure checkout by Polar. VAT handled at checkout.<br>Already trying it? Your key unlocks the copy you have.</p>
       </div>
     </div>
   </section>
@@ -694,6 +790,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     <div class="panel">
       <div class="sh"><span class="chip" aria-hidden="true"></span><h2 id="faq-title">FAQ</h2><hr class="groove"></div>
       <div class="faq">
+        <div><h3>IS THERE A FREE TRIAL?</h3><p>Yes. <a href="#try">Download Palm Life</a> and you get the full plug-in for 14 days, with no card and no account. After that it keeps working but drops out for a moment every 45 seconds until you enter a licence key.</p></div>
         <div><h3>WHICH DAWS WORK?</h3><p>Any DAW that loads VST3 or, on a Mac, Audio Units: Logic Pro, GarageBand, Ableton Live, FL Studio, Reaper, Cubase, Studio One and Bitwig. There’s also a standalone app if you just want to play through it.</p></div>
         <div><h3>HOW DO I INSTALL IT?</h3><p>Unzip the download and double-click Palm Life Setup (Windows) or Palm Life Installer (Mac). It puts the plug-in in the right folders for you. If Windows shows a warning, choose More info, then Run anyway. Rescan plug-ins in your DAW, then click REGISTER and paste your key.</p></div>
         <div><h3>ARE UPDATES FREE?</h3><p>Yes, every 1.x update. Palm Life shows an UPDATE button when one is out: click UPDATE NOW, allow the Windows prompt and restart your DAW. Your licence and presets carry over.</p></div>
@@ -704,6 +801,10 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     </div>
   </section>
 </main>
+<div class="stickybar">
+  <a class="btn trial-link" href="#try">Try free</a>
+  <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy £19</a>
+</div>
 
 <footer id="footer">
   <div class="horizon" aria-hidden="true">
@@ -893,6 +994,75 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     } catch (e) {}
     if (!running && !reduce) { running = true; requestAnimationFrame(frame); }
   });
+})();
+
+// ---- v1.9 hooks ------------------------------------------------------------------
+(function () {
+  // Before/after in the hero: both clips play in step; the switch just changes which one you hear
+  var box = document.querySelector('.hearit');
+  if (box) {
+    var dry = new Audio(), wet = new Audio(), started = false, listening = 'wet';
+    dry.preload = wet.preload = 'none';
+    var bar = box.querySelector('.hear-bar i');
+    function apply() {
+      dry.muted = listening !== 'dry'; wet.muted = listening !== 'wet';
+      box.querySelectorAll('.hear-switch button').forEach(function (b) { b.setAttribute('aria-checked', b.dataset.v === listening ? 'true' : 'false'); });
+    }
+    function stop() { dry.pause(); wet.pause(); box.classList.remove('playing'); }
+    function play() {
+      if (!started) { dry.src = 'assets/audio/demos/song-dry.mp3'; wet.src = 'assets/audio/demos/song-miami.mp3'; started = true; }
+      var main = document.getElementById('player'); if (main) main.pause();
+      apply();
+      wet.currentTime = dry.currentTime;
+      Promise.all([dry.play(), wet.play()]).then(function () { box.classList.add('playing'); }).catch(function () {});
+    }
+    box.querySelector('.hear-play').addEventListener('click', function () { box.classList.contains('playing') ? stop() : play(); });
+    box.querySelectorAll('.hear-switch button').forEach(function (b) {
+      b.addEventListener('click', function () { listening = b.dataset.v; apply(); if (!box.classList.contains('playing')) play(); });
+    });
+    wet.addEventListener('timeupdate', function () {
+      if (Math.abs(wet.currentTime - dry.currentTime) > 0.06) dry.currentTime = wet.currentTime;
+      if (wet.duration) bar.style.width = (100 * wet.currentTime / wet.duration) + '%';
+    });
+    wet.addEventListener('ended', function () { stop(); dry.currentTime = wet.currentTime = 0; bar.style.width = '0'; });
+    var main = document.getElementById('player');
+    if (main) main.addEventListener('play', stop);
+  }
+
+  // Free trial: offer the download for this computer, and keep the links on the newest version
+  var ua = navigator.userAgent || '', mobile = /iPhone|iPad|Android/i.test(ua);
+  var os = mobile ? null : /Mac/i.test(ua) ? 'mac' : /Win/i.test(ua) ? 'win' : null;
+  var links = { win: document.querySelector('.dl-win'), mac: document.querySelector('.dl-mac') };
+  if (os && links[os]) links[os].classList.add('suggested');
+  fetch('https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/version.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (v) {
+      if (v.windows && v.windows.zip && links.win) links.win.href = v.windows.zip;
+      if (v.mac && v.mac.zip && links.mac) links.mac.href = v.mac.zip;
+      document.querySelectorAll('.dl-version').forEach(function (e) { e.textContent = 'Version ' + v.latest; });
+    }).catch(function () {});
+  // "Try it free" starts the right download straight away and shows the install steps
+  document.querySelectorAll('.trial-link').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (!os || !links[os]) return;   // phones and unknown systems: just show the download section
+      e.preventDefault();
+      window.location.href = links[os].href;
+      var t = document.getElementById('try');
+      setTimeout(function () { t.scrollIntoView({ behavior: 'smooth' }); }, 150);
+    });
+  });
+
+  // Launch price: count the days left
+  var end = new Date('2026-12-07T23:59:59Z'), days = Math.ceil((end - new Date()) / 86400000);
+  document.querySelectorAll('.launch-left').forEach(function (e) {
+    if (days > 1) e.innerHTML = 'Launch price £19 for <b>' + days + ' more days</b>, then £29.';
+    else if (days === 1) e.innerHTML = '<b>Last day</b> of the £19 launch price.';
+  });
+
+  // Phones: a buy bar once you've scrolled past the top
+  var sb = document.querySelector('.stickybar'), hero = document.querySelector('.hero');
+  if (sb && hero && 'IntersectionObserver' in window)
+    new IntersectionObserver(function (es) { sb.classList.toggle('show', !es[0].isIntersecting); }).observe(hero);
 })();
 </script>
 </body>
