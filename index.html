@@ -43,7 +43,7 @@
    "applicationCategory": "MultimediaApplication",
    "applicationSubCategory": "Audio plug-in (VST3, AU)",
    "operatingSystem": "Windows 10, Windows 11, macOS 11 or later",
-   "softwareVersion": "1.9.1",
+   "softwareVersion": "1.10.0",
    "description": "Palm Life is an 80s reverb plug-in by NightFin: lush hi-fi reverb, VHS tape ageing with tape, VHS or TV hiss, chorus, phaser, auto-pan, two LFOs you can draw yourself, a live spectrum and a Rewind button, with 48 presets. VST3 and AU for Windows and Mac.",
    "image": "https://nightfinaudio.com/assets/img/og.jpg",
    "screenshot": "https://nightfinaudio.com/assets/img/pl-sunset-1560.webp",
@@ -233,7 +233,7 @@ h1 { margin: 0; font: 400 clamp(32px, 4.6vw, 52px)/1.15 "Michroma", var(--sans);
 @media (max-width: 560px) {
   .demo-tabs { gap: 0; }
   .demo-tabs-label { width: 100%; margin: 4px 0 2px; }
-  .demo-tab { padding: 12px 9px 11px; letter-spacing: .1em; font-size: 11px; }
+  .demo-tab { padding: 12px 6px 11px; letter-spacing: .05em; font-size: 11px; }
 }
 .demo { font: 600 13px/1 var(--label); letter-spacing: .12em; padding: 12px 16px; min-height: 44px; border-radius: 4px; cursor: pointer;
   display: inline-flex; align-items: center; gap: 10px; color: var(--vfd); background: transparent; border: 1px solid rgba(var(--vfd-rgb), .45); }
@@ -489,6 +489,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
           <span class="demo-tabs-label" aria-hidden="true">HEAR IT ON</span>
           <button class="demo-tab" type="button" role="tab" id="tab-song" aria-controls="demos-song" aria-selected="true" data-group="song">SONG</button>
           <button class="demo-tab" type="button" role="tab" id="tab-keys" aria-controls="demos-keys" aria-selected="false" data-group="keys">KEYS</button>
+          <button class="demo-tab" type="button" role="tab" id="tab-piano" aria-controls="demos-piano" aria-selected="false" data-group="piano">PIANO</button>
           <button class="demo-tab" type="button" role="tab" id="tab-lead" aria-controls="demos-lead" aria-selected="false" data-group="lead"><span class="hide-sm">SYNTH </span>LEAD</button>
           <button class="demo-tab" type="button" role="tab" id="tab-drums" aria-controls="demos-drums" aria-selected="false" data-group="drums">DRUMS</button>
         </div>
@@ -509,6 +510,10 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
           <button class="demo" type="button" aria-pressed="false" data-src="keys-stringsky" data-name="STRING MACHINE" data-note="Ensemble chorus shimmering on a big hall.">STRING MACHINE SKY</button>
           <button class="demo" type="button" aria-pressed="false" data-src="keys-phase87" data-name="PHASE SHIFT 87" data-note="A slow phaser sweep with a little tape wear.">PHASE SHIFT 1987</button>
           <button class="demo" type="button" aria-pressed="false" data-src="keys-breathing" data-name="BREATHING HALL" data-note="New in 1.9: LFOs make the room slowly grow and shrink.">BREATHING HALL</button>
+        </div>
+        <div class="demos" role="tabpanel" id="demos-piano" aria-labelledby="tab-piano" data-group="piano" hidden>
+          <button class="demo" type="button" aria-pressed="false" data-src="piano-dry" data-name="PIANO DRY" data-note="A soft piano, no plug-in.">DRY</button>
+          <button class="demo" type="button" aria-pressed="false" data-src="piano-lounge" data-name="PIANO LOUNGE" data-note="New in 1.10: warm chorus on a soft room. Made for keys.">PIANO LOUNGE</button>
         </div>
         <div class="demos" role="tabpanel" id="demos-lead" aria-labelledby="tab-lead" data-group="lead" hidden>
           <button class="demo" type="button" aria-pressed="false" data-src="lead-dry" data-name="LEAD DRY" data-note="A synth lead melody, no plug-in.">DRY</button>
@@ -739,9 +744,9 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
         </ol>
       </div>
       <div class="try-dl">
-        <a class="btn big dl-win" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.9.1-Windows.zip"><span class="led" aria-hidden="true"></span>Download for Windows</a>
-        <a class="btn big dl-mac" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.9.1-Mac.zip"><span class="led" aria-hidden="true"></span>Download for Mac</a>
-        <p class="small" style="text-align:center"><span class="dl-version">Version 1.9.1</span> · about 20 MB</p>
+        <a class="btn big dl-win" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.10.0-Windows.zip"><span class="led" aria-hidden="true"></span>Download for Windows</a>
+        <a class="btn big dl-mac" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.10.0-Mac.zip"><span class="led" aria-hidden="true"></span>Download for Mac</a>
+        <p class="small" style="text-align:center"><span class="dl-version">Version 1.10.0</span> · about 20 MB</p>
       </div>
     </div>
   </section>
