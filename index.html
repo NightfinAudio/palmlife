@@ -1060,6 +1060,18 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       if (v.windows && v.windows.zip && links.win) links.win.href = v.windows.zip;
       if (v.mac && v.mac.zip && links.mac) links.mac.href = v.mac.zip;
       document.querySelectorAll('.dl-version').forEach(function (e) { e.textContent = 'Version ' + v.latest; });
+      // If this version is also published as a GitHub Release, download from there:
+      // GitHub counts Release downloads, which feeds NightFin's download tracker.
+      return fetch('https://api.github.com/repos/palmermilo-ship-it/palm-life-updates/releases/tags/v' + encodeURIComponent(v.latest))
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (rel) {
+          (rel && rel.assets || []).forEach(function (asset) {
+            var url = asset.browser_download_url || '';
+            if (! /^https:\/\/github\.com\//.test(url)) return;
+            if (/-Windows\.zip$/.test(asset.name) && links.win) links.win.href = url;
+            if (/-Mac\.zip$/.test(asset.name) && links.mac) links.mac.href = url;
+          });
+        });
     }).catch(function () {});
   // "Try it free" starts the right download straight away and shows the install steps
   document.querySelectorAll('.trial-link').forEach(function (a) {
