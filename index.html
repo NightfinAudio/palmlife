@@ -173,7 +173,7 @@ img, video { max-width: 100%; }
 .newpill { display: inline-flex; align-items: center; gap: 10px; font: 500 14px var(--body); color: #e6dff0; border: 1px solid rgba(255,255,255,.16); background: rgba(10,8,20,.35); border-radius: 999px; padding: 6px 14px 6px 6px; }
 .newpill b { font-family: var(--osd); font-weight: 400; font-size: 18px; background: var(--vfd); color: #062a24; border-radius: 999px; padding: 0 10px; }
 .newpill:hover { color: #fff; border-color: rgba(255,255,255,.35); }
-.hero h1 { margin: 22px 0 0; font: 600 clamp(44px, 7vw, 100px)/.98 var(--display); letter-spacing: -.04em; color: #fff; text-shadow: 0 4px 40px rgba(0,0,0,.4); }
+.hero h1 { margin: 22px 0 0; font: 600 clamp(44px, 7vw, 100px)/.98 var(--display); letter-spacing: -.04em; color: #fff; }
 .hero .lead { margin: 20px auto 0; max-width: 760px; font-size: 19px; color: #ddd4ea; }
 .hero .ctas { margin-top: 28px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 .deck-note { margin: 18px 0 0; color: #a59dba; }
@@ -223,13 +223,13 @@ img, video { max-width: 100%; }
 .looks button[aria-pressed="true"] { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.45); color: #fff; }
 .looks i { width: 18px; height: 18px; border-radius: 50%; }
 
-.scan { position: absolute; inset: 0; z-index: 9; pointer-events: none; background: repeating-linear-gradient(180deg, rgba(0,0,0,.14) 0 1px, transparent 1px 3px); }
+.scan { position: absolute; inset: 0; z-index: 9; pointer-events: none; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAADCAYAAABS3WWCAAAAD0lEQVR42mNgYGBQYYADAAGbACX5QwiLAAAAAElFTkSuQmCC) 0 0 / 1px 3px repeat; image-rendering: pixelated; }
 .track { position: absolute; left: 0; right: 0; top: 0; height: 70px; z-index: 9; pointer-events: none; background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.06), rgba(255,255,255,0)); animation: track 11s linear infinite; }
 .toast { position: absolute; z-index: 10; left: 50%; top: 18%; transform: translateX(-50%); background: rgba(4,4,10,.9); border: 1px solid var(--vfd); border-radius: 12px; padding: 16px 26px; text-align: center; font-family: var(--osd); color: var(--vfd); box-shadow: 0 0 40px rgba(var(--vfd-rgb),.35); }
 .toast[hidden] { display: none; }
 .toast b { display: block; font-weight: 400; font-size: 34px; } .toast span { font-size: 20px; color: #cfeee7; }
 
-.hero.offscreen *, .hero.offscreen *::before, .hero.offscreen *::after { animation-play-state: paused !important; }
+.hero.offscreen *, .hero.offscreen *::before, .hero.offscreen *::after, .orbit.offscreen *, .orbit.offscreen *::before, .orbit.offscreen *::after { animation-play-state: paused !important; }
 @keyframes sway { 0%,100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.8deg); } }
 @keyframes sun { 0%,100% { transform: translateY(0); } 50% { transform: translateY(12px); } }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
@@ -838,7 +838,7 @@ footer .legal { flex: 1 1 100%; margin: 0; font: 13px var(--body); color: #5f596
   groups.forEach(function (g, i) { html += '<b style="animation-duration:' + (2.6 + i * 0.75).toFixed(2) + 's;animation-delay:-' + (i * 1.1).toFixed(1) + 's">' + g.join('') + '</b>'; });
   stars.innerHTML = html;
   if ('IntersectionObserver' in window)
-    new IntersectionObserver(function (es) { hero.classList.toggle('offscreen', !es[0].isIntersecting); }).observe(hero);
+    new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('offscreen', !e.isIntersecting); }); }).observe(hero), document.getElementById('orbit') && new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('offscreen', !e.isIntersecting); }); }).observe(document.getElementById('orbit'));
 
   // ---- Looks: the four plug-in themes ----
   var img = document.getElementById('hero-img');
