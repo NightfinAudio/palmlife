@@ -781,8 +781,8 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
         </ol>
       </div>
       <div class="try-dl">
-        <a class="btn big dl-win" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.13.0-Windows.zip"><span class="led" aria-hidden="true"></span>Download for Windows</a>
-        <a class="btn big dl-mac" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.13.0-Mac.zip"><span class="led" aria-hidden="true"></span>Download for Mac</a>
+        <a class="btn big dl-win" href="https://raw.githubusercontent.com/NightfinAudio/palm-life-updates/main/builds/PalmLife-1.13.0-Windows.zip"><span class="led" aria-hidden="true"></span>Download for Windows</a>
+        <a class="btn big dl-mac" href="https://raw.githubusercontent.com/NightfinAudio/palm-life-updates/main/builds/PalmLife-1.13.0-Mac.zip"><span class="led" aria-hidden="true"></span>Download for Mac</a>
         <p class="small" style="text-align:center"><span class="dl-version">Version 1.13.0</span> · about 20 MB</p>
       </div>
     </div>
@@ -1078,7 +1078,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   var os = mobile ? null : /Mac/i.test(ua) ? 'mac' : /Win/i.test(ua) ? 'win' : null;
   var links = { win: document.querySelector('.dl-win'), mac: document.querySelector('.dl-mac') };
   if (os && links[os]) links[os].classList.add('suggested');
-  fetch('https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/version.json', { cache: 'no-store' })
+  fetch('https://raw.githubusercontent.com/NightfinAudio/palm-life-updates/main/version.json', { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (v) {
       if (v.windows && v.windows.zip && links.win) links.win.href = v.windows.zip;
@@ -1086,7 +1086,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       document.querySelectorAll('.dl-version').forEach(function (e) { e.textContent = 'Version ' + v.latest; });
       // If this version is also published as a GitHub Release, download from there:
       // GitHub counts Release downloads, which feeds NightFin's download tracker.
-      return fetch('https://api.github.com/repos/palmermilo-ship-it/palm-life-updates/releases/tags/v' + encodeURIComponent(v.latest))
+      return fetch('https://api.github.com/repos/NightfinAudio/palm-life-updates/releases/tags/v' + encodeURIComponent(v.latest))
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (rel) {
           (rel && rel.assets || []).forEach(function (asset) {
