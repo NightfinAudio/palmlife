@@ -116,403 +116,357 @@
 <meta property="og:image" content="https://nightfinaudio.com/assets/img/og.jpg">
 <meta property="og:url" content="https://nightfinaudio.com/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="assets/fonts/ChakraPetch-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/Michroma-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<script>try { var t = localStorage.getItem("palm-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+
+<link rel="preload" href="assets/fonts/space-grotesk-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/vt323-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/pl113-sunset-1560.webp" imagesrcset="assets/img/pl113-sunset-720.webp 720w, assets/img/pl113-sunset-1040.webp 1040w, assets/img/pl113-sunset-1560.webp 1560w, assets/img/pl113-sunset-1950.webp 1950w" imagesizes="(max-width: 1100px) 94vw, 1040px">
 <style>
 @font-face { font-family: "Michroma"; src: url(assets/fonts/Michroma-Regular.woff2) format("woff2"); font-display: swap; }
 @font-face { font-family: "Share Tech Mono"; src: url(assets/fonts/ShareTechMono-Regular.woff2) format("woff2"); font-display: swap; }
-@font-face { font-family: "Chakra Petch"; src: url(assets/fonts/ChakraPetch-SemiBold.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Space Grotesk"; src: url(assets/fonts/space-grotesk-latin-500-normal.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Space Grotesk"; src: url(assets/fonts/space-grotesk-latin-600-normal.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Inter"; src: url(assets/fonts/inter-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Inter"; src: url(assets/fonts/inter-latin-500-normal.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Inter"; src: url(assets/fonts/inter-latin-600-normal.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "VT323"; src: url(assets/fonts/vt323-latin-400-normal.woff2) format("woff2"); font-display: swap; }
 
-/* ---- Themes: the same four looks as the plug-in ---- */
 :root {
-  --glass: #0b1315; --flamingo: #ee9d95; --seafoam: #83cdb8; --sand: #f0c27a; --lilac: #c9bbf6; --smoke: #15121a; --sunset: #f3a76c;
-  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --mono: "Share Tech Mono", ui-monospace, Consolas, monospace;
-  --label: "Chakra Petch", var(--sans);
+  --night: #06050b; --card: #0d0b15; --card-2: #110e1b; --line: #211d2d; --line-2: #2f2a3d;
+  --ink: #f1ecf4; --ink-2: #b3acc0; --dim: #7b7489; --sun: #f6a06a; --sun-2: #ffc596; --vfd: #86f5df; --vfd-rgb: 134,245,223;
+  --sunset: #f3a76c; --flamingo: #ee9d95; --seafoam: #83cdb8; --sand: #f0c27a; --lilac: #c9bbf6;
+  --display: "Space Grotesk", system-ui, sans-serif; --body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --osd: "VT323", ui-monospace, monospace; --logo: "Michroma", var(--body); --mono: "Share Tech Mono", ui-monospace, monospace;
+  --sunW: min(540px, 74vw); --sunH: calc(var(--sunW) / 2); --level: 0;
+  color-scheme: dark;
 }
-[data-theme="studio"] {
-  --bg: #d9d3c7; --ink: #23201c; --ink-2: #34302b; --ink-soft: #4e4943; --vfd: #86f5df; --vfd-rgb: 134,245,223;
-  --rule: rgba(35,32,28,.25); --panel: rgba(255,255,255,.35); --panel-edge: rgba(0,0,0,.08); --header: rgba(217,211,199,.97);
-  --btn-top: #f4f1ea; --btn-bot: #bfb8aa; --btn-ink: #23201c; --btn-hi: rgba(255,255,255,.85); --link-hover: #000;
-}
-[data-theme="midnight"] {
-  --bg: #1d1b21; --ink: #f1ece2; --ink-2: #dbd5ca; --ink-soft: #ada699; --vfd: #86f5df; --vfd-rgb: 134,245,223;
-  --rule: rgba(255,255,255,.12); --panel: rgba(255,255,255,.035); --panel-edge: rgba(255,255,255,.08); --header: rgba(29,27,33,.97);
-  --btn-top: #3a3442; --btn-bot: #1a1720; --btn-ink: #f1ece2; --btn-hi: rgba(255,255,255,.12); --link-hover: #fff;
-}
-[data-theme="sunset"], [data-theme="dusk"] {
-  --ink: #fbf5ea; --ink-2: #ece6dc; --ink-soft: #cdd3df; --rule: rgba(255,255,255,.16);
-  --panel: rgba(6,10,24,.72); --panel-edge: rgba(255,255,255,.10); --header: rgba(6,10,26,.97);
-  --btn-top: #3a3442; --btn-bot: #1a1720; --btn-ink: #fbf5ea; --btn-hi: rgba(255,255,255,.14); --link-hover: #fff;
-}
-[data-theme="sunset"] { --bg: #0a1630; --vfd: #ffb46e; --vfd-rgb: 255,180,110; --sun: #ffa04a;
-  --sky: linear-gradient(180deg, #0a1630 0%, #163f63 38%, #3f6585 62%, #9a8da0 78%, #f2a66c 88%, #f0701f 96%, #a3300f 100%); }
-[data-theme="dusk"]   { --bg: #1b0941; --vfd: #ff9fd2; --vfd-rgb: 255,159,210; --sun: #ff8a7a; --ink-soft: #e0d2ee;
-  --panel: rgba(18,6,40,.72);
-  --sky: linear-gradient(180deg, #1b0941 0%, #2f1569 40%, #5c2a96 62%, #a457b8 78%, #e58bb0 88%, #f47a70 96%, #5d1442 100%); }
-
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 84px; }
-body { margin: 0; color: var(--ink); background-color: var(--bg);
-  font: 18px/1.65 var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
-img, video, svg { max-width: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { margin: 0; background: var(--night); color: var(--ink); font: 400 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+a { color: var(--sun); text-decoration: none; } a:hover { color: var(--sun-2); }
+img, video { max-width: 100%; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 16px; z-index: 99; background: var(--sun); color: #1a0e08; padding: 10px 14px; border-radius: 8px; }
+:focus-visible { outline: 2px solid var(--vfd); outline-offset: 3px; border-radius: 6px; }
 
-/* Sky (Sunset / Dusk): one fixed layer, painted once */
-.sky { position: fixed; inset: 0; z-index: -1; background: var(--sky); display: none; pointer-events: none; transform: translateZ(0); }
-[data-theme="sunset"] .sky, [data-theme="dusk"] .sky { display: block; }
-.sky .stars { position: absolute; left: 0; top: 0; width: 100%; height: 60%; opacity: .75; background-repeat: no-repeat; background-position: 0 0; }
-.sky .twk { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; box-shadow: 0 0 3px 1px rgba(255,255,255,.7); will-change: opacity, transform; animation: twinkle 5s ease-in-out infinite; }
-.sky .twk.big { width: 3px; height: 3px; }
-.scrolling .sky .twk, .scrolling .horizon .palm { animation-play-state: paused; }
-@keyframes twinkle { 0%, 100% { opacity: .1; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.25); } }
+/* ---- header ---- */
+.top { position: sticky; top: 0; z-index: 30; background: rgba(6,5,11,.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.06); }
+.top .wrap { display: flex; align-items: center; gap: 24px; padding-top: 14px; padding-bottom: 14px; }
+.brand { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+.brand span { font-family: var(--logo); font-size: 14px; letter-spacing: .24em; }
+.brand small { font-family: var(--osd); font-size: 18px; color: var(--vfd); letter-spacing: .02em; }
+.top nav { flex: 1; display: flex; justify-content: flex-end; gap: 22px; flex-wrap: wrap; font-family: var(--osd); font-size: 21px; letter-spacing: .04em; }
+.top nav a { color: #cbc4d8; } .top nav a:hover { color: #fff; }
+.top .buy { font: 600 14px var(--body); background: var(--sun); color: #1a0e08; padding: 10px 18px; border-radius: 999px; white-space: nowrap; }
+.top .buy:hover { color: #1a0e08; background: var(--sun-2); }
+@media (max-width: 900px) { .top nav { display: none; } }
 
-a { color: var(--ink); text-underline-offset: 3px; }
-a:hover { color: var(--link-hover); }
-:focus-visible { outline: 2px solid var(--vfd); outline-offset: 3px; }
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-.label { font-family: var(--label); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
-.groove { border: 0; height: 1px; background: var(--rule); margin: 0; }
-p { margin: 0; }
+/* ---- buttons ---- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font: 600 16px var(--body); padding: 16px 28px; border-radius: 999px; border: 1px solid transparent; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, background .2s; }
+.btn.solid { background: var(--sun); color: #1a0e08; } .btn.solid:hover { color: #1a0e08; transform: translateY(-2px); box-shadow: 0 12px 34px rgba(246,160,106,.4); }
+.btn.ghost { border-color: rgba(255,255,255,.28); background: rgba(10,8,20,.35); color: #fff; } .btn.ghost:hover { color: #fff; border-color: rgba(255,255,255,.55); }
+.btn.suggested { box-shadow: 0 0 0 3px rgba(var(--vfd-rgb),.45); }
+.small { font-size: 14px; color: var(--dim); } .small b { color: var(--ink-2); }
 
-/* Panels: solid tint, no blur (fast to scroll) */
-.panel { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 14px; padding: 40px; }
-section { padding: 22px 0; }
+/* ---- hero: one night in 1986 ---- */
+.hero { position: relative; overflow: hidden; background: linear-gradient(180deg, #05050c 0%, #0b0d2a 30%, #241540 60%, #3a1b46 100%); }
+.hero .copy { position: relative; z-index: 6; max-width: 1180px; margin: 0 auto; padding: 44px 28px 0; text-align: center; }
+.newpill { display: inline-flex; align-items: center; gap: 10px; font: 500 14px var(--body); color: #e6dff0; border: 1px solid rgba(255,255,255,.16); background: rgba(10,8,20,.35); border-radius: 999px; padding: 6px 14px 6px 6px; }
+.newpill b { font-family: var(--osd); font-weight: 400; font-size: 18px; background: var(--vfd); color: #062a24; border-radius: 999px; padding: 0 10px; }
+.newpill:hover { color: #fff; border-color: rgba(255,255,255,.35); }
+.hero h1 { margin: 22px 0 0; font: 600 clamp(44px, 7vw, 100px)/.98 var(--display); letter-spacing: -.04em; color: #fff; text-shadow: 0 4px 40px rgba(0,0,0,.4); }
+.hero .lead { margin: 20px auto 0; max-width: 760px; font-size: 19px; color: #ddd4ea; }
+.hero .ctas { margin-top: 28px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.deck-note { margin: 18px 0 0; color: #a59dba; }
 
-/* Buttons */
-.btn {
-  display: inline-flex; align-items: center; gap: 12px; min-height: 46px; padding: 14px 22px;
-  font: 600 14px/1 var(--label); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--btn-ink);
-  border-radius: 6px; background: linear-gradient(var(--btn-top), var(--btn-bot));
-  box-shadow: 0 2px 0 rgba(0,0,0,.35), inset 0 1px 0 var(--btn-hi); border: 0; cursor: pointer; transition: filter .12s;
-}
-.btn:hover { filter: brightness(1.1); color: var(--btn-ink); }
-.btn.big { font-size: 15px; padding: 18px 26px; }
-.led { width: 9px; height: 9px; border-radius: 50%; background: var(--flamingo); box-shadow: 0 0 8px var(--flamingo); flex: none; }
+.osd { position: absolute; z-index: 7; top: 26px; font: 30px/1 var(--osd); color: #fff; text-shadow: 0 0 6px rgba(255,255,255,.6); pointer-events: none; }
+.osd.l { left: 28px; } .osd.r { right: 28px; }
+.osd .blink { animation: blink 1.2s steps(1) infinite; }
+.osd-date { margin: 18px 0 0; font: 24px var(--osd); color: #fff; text-shadow: 0 0 6px rgba(255,255,255,.5); }
+@media (max-width: 760px) { .osd { display: none; } }
 
-/* Header */
-header { position: sticky; top: 0; z-index: 10; background: var(--header); border-bottom: 1px solid var(--rule); }
-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 22px; padding-top: 12px; padding-bottom: 12px; }
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.brand img { display: block; }
-.brand span { font: 17px "Michroma", var(--sans); letter-spacing: .2em; }
-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
-nav a.label { font-size: 13px; text-decoration: none; }
-.themes { display: flex; align-items: center; gap: 8px; }
-.swatch { width: 26px; height: 26px; border-radius: 50%; border: 2px solid transparent; padding: 0; cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.25); }
-.swatch[aria-pressed="true"] { border-color: var(--ink); }
-.swatch[data-t="studio"]   { background: linear-gradient(135deg, #f1ede4, #aaa395); }
-.swatch[data-t="midnight"] { background: linear-gradient(135deg, #3a3640, #121115); }
-.swatch[data-t="sunset"]   { background: linear-gradient(180deg, #0a1630, #3f6585 55%, #f2a66c 80%, #f0701f); }
-.swatch[data-t="dusk"]     { background: linear-gradient(180deg, #1b0941, #5c2a96 55%, #e58bb0 80%, #f47a70); }
+.stage { position: relative; max-width: 1180px; margin: 28px auto 0; padding: calc(var(--sunH) - 44px) 28px 0; }
+.horizon { position: absolute; left: 50%; top: 0; width: 100vw; height: var(--sunH); transform: translateX(-50%); }
+.horizon .glow { position: absolute; left: 0; right: 0; bottom: 0; height: 100%; background: radial-gradient(ellipse 60% 100% at 50% 100%, rgba(240,138,85,calc(.55 + var(--level) * .4)), rgba(138,58,85,.35) 45%, rgba(0,0,0,0) 75%); }
+.sea { position: absolute; z-index: 0; left: 50%; width: 100vw; transform: translateX(-50%); top: var(--sunH); height: 3000px; background: linear-gradient(180deg, #3a1626 0px, #140b18 160px, var(--night) 440px); }
+.sun { position: absolute; z-index: 1; left: 50%; bottom: 0; width: var(--sunW); height: var(--sunH); margin-left: calc(var(--sunW) / -2); padding: 0; border: 0; background: none; cursor: pointer; animation: sun 12s ease-in-out infinite; filter: drop-shadow(0 0 calc(40px + var(--level) * 50px) rgba(246,160,106,.6)); }
+.sun svg { display: block; width: 100%; height: 100%; }
+.palm { position: absolute; z-index: 2; bottom: -2px; fill: #0a0610; transform-origin: 40% 100%; animation: sway 8s ease-in-out infinite; pointer-events: none; }
+.palm.p1 { left: max(0px, calc(50% - 720px)); width: min(340px, 30vw); }
+.palm.p2 { left: calc(max(0px, calc(50% - 720px)) + min(230px, 20vw)); width: min(200px, 18vw); animation-duration: 9.5s; animation-delay: -2s; }
+.palm.p3 { right: max(0px, calc(50% - 720px)); width: min(320px, 28vw); animation-duration: 7.2s; animation-delay: -4s; transform-origin: 60% 100%; }
+.tv { position: relative; z-index: 3; margin: 0; animation: float 9s ease-in-out infinite; }
+.tv img { display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 60px 140px rgba(0,0,0,.8), 0 0 120px rgba(246,160,106,.22); }
+.tv figcaption { position: absolute; left: 0; right: 0; bottom: -34px; text-align: center; font: 20px var(--osd); color: #a59dba; }
 
-/* Hero */
-.hero { display: flex; flex-wrap: wrap; gap: 44px; align-items: center; padding: 56px 0 34px; }
-.hero .copy { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
-.kicker { font: 13px var(--mono); letter-spacing: .2em; color: var(--ink-soft); }
-h1 { margin: 0; font: 400 clamp(32px, 4.6vw, 52px)/1.15 "Michroma", var(--sans); letter-spacing: .03em; }
-[data-theme="sunset"] h1 .glow, [data-theme="dusk"] h1 .glow {
-  background: linear-gradient(180deg, #ffe0a8 10%, var(--sun) 60%, var(--flamingo)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.lead { font-size: 20px; line-height: 1.6; max-width: 30em; color: var(--ink-2); }
-.ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-.small { font-size: 15px; color: var(--ink-soft); }
-.hero figure { flex: 1 1 560px; min-width: 0; margin: 0; }
-.hero img { width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
-[data-theme="sunset"] .hero .copy, [data-theme="dusk"] .hero .copy { text-shadow: 0 1px 14px rgba(0,0,0,.45); }
-[data-theme="sunset"] .hero .small, [data-theme="dusk"] .hero .small { color: var(--ink-2); }
-.hero figcaption { margin-top: 10px; font-size: 14px; color: var(--ink-soft); text-align: center; }
+.deck { position: relative; z-index: 6; max-width: 1080px; margin: 72px auto 0; padding: 0 28px 72px; }
+.hearit { display: flex; flex-wrap: wrap; gap: 18px 22px; align-items: center; background: rgba(10,8,18,.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.1); border-radius: 18px; padding: 16px 20px; }
+.hear-play { flex: 0 0 58px; height: 58px; border-radius: 50%; border: 0; cursor: pointer; background: var(--sun); display: grid; place-items: center; transition: transform .2s; }
+.hear-play:hover { transform: scale(1.05); }
+.hear-play .ic { width: 0; height: 0; border-left: 17px solid #1a0e08; border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
+.hearit.playing .hear-play .ic { width: 16px; height: 18px; border: 0; margin: 0; border-left: 5px solid #1a0e08; border-right: 5px solid #1a0e08; }
+.hear-text { flex: 1 1 220px; min-width: 0; }
+.hear-text .k { margin: 0; font: 19px/1 var(--osd); color: var(--vfd); }
+.hear-text .t { margin: 6px 0 0; font-weight: 600; color: #fff; } .hear-text .t span { font-weight: 400; color: #b9b2c8; }
+.hear-bar { flex: 1 1 100%; order: 5; height: 3px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; }
+.hear-bar i { display: block; height: 100%; width: 0; background: var(--sun); }
+.hear-switch { display: flex; background: var(--night); border: 1px solid var(--line-2); border-radius: 999px; padding: 4px; }
+.hear-switch button { border: 0; cursor: pointer; border-radius: 999px; padding: 11px 16px; font: 600 13px var(--body); letter-spacing: .06em; background: transparent; color: #8d86a0; }
+.hear-switch button[aria-checked="true"] { background: var(--sun); color: #1a0e08; }
+.hear-switch button[data-v="dry"][aria-checked="true"] { background: #2f2a3d; color: #fff; }
+.looks { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.looks .lbl { font: 20px var(--osd); color: #a59dba; margin-right: 6px; }
+.looks button { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 7px; border-radius: 999px; cursor: pointer; font: 500 13px var(--body); color: #ddd6e8; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); }
+.looks button[aria-pressed="true"] { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.45); color: #fff; }
+.looks i { width: 18px; height: 18px; border-radius: 50%; }
 
-/* Section headings */
-.sh { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-.sh .chip { width: 16px; height: 16px; border-radius: 3px; background: var(--ink); flex: none; }
-.sh h2 { margin: 0; font: 600 22px var(--label); letter-spacing: .2em; }
-.sh hr { flex: 1; }
-.intro { margin-bottom: 28px; max-width: 38em; color: var(--ink-2); font-size: 18px; }
+.scan { position: absolute; inset: 0; z-index: 9; pointer-events: none; background: repeating-linear-gradient(180deg, rgba(0,0,0,.14) 0 1px, transparent 1px 3px); }
+.track { position: absolute; left: 0; right: 0; top: 0; height: 70px; z-index: 9; pointer-events: none; background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.06), rgba(255,255,255,0)); animation: track 11s linear infinite; }
+.toast { position: absolute; z-index: 10; left: 50%; top: 18%; transform: translateX(-50%); background: rgba(4,4,10,.9); border: 1px solid var(--vfd); border-radius: 12px; padding: 16px 26px; text-align: center; font-family: var(--osd); color: var(--vfd); box-shadow: 0 0 40px rgba(var(--vfd-rgb),.35); }
+.toast[hidden] { display: none; }
+.toast b { display: block; font-weight: 400; font-size: 34px; } .toast span { font-size: 20px; color: #cfeee7; }
 
-/* Player (VFD) */
-.vfd { position: relative; background: var(--glass); border-radius: 10px; padding: 24px; color: var(--vfd);
-  box-shadow: inset 0 6px 14px rgba(0,0,0,.6); display: flex; flex-direction: column; gap: 16px; }
-.vfd-glow { position: absolute; inset: 0; border-radius: 10px; pointer-events: none; opacity: 0; will-change: opacity;
-  box-shadow: 0 0 50px rgba(var(--vfd-rgb), .22); }
-.vfd-top { display: flex; justify-content: space-between; font: 13px var(--mono); letter-spacing: .18em; opacity: .8; }
-.seg { font-size: clamp(22px, 4vw, 40px); line-height: 1; color: var(--vfd); }
-.seg svg { display: block; max-width: 100%; height: auto; overflow: visible; }
-.seg .lit { filter: drop-shadow(0 0 3px rgba(var(--vfd-rgb), .6)); }
-.vfd .note { font: 16px/1.5 var(--mono); opacity: .85; }
-.vfd audio { width: 100%; height: 40px; }
-.meter { display: flex; gap: 3px; height: 8px; }
-.meter i { flex: 1; border-radius: 1px; background: rgba(var(--vfd-rgb), .12); }
-.meter i.on { background: rgba(var(--vfd-rgb), .9); }
-.demos { display: flex; flex-wrap: wrap; gap: 10px; }
+@keyframes sway { 0%,100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.8deg); } }
+@keyframes sun { 0%,100% { transform: translateY(0); } 50% { transform: translateY(12px); } }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes track { 0%,82% { transform: translateY(-120px); opacity: 0; } 86% { opacity: .7; } 100% { transform: translateY(1400px); opacity: 0; } }
+@keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+@keyframes twinkle { 0%,100% { opacity: .15; } 50% { opacity: 1; } }
+.stars { position: absolute; inset: 0 0 auto 0; height: 70%; z-index: 0; pointer-events: none; }
+.stars i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; animation: twinkle 4s ease-in-out infinite; }
+.stars i.big { width: 3px; height: 3px; }
+
+/* ---- channels ---- */
+.ch { padding: 130px 0 0; }
+.ch-k { margin: 0; font: 26px/1 var(--osd); color: var(--vfd); letter-spacing: .02em; }
+.ch h2 { margin: 12px 0 0; font: 600 clamp(36px, 4.6vw, 56px)/1.04 var(--display); letter-spacing: -.03em; color: #fff; }
+.ch .intro { margin: 18px 0 0; max-width: 680px; font-size: 18px; color: var(--ink-2); }
+.ch .intro a { text-decoration: underline; text-underline-offset: 3px; }
+.split { display: flex; flex-wrap: wrap; gap: 48px 56px; align-items: center; }
+.split > div { flex: 1 1 360px; min-width: 0; }
+.split > img, .split > figure { flex: 1.4 1 520px; min-width: 0; }
+.lift { transition: transform .35s ease, box-shadow .35s ease, border-color .35s; }
+.lift:hover { transform: translateY(-6px); box-shadow: 0 26px 60px rgba(0,0,0,.55); border-color: var(--line-2) !important; }
+.shot { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--line); }
+
+.videos { margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 24px; }
+@media (max-width: 520px) { .videos { grid-template-columns: 1fr; } }
+.videos figure { margin: 0; }
+.videos figcaption { margin-top: 12px; font: 22px var(--osd); color: var(--ink-2); }
+.videos figcaption small { display: block; font: 15px/1.5 var(--body); color: var(--dim); margin-top: 4px; }
+.demo-video { width: 100%; height: auto; display: block; border-radius: 12px; background: #000; aspect-ratio: 16 / 9; border: 1px solid var(--line); }
+
+/* listen: the VFD player (same 14-segment display as the plug-in) */
+.vfd { position: relative; margin-top: 36px; border-radius: 20px; padding: 28px; background: linear-gradient(180deg, #0b1214, #070b0c); border: 1px solid #1b2a2a; overflow: hidden; }
+.vfd-glow { position: absolute; inset: 0; opacity: 0; pointer-events: none; background: radial-gradient(ellipse at 30% 20%, rgba(var(--vfd-rgb),.16), transparent 60%); }
+.vfd-top { display: flex; justify-content: space-between; font: 20px var(--osd); color: #4fa594; }
+.seg { margin: 10px 0 0; font-size: clamp(22px, 4.2vw, 46px); color: var(--vfd); filter: drop-shadow(0 0 10px rgba(var(--vfd-rgb),.55)); line-height: 1; }
+.seg svg { display: block; max-width: 100%; }
+.vfd .note { margin: 10px 0 0; color: #9fd8cc; font-size: 16px; min-height: 1.6em; }
+.meter { display: flex; gap: 3px; margin: 16px 0 0; height: 10px; }
+.meter i { flex: 1; border-radius: 2px; background: rgba(var(--vfd-rgb),.12); }
+.meter i.on { background: var(--vfd); box-shadow: 0 0 8px rgba(var(--vfd-rgb),.7); }
+.vfd audio { width: 100%; margin-top: 18px; filter: invert(.88) hue-rotate(140deg); opacity: .85; }
+.demo-tabs { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 20px; }
+.demo-tabs-label { font: 20px var(--osd); color: #4fa594; margin-right: 6px; }
+.demo-tab, .demo { font: 600 12px var(--body); letter-spacing: .1em; padding: 10px 14px; border-radius: 8px; cursor: pointer; color: #b9ddd5; background: transparent; border: 1px solid #1f3a37; transition: background .2s, border-color .2s, color .2s; }
+.demo-tab[aria-selected="true"] { background: rgba(var(--vfd-rgb),.14); border-color: var(--vfd); color: var(--vfd); }
+.demos { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .demos[hidden] { display: none; }
-.demo-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 14px; border-bottom: 1px solid rgba(var(--vfd-rgb), .18); }
-.demo-tab { font: 600 12px/1 var(--label); letter-spacing: .16em; padding: 12px 14px 11px; min-height: 44px; cursor: pointer; background: none; border: 0;
-  border-bottom: 2px solid transparent; color: rgba(var(--vfd-rgb), .55); margin-bottom: -1px; }
-.demo-tab:hover { color: rgba(var(--vfd-rgb), .85); }
-.demo-tab[aria-selected="true"] { color: var(--vfd); border-bottom-color: var(--vfd); }
-.demo-tab:focus-visible { outline: 2px solid var(--vfd); outline-offset: 2px; }
-@media (max-width: 560px) { .hide-sm { display: none; } }
-.demo-tabs-label { align-self: center; font: 600 10px/1 var(--label); letter-spacing: .2em; color: rgba(var(--vfd-rgb), .4); margin-right: 6px; }
-@media (max-width: 560px) {
-  .demo-tabs { gap: 0; }
-  .demo-tabs-label { width: 100%; margin: 4px 0 2px; }
-  .demo-tab { padding: 12px 6px 11px; letter-spacing: .05em; font-size: 11px; }
-}
-.demo { font: 600 13px/1 var(--label); letter-spacing: .12em; padding: 12px 16px; min-height: 44px; border-radius: 4px; cursor: pointer;
-  display: inline-flex; align-items: center; gap: 10px; color: var(--vfd); background: transparent; border: 1px solid rgba(var(--vfd-rgb), .45); }
-.demo::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: rgba(var(--vfd-rgb), .35); }
-.demo[aria-pressed="true"] { color: var(--glass); background: var(--vfd); border-color: var(--vfd); }
-.demo[aria-pressed="true"]::before { background: var(--glass); }
+.demo:hover, .demo-tab:hover { border-color: #3c6d66; color: #e2fff9; }
+.demo[aria-pressed="true"] { background: var(--sun); border-color: var(--sun); color: #1a0e08; }
+@media (max-width: 600px) { .hide-sm { display: none; } .br-lg { display: none; } .brand small { display: none; } .brand span { white-space: nowrap; } .newpill { font-size: 13px; } .newpill b { white-space: nowrap; } .hero h1 { font-size: 46px; } }
 
-.demo-video { width: 100%; height: auto; display: block; border-radius: 10px; background: #000; aspect-ratio: 16 / 9; }
-.video-title { margin: 28px 0 6px; font-size: 15px; letter-spacing: .18em; }
+/* inside */
+.grid { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+.mod { background: linear-gradient(180deg, var(--card-2), var(--card)); border: 1px solid var(--line); border-radius: 18px; padding: 28px; transition: transform .35s ease, box-shadow .35s ease, border-color .35s; }
+.mod:hover { transform: translateY(-5px); box-shadow: 0 24px 50px rgba(0,0,0,.5); border-color: var(--line-2); }
+.mod-h { display: flex; align-items: center; gap: 12px; }
+.mod-h b { min-width: 30px; height: 30px; padding: 0 6px; border-radius: 8px; display: grid; place-items: center; font: 600 13px var(--body); color: #120d18; }
+.mod-h h3 { margin: 0; font: 600 18px var(--display); letter-spacing: .04em; color: #fff; }
+.mod p { margin: 14px 0 0; color: var(--ink-2); font-size: 16px; }
+.mod .controls { font-size: 13px; color: var(--dim); }
+.groups { margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+.groups h3 { margin: 0 0 14px; font: 22px var(--osd); color: var(--vfd); font-weight: 400; }
+.groups ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.groups li { color: var(--ink-2); font-size: 15.5px; } .groups strong { display: block; color: #fff; font-weight: 600; }
 
-/* Modules */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px 36px; }
-.mod { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid var(--rule); }
-.mod-h { display: flex; align-items: center; gap: 10px; }
-.mod-h b { width: 24px; height: 24px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font: 600 13px var(--label); color: #2f2c28; }
-.mod h3 { margin: 0; font: 600 16px var(--label); letter-spacing: .16em; }
-.mod p { color: var(--ink-2); }
-.controls { font: 15px/1.6 var(--mono); color: var(--ink-soft); }
-.controls span { white-space: nowrap; }
+.orbit { margin-top: 40px; border-radius: 24px; border: 1px solid var(--line); background: radial-gradient(ellipse at 18% 50%, #1c1433, var(--card) 62%); padding: clamp(32px, 5vw, 72px); display: flex; flex-wrap: wrap; gap: 48px; align-items: center; }
+.orbit .ring { flex: 0 0 240px; height: 240px; position: relative; }
+.orbit .ring > span { position: absolute; border-radius: 50%; }
+.orbit .ring .o1 { inset: 0; border: 1px solid rgba(246,160,106,.3); }
+.orbit .ring .o2 { inset: 46px; border: 1px dashed rgba(255,255,255,.12); }
+.orbit .ring .head { left: 94px; top: 84px; width: 52px; height: 70px; border-radius: 26px; background: linear-gradient(180deg, #4a4d8e, #262850); box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+.orbit .ring .spin { inset: 0; animation: spin 6s linear infinite; }
+.orbit .ring .spin::after { content: ""; position: absolute; left: 111px; top: -9px; width: 18px; height: 18px; border-radius: 50%; background: var(--sun); box-shadow: 0 0 26px 6px rgba(246,160,106,.7); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.orbit > div:last-child { flex: 1 1 380px; }
 
-/* Feature groups */
-.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px 36px; margin-top: 46px; }
-.groups h3 { margin: 0 0 12px; font: 600 15px var(--label); letter-spacing: .18em; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
-.groups ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
-.groups li { color: var(--ink-2); font-size: 17px; }
-.groups li strong { display: block; color: var(--ink); font-weight: 600; }
+/* presets */
+.presets-box { margin-top: 36px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); }
+.presets-box summary { cursor: pointer; list-style: none; padding: 22px 26px; display: flex; justify-content: space-between; align-items: center; font: 600 18px var(--display); color: #fff; }
+.presets-box summary::-webkit-details-marker { display: none; }
+.presets-box summary span { font: 22px var(--osd); color: var(--vfd); }
+.presets-box[open] summary span::before { content: "HIDE "; } .presets-box:not([open]) summary span::before { content: "SHOW "; }
+.presets { padding: 0 26px 26px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.pcat h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; font: 600 13px var(--body); letter-spacing: .14em; color: #fff; }
+.pcat h3 i { width: 10px; height: 10px; border-radius: 3px; } .pcat h3 span { color: var(--dim); font-weight: 500; }
+.pcat ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.pcat li { font-size: 14.5px; color: var(--dim); } .pcat li b { display: block; color: var(--ink); font-weight: 500; }
+.secret { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: center; justify-content: space-between; padding: 26px 30px; border-radius: 18px; border: 1px dashed rgba(var(--vfd-rgb),.35); background: rgba(var(--vfd-rgb),.03); }
+.secret h3 { margin: 0; font: 30px var(--osd); font-weight: 400; color: var(--vfd); }
+.secret p { margin: 6px 0 0; color: var(--ink-2); max-width: 620px; }
+.secret .hint { font: 22px var(--osd); color: #4fa594; }
 
-/* Looks gallery */
-.looks { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
-.look { margin: 0; cursor: pointer; border: 0; padding: 0; background: none; color: inherit; text-align: left; font: inherit; }
-.look img { width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: 0 8px 20px rgba(0,0,0,.3); }
-.look span { display: block; margin-top: 10px; font: 600 13px var(--label); letter-spacing: .18em; }
-.look[aria-pressed="true"] span::after { content: "  ●"; color: var(--vfd); }
+/* nightfin */
+.artist { margin-top: 40px; border-radius: 24px; border: 1px solid #2a2138; background: linear-gradient(135deg, #160d22, #0a0811 62%); padding: clamp(32px, 5vw, 64px); display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
+.artist > div { flex: 1 1 420px; min-width: 0; }
+.artist blockquote { margin: 0; font: 500 clamp(24px, 2.6vw, 32px)/1.35 var(--display); color: #fff; }
+.artist .who { margin: 16px 0 26px; color: var(--ink-2); }
+.artist iframe { flex: 1 1 380px; min-width: 0; border: 0; border-radius: 14px; }
 
-/* Presets */
-.presets { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px 36px; }
-.pcat h3 { margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--rule);
-  display: flex; align-items: center; gap: 10px; font: 600 14px var(--label); letter-spacing: .14em; }
-.pcat h3 i { width: 12px; height: 12px; border-radius: 2px; flex: none; }
-.pcat h3 span { margin-left: auto; font: 14px var(--mono); color: var(--ink-soft); letter-spacing: 0; }
-.pcat ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-.pcat li { font-size: 15px; line-height: 1.45; color: var(--ink-soft); }
-.pcat li b { display: block; font-weight: 600; font-size: 17px; color: var(--ink); }
+/* press play */
+.play { text-align: center; }
+.play .wrap > p.osd-k { margin: 0; font: 32px var(--osd); color: #fff; }
+.play-grid { margin-top: 44px; display: flex; flex-wrap: wrap; gap: 20px; text-align: left; }
+.panel { flex: 1 1 380px; min-width: 0; border-radius: 22px; border: 1px solid var(--line); background: var(--card); padding: clamp(28px, 4vw, 44px); }
+.panel h3 { margin: 0; font: 600 26px var(--display); color: #fff; }
+.steps { margin: 18px 0 26px; padding-left: 22px; color: var(--ink-2); } .steps li { margin: 6px 0; } .steps b { color: #fff; }
+.dl { display: flex; gap: 12px; flex-wrap: wrap; }
+.paybox { background: linear-gradient(160deg, #24140f, #120c10 70%); border-color: #3e2619; }
+.paybox .k { margin: 0; font: 20px var(--osd); color: var(--sun); }
+.paybox .amount { margin: 6px 0 0; font: 600 clamp(48px, 6vw, 68px)/1 var(--display); color: #fff; letter-spacing: -.02em; }
+.paybox .alt-price { margin: 8px 0 0; color: var(--ink-2); } .paybox .was { margin: 6px 0 22px; color: var(--dim); font-size: 15px; } .paybox .was b { color: var(--sun); }
+.specs { margin: 26px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 15px; color: var(--ink-2); }
+.specs li::before { content: "▸ "; color: var(--vfd); }
 
-/* Secret teaser */
-.secret { background: var(--smoke); border-radius: 14px; padding: 40px 34px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; border: 1px solid rgba(201,187,246,.15); }
-.secret h2 { margin: 0 0 8px; font: 600 22px var(--label); letter-spacing: .3em; color: var(--lilac); }
-.secret p { color: #ddd5f8; max-width: 36em; }
-.secret .hint { font: 14px var(--mono); letter-spacing: .2em; color: #b9addf; }
-
-/* Buy */
-.buy { display: flex; flex-wrap: wrap; gap: 40px; }
-.buy .what { flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
-.buy h2 { margin: 0; font: 600 28px var(--label); letter-spacing: .14em; }
-.buy ul { margin: 0; padding-left: 22px; color: var(--ink-2); display: flex; flex-direction: column; gap: 8px; }
-.buy .pay { flex: 0 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
-.price { background: var(--glass); border-radius: 8px; padding: 18px 20px; color: var(--vfd); box-shadow: inset 0 4px 10px rgba(0,0,0,.6); font-family: var(--mono); }
-.price .alt-price { font: 600 15px/1.2 var(--label); letter-spacing: .1em; opacity: .75; margin: 0 0 6px; }
-.price .amount { font: 600 44px/1.1 var(--label); letter-spacing: .04em; margin: 6px 0; text-shadow: 0 0 10px rgba(var(--vfd-rgb), .5); }
-.price .was { font-size: 15px; opacity: .85; }
-.pay .btn { justify-content: center; }
-
-/* Artist */
-.artist { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 36px; align-items: center; }
-.artist-copy { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
-.artist-copy p { color: var(--ink-2); max-width: 34em; }
-.artist-copy .sh { width: 100%; margin-bottom: 0; }
-.artist-player iframe { display: block; border: 0; border-radius: 12px; background: rgba(0,0,0,.25); }
-.foot-links { font-size: 15px; }
-@media (max-width: 860px) { .artist { grid-template-columns: 1fr; } }
-
-/* FAQ */
-.faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px 44px; }
-.faq h3 { margin: 0 0 6px; font: 600 15px var(--label); letter-spacing: .12em; }
-.faq p { color: var(--ink-2); }
-.support-form { border-radius: 12px; overflow: hidden; background: #1d1b21; padding: 8px 18px; margin-top: 18px; }
+/* faq + support */
+.faq { margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 12px 20px; }
+@media (max-width: 420px) { .faq { grid-template-columns: 1fr; } }
+.faq details { border: 1px solid var(--line); border-radius: 14px; background: var(--card); padding: 0 22px; }
+.faq summary { cursor: pointer; list-style: none; padding: 18px 0; font: 600 16px var(--display); color: #fff; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font: 24px/1 var(--osd); color: var(--vfd); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin: 0 0 18px; color: var(--ink-2); font-size: 15.5px; }
+.support-form { margin-top: 28px; border-radius: 16px; overflow: hidden; background: #1d1b21; padding: 8px 18px; border: 1px solid var(--line); }
 .support-form iframe { display: block; width: 100%; min-height: 640px; border: 0; }
-.support-form noscript a, .support-alt a { color: inherit; }
 
-/* Footer + horizon */
-footer { position: relative; margin-top: 40px; border-top: 1px solid var(--rule); overflow: hidden; }
-footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; padding-top: 26px; padding-bottom: 26px; }
-.horizon { display: none; position: absolute; inset: 0; pointer-events: none; }
-[data-theme="sunset"] .horizon, [data-theme="dusk"] .horizon { display: block; }
-[data-theme="sunset"] footer, [data-theme="dusk"] footer { background: rgba(0,0,0,.25); }
-[data-theme="sunset"] footer .wrap, [data-theme="dusk"] footer .wrap { padding-bottom: 140px; }
-.horizon .glow { position: absolute; left: 50%; bottom: -120px; width: 900px; height: 260px; transform: translateX(-50%);
-  background: radial-gradient(closest-side, var(--sun), transparent); opacity: .35; will-change: opacity; }
-.horizon .palms { position: absolute; right: 6%; bottom: 0; width: 260px; height: 120px; }
-.horizon .palm { position: absolute; bottom: 0; left: 0; width: 260px; height: 120px; display: block; transform-origin: var(--ox) 100%; will-change: transform; animation: sway 7s ease-in-out infinite alternate; }
-.horizon .palm:nth-child(2) { animation-duration: 8.5s; animation-delay: -2s; }
-.horizon .palm:nth-child(3) { animation-duration: 6.2s; animation-delay: -4s; }
-@keyframes sway { from { transform: rotate(-2deg); } to { transform: rotate(2deg); } }
-.badge { font: 600 12px var(--label); letter-spacing: .2em; padding: 6px 12px; border: 1px solid var(--ink); }
-.credit { font: 600 13px var(--label); letter-spacing: .2em; display: flex; align-items: center; gap: 10px; }
-.credit img { display: block; }
-.legal { width: 100%; font-size: 14px; color: var(--ink-soft); }
+footer { margin-top: 140px; border-top: 1px solid var(--line); }
+footer .wrap { padding-top: 34px; padding-bottom: 48px; display: flex; flex-wrap: wrap; gap: 18px 32px; justify-content: space-between; align-items: center; font: 20px var(--osd); color: var(--dim); }
+footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
+footer nav a { color: #a59dba; }
+footer .legal { flex: 1 1 100%; margin: 0; font: 13px var(--body); color: #5f596c; }
 
-@media (max-width: 760px) {
-  body { font-size: 17px; }
-  header { position: static; }
-  header .wrap { gap: 10px 16px; }
-  .brand img { width: 36px; height: 18px; }
-  .brand span { font-size: 15px; }
-  nav { gap: 8px 14px; }
-  .swatch { width: 24px; height: 24px; }
-  .hero { padding-top: 32px; }
-  .panel { padding: 24px 20px; }
-  nav a.label { font-size: 12px; }
-  .lead { font-size: 18px; }
-}
-@media (prefers-reduced-motion: reduce) { .sky .twk, .horizon .palm { animation: none; } html { scroll-behavior: auto; } }
-
-/* v1.9 hooks: new pill, before/after player, why cards, free trial, sticky bar */
-.newpill { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 7px; border-radius: 999px;
-  background: rgba(var(--vfd-rgb), .12); border: 1px solid rgba(var(--vfd-rgb), .35); color: var(--ink); text-decoration: none; font-size: 14px; }
-.newpill b { font: 600 11px/1 var(--label); letter-spacing: .14em; background: var(--vfd); color: #14121a; padding: 6px 9px; border-radius: 999px; }
-.newpill:hover { border-color: var(--vfd); }
-.btn.ghost { background: transparent; box-shadow: inset 0 0 0 1.5px rgba(var(--vfd-rgb), .55); color: var(--ink); }
-.btn.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--vfd); color: var(--ink); }
-.small.dim { font-size: 13px; opacity: .8; }
-.launch-left b { color: var(--vfd); font-weight: 600; }
-.hearit { display: flex; align-items: center; gap: 16px; padding: 12px 18px 12px 12px; border-radius: 14px; position: relative; overflow: hidden;
-  background: rgba(8, 10, 20, .55); border: 1px solid rgba(var(--vfd-rgb), .28); max-width: 520px; }
-.hear-play { flex: none; width: 58px; height: 58px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
-  background: radial-gradient(circle at 50% 35%, rgba(var(--vfd-rgb), 1), rgba(var(--vfd-rgb), .7)); box-shadow: 0 0 24px rgba(var(--vfd-rgb), .45); }
-.hear-play .ic { width: 0; height: 0; border-left: 17px solid #14121a; border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 5px; }
-.hearit.playing .hear-play .ic { width: 16px; height: 18px; border: 0; margin: 0; background: linear-gradient(90deg, #14121a 0 35%, transparent 35% 65%, #14121a 65%); }
-.hear-text { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.hear-title { font: 600 11px/1 var(--label); letter-spacing: .2em; color: rgba(var(--vfd-rgb), .8); }
-.hear-switch { display: inline-flex; border-radius: 8px; padding: 3px; background: rgba(0,0,0,.45); gap: 3px; }
-.hear-switch button { font: 600 12px/1 var(--label); letter-spacing: .12em; padding: 10px 12px; min-height: 38px; border: 0; border-radius: 6px; cursor: pointer;
-  background: transparent; color: rgba(255,255,255,.6); }
-.hear-switch button[aria-checked="true"] { background: var(--vfd); color: #14121a; box-shadow: 0 0 14px rgba(var(--vfd-rgb), .45); }
-.hear-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.06); }
-.hear-bar i { display: block; height: 100%; width: 0; background: var(--vfd); }
-.why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-.why article { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
-.why img { width: 100%; height: auto; display: block; border-bottom: 1px solid var(--panel-edge); }
-.why h3 { margin: 18px 22px 6px; font: 600 18px var(--label); letter-spacing: .08em; }
-.why p { margin: 0 22px 22px; color: var(--ink-2); }
-@media (max-width: 900px) { .why { grid-template-columns: 1fr; } }
-.try { display: flex; flex-wrap: wrap; gap: 36px; align-items: center; }
-.try-copy { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
-.try-dl { flex: 0 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
-.try-dl .btn { justify-content: center; }
-.try-dl .btn.suggested { box-shadow: 0 0 0 2px var(--vfd), 0 0 22px rgba(var(--vfd-rgb), .35); }
-.steps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; color: var(--ink-2); }
 .stickybar { display: none; }
-@media (max-width: 700px) {
-  .stickybar { display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-    background: var(--header); border-top: 1px solid var(--rule); transform: translateY(110%); transition: transform .25s; }
+@media (max-width: 760px) {
+  .stickybar { display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(6,5,11,.92); backdrop-filter: blur(12px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .3s; }
   .stickybar.show { transform: none; }
-  .stickybar .btn { flex: 1; justify-content: center; }
-  body { padding-bottom: 76px; }
+  .stickybar .btn { flex: 1; padding: 13px 16px; font-size: 15px; }
+  .hero .copy { padding-top: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
 }
 </style>
 </head>
 <body>
-<div class="sky" aria-hidden="true"></div>
-
-<header>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
   <div class="wrap">
-    <a class="brand" href="#top"><img src="assets/img/nightfin-mark.svg" width="44" height="22" alt="NightFin"><span>PALM LIFE</span></a>
+    <a class="brand" href="#top"><img src="assets/img/nightfin-mark.svg" width="38" height="19" alt=""><span>PALM LIFE</span><small>BY NIGHTFIN</small></a>
     <nav aria-label="Main">
-      <a class="label" href="#watch">Watch</a>
-      <a class="label" href="#listen">Listen</a>
-      <a class="label" href="#inside">Inside</a>
-      <a class="label" href="#presets">Presets</a>
-      <a class="label" href="#faq">FAQ</a>
-      <a class="label" href="#support">Support</a>
-      <div class="themes" role="group" aria-label="Page theme">
-        <button class="swatch" type="button" data-t="studio"   aria-pressed="false" aria-label="Studio theme" title="Studio"></button>
-        <button class="swatch" type="button" data-t="midnight" aria-pressed="false" aria-label="Midnight theme" title="Midnight"></button>
-        <button class="swatch" type="button" data-t="sunset"   aria-pressed="true"  aria-label="Sunset theme" title="Sunset"></button>
-        <button class="swatch" type="button" data-t="dusk"     aria-pressed="false" aria-label="Dusk theme" title="Dusk"></button>
-      </div>
-      <a class="btn" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4"><span class="led" aria-hidden="true"></span>Buy</a>
+      <a href="#watch">WATCH</a><a href="#listen">LISTEN</a><a href="#inside">INSIDE</a><a href="#nightfin">NIGHTFIN</a><a href="#faq">FAQ</a><a href="#support">SUPPORT</a>
     </nav>
+    <a class="buy" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy<span class="hide-sm"> <span class="price-now">£14.99 / $19.99</span></span></a>
   </div>
 </header>
 
-<main id="top" class="wrap">
-  <section class="hero" aria-labelledby="hero-title">
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="stars" aria-hidden="true"></div>
+    <p class="osd l" aria-hidden="true"><span class="osd-mode">STOP ■</span></p>
+    <p class="osd r" aria-hidden="true">SP <span class="osd-count">0:00:00</span></p>
+
     <div class="copy">
-      <a class="newpill" href="#watch"><b>NEW IN 1.13</b> See your reverb, plus Orbit 3D free <span aria-hidden="true">→</span></a>
-      <p class="kicker">80S REVERB PLUG-IN · VST3 &amp; AU · WINDOWS &amp; MAC</p>
-      <h1 id="hero-title">Reverb that sounds like <span class="glow">a memory.</span></h1>
-      <p class="lead">Lush 1980s halls, worn videotape, chorus and slow stereo drift in one plug-in. Put it on synths, vocals or a whole beat and it comes back sounding like it was taped off late-night TV in 1986.</p>
+      <a class="newpill" href="#watch"><b>NEW 1.13</b>See your reverb, plus Orbit 3D free <span aria-hidden="true">→</span></a>
+      <h1 id="hero-title">Reverb that sounds<br class="br-lg"> like a memory.</h1>
+      <p class="lead">The sound of NightFin's records, in a plug-in: lush 80s halls, worn videotape and slow stereo drift.</p>
+      <div class="ctas">
+        <a class="btn solid trial-link" href="#try">Try free for 14 days</a>
+        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy · <span class="price-now">£14.99 / $19.99</span></a>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="sea" aria-hidden="true"></div>
+      <div class="horizon">
+        <div class="glow" aria-hidden="true"></div>
+        <button class="sun" type="button" aria-label="The sun. Some say it hides something.">
+          <svg viewBox="0 0 100 50" aria-hidden="true"><defs><mask id="sunmask" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="50"><rect width="100" height="50" fill="#fff"/><rect y="24" width="100" height="2" fill="#000"/><rect y="31" width="100" height="2.6" fill="#000"/><rect y="38" width="100" height="3.4" fill="#000"/><rect y="45" width="100" height="4.2" fill="#000"/></mask><linearGradient id="sungrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27f"/><stop offset="1" stop-color="#f0645a"/></linearGradient></defs><circle cx="50" cy="50" r="49" fill="url(#sungrad)" mask="url(#sunmask)"/></svg>
+        </button>
+        <svg class="palm p1" viewBox="0 0 120 120" aria-hidden="true"><path d="M30 120 Q36 70 42 30 L45 30 Q40 72 36 120 Z"/><path d="M43 30 q-30-8-42 8 q20-14 42-6Z M43 30 q-26 6-34 30 q14-24 34-28Z M43 30 q8-22 34-24 q-28 8-32 26Z M43 30 q30-6 46 14 q-22-16-44-12Z M43 30 q20 10 24 34 q-8-22-26-32Z M43 30 q-10-20-30-26 q22 4 32 24Z"/></svg>
+        <svg class="palm p2" viewBox="0 0 120 120" aria-hidden="true"><path d="M46 120 Q49 90 52 66 L54 66 Q52 92 50 120 Z"/><path d="M53 66 q-22-6-38 6 q18-10 38-4Z M53 66 q-18 4-26 22 q12-18 26-20Z M53 66 q6-16 26-18 q-20 6-24 20Z M53 66 q22-4 34 10 q-16-12-32-8Z M53 66 q14 8 16 24 q-6-16-18-22Z"/></svg>
+        <svg class="palm p3" viewBox="0 0 120 120" aria-hidden="true"><path d="M74 120 Q68 76 60 40 L63 40 Q72 76 79 120 Z"/><path d="M61 40 q-28-8-50 6 q24-12 50-4Z M61 40 q-22 6-34 28 q14-22 34-26Z M61 40 q8-20 32-22 q-26 8-30 24Z M61 40 q28-6 46 12 q-22-14-44-10Z M61 40 q18 10 22 32 q-8-20-24-30Z M61 40 q-8-18-28-24 q20 4 30 22Z"/></svg>
+      </div>
+      <figure class="tv">
+        <img id="hero-img" src="assets/img/pl113-sunset-1040.webp"
+             srcset="assets/img/pl113-sunset-720.webp 720w, assets/img/pl113-sunset-1040.webp 1040w, assets/img/pl113-sunset-1560.webp 1560w, assets/img/pl113-sunset-1950.webp 1950w"
+             sizes="(max-width: 1180px) 94vw, 1124px" width="1950" height="1370" fetchpriority="high" decoding="async"
+             alt="The Palm Life plug-in in its Sunset theme: knobs on a navy-to-orange sky, a glowing display, a cassette window, a reverb tail monitor and a big Nostalgia knob.">
+      </figure>
+      <p class="toast" role="status" hidden><b>AFTER HOURS</b><span>You found it. There's more on the faceplate than you can see.</span></p>
+    </div>
+
+    <div class="deck">
       <div class="hearit" aria-label="Hear Palm Life">
         <button class="hear-play" type="button" aria-label="Play the before and after"><span class="ic" aria-hidden="true"></span></button>
         <div class="hear-text">
-          <p class="hear-title">HEAR THE DIFFERENCE</p>
-          <div class="hear-switch" role="radiogroup" aria-label="Switch between the dry mix and Palm Life">
-            <button type="button" role="radio" aria-checked="false" data-v="dry">BEFORE</button>
-            <button type="button" role="radio" aria-checked="true" data-v="wet">WITH PALM LIFE</button>
-          </div>
+          <p class="k">NOW PLAYING · SIDE A</p>
+          <p class="t">When We're Alone <span>· NightFin, with Miami Nights</span></p>
+        </div>
+        <div class="hear-switch" role="radiogroup" aria-label="Switch between the dry mix and Palm Life">
+          <button type="button" role="radio" aria-checked="false" data-v="dry">DRY</button>
+          <button type="button" role="radio" aria-checked="true" data-v="wet">PALM LIFE</button>
         </div>
         <div class="hear-bar" aria-hidden="true"><i></i></div>
       </div>
-      <div class="ctas">
-        <a class="btn big trial-link" href="#try"><span class="led" aria-hidden="true"></span>Try it free for 14 days</a>
-        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy <span class="price-now">£14.99 / $19.99</span></a>
+      <div class="looks" role="group" aria-label="Plug-in looks">
+        <span class="lbl" aria-hidden="true">LOOKS</span>
+        <button type="button" data-t="studio" aria-pressed="false"><i style="background:#d9cdb4"></i>Studio</button>
+        <button type="button" data-t="midnight" aria-pressed="false"><i style="background:#2b2d33;box-shadow:inset 0 0 0 1px #555"></i>Midnight</button>
+        <button type="button" data-t="sunset" aria-pressed="true"><i style="background:linear-gradient(180deg,#1b2a55,#f3a76c)"></i>Sunset</button>
+        <button type="button" data-t="dusk" aria-pressed="false"><i style="background:linear-gradient(180deg,#2a2660,#e59ad8)"></i>Dusk</button>
       </div>
-      <p class="small">The full plug-in for 14 days. No card, no account. <span class="launch-left">Launch price £14.99 / $19.99, then £19.99 / $26.99 from 8 December.</span></p>
-      <p class="small dim">Windows and Mac · VST3, AU (Mac) and standalone app · Apple Silicon and Intel</p>
+      <p class="small deck-note">No card, no account. <span class="launch-left">Launch price £14.99 / $19.99, then £19.99 / $26.99 from 8 December.</span> Windows and Mac · VST3, AU and standalone · Apple Silicon and Intel.</p>
+      <p class="osd-date" aria-hidden="true">NOV.27 1986 · 10:47 PM</p>
     </div>
-    <figure>
-      <img id="hero-img" src="assets/img/pl-sunset-1040.webp"
-           srcset="assets/img/pl-sunset-720.webp 720w, assets/img/pl-sunset-1040.webp 1040w, assets/img/pl-sunset-1560.webp 1560w"
-           sizes="(max-width: 1100px) 92vw, 600px" width="1560" height="1095" fetchpriority="high" decoding="async"
-           alt="The Palm Life plug-in in its Sunset theme: dark knobs on a navy-to-orange sky, a glowing display, a cassette window, a reverb tail monitor and a big Nostalgia knob.">
-      <figcaption id="hero-cap">Sunset theme. Try the others with the swatches at the top.</figcaption>
-    </figure>
+    <div class="scan" aria-hidden="true"></div>
+    <div class="track" aria-hidden="true"></div>
   </section>
 
-  <section id="why" aria-label="Why producers use Palm Life">
-    <div class="why">
-      <article>
-        <img src="assets/img/why-nostalgia.webp" width="720" height="450" loading="lazy" decoding="async" alt="The big Nostalgia knob.">
-        <h3>The 80s, on one knob</h3>
-        <p>Turn up <b>Nostalgia</b> and anything you play drifts from clean and modern to a warm, faraway memory: wider, softer, a little worn.</p>
-      </article>
-      <article>
-        <img src="assets/img/why-lfo.webp" width="720" height="450" loading="lazy" decoding="async" alt="An LFO with a Sidechain Pump shape moving the reverb mix.">
-        <h3>Make it move</h3>
-        <p>Drag an LFO onto any knob and watch it come alive. Pump the reverb on every beat, chop it like a trance gate, or <b>draw your own shape</b>.</p>
-      </article>
-      <article>
-        <img src="assets/img/why-tape.webp" width="720" height="450" loading="lazy" decoding="async" alt="The cassette deck and tail monitor.">
-        <h3>Tape that breathes</h3>
-        <p>Real wow and flutter, VHS and TV hiss, and a cassette that plays along. Hold <b>Rewind</b> and the whole tape spins backwards.</p>
-      </article>
+  <section class="ch" id="watch" aria-labelledby="watch-title">
+    <div class="wrap">
+      <p class="ch-k">CH 01 · WATCH</p>
+      <h2 id="watch-title">See it, hear it.</h2>
+      <div class="videos">
+        <figure>
+          <video class="demo-video" controls preload="none" playsinline poster="assets/video/poster.webp" width="1920" height="1080"><source src="assets/video/palm-life-demo.mp4?v=1100" type="video/mp4"></video>
+          <figcaption>THE ORIGINAL TOUR<small>One minute on NightFin's own track: the tape, the Nostalgia knob, chorus and phaser, the rooms and all four looks.</small></figcaption>
+        </figure>
+        <figure>
+          <video class="demo-video" controls preload="none" playsinline poster="assets/video/poster-closer-look.webp" width="1920" height="1080"><source src="assets/video/palm-life-closer-look.mp4?v=1131" type="video/mp4"></video>
+          <figcaption>A CLOSER LOOK<small>The reverb across the spectrum, the gate, LFOs, Drift, Rewind and the presets. Then Orbit: headphones on.</small></figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
-  <section id="watch" aria-labelledby="watch-title">
-    <div class="panel">
-      <div class="sh"><span class="chip" style="background:var(--sunset)" aria-hidden="true"></span><h2 id="watch-title">WATCH</h2><hr class="groove"></div>
-      <p class="intro">One minute of Palm Life on NightFin's own track: the tape, the Nostalgia knob, chorus and phaser lighting up, the rooms, and all four looks.</p>
-      <video class="demo-video" controls preload="none" playsinline poster="assets/video/poster.webp" width="1920" height="1080">
-        <source src="assets/video/palm-life-demo.mp4?v=1100" type="video/mp4">
-      </video>
-      <h3 class="video-title">A CLOSER LOOK</h3>
-      <p class="intro">The rest of Palm Life, up close: the reverb across the spectrum, the gate, help on every knob, LFOs you drag onto any knob, Drift, Rewind and the preset browser. Then Orbit, free 3D movement round your head. Headphones on for the end.</p>
-      <video class="demo-video" controls preload="none" playsinline poster="assets/video/poster-closer-look.webp" width="1920" height="1080">
-        <source src="assets/video/palm-life-closer-look.mp4?v=1131" type="video/mp4">
-      </video>
-    </div>
-  </section>
-
-  <section id="listen" aria-labelledby="listen-title">
-    <div class="panel">
-      <div class="sh"><span class="chip" style="background:var(--vfd)" aria-hidden="true"></span><h2 id="listen-title">LISTEN</h2><hr class="groove"></div>
-      <p class="intro">A few examples of what Palm Life can do. It works on almost anything: vocals, synths, keys, guitars, drums or a whole mix, so treat these as a starting point. Pick a sound, then switch presets while it plays to compare them at the same spot. Every clip is matched in loudness, so you hear the space and not just a volume change.</p>
+  <section class="ch" id="listen" aria-labelledby="listen-title">
+    <div class="wrap">
+      <p class="ch-k">CH 02 · LISTEN</p>
+      <h2 id="listen-title">Switch presets while it plays.</h2>
+      <p class="intro">Pick a sound, then flip between presets at the same spot. Every clip is matched in loudness, so you hear the space, not a volume change.</p>
       <div class="vfd" id="vfd">
         <div class="vfd-glow" id="vfd-glow" aria-hidden="true"></div>
         <div class="vfd-top"><span>NOW PLAYING</span><span>PL-86</span></div>
@@ -569,10 +523,16 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     </div>
   </section>
 
-  <section id="inside" class="below" aria-labelledby="inside-title">
-    <div class="panel">
-      <div class="sh"><span class="chip" aria-hidden="true"></span><h2 id="inside-title">WHAT’S INSIDE</h2><hr class="groove"></div>
-      <p class="intro">Four sections plus a lush chorus and phaser. New to the sound? Read <a href="guides/80s-reverb-sound/">how to get the 80s reverb sound</a>. Use them all together, or switch any section off and it leaves your sound untouched.</p>
+  <section class="ch" id="inside" aria-labelledby="inside-title">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="ch-k">CH 03 · NEW IN 1.13</p>
+          <h2 id="inside-title">See your reverb.</h2>
+          <p class="intro">VIEW shows how long the tail rings at every frequency, and what you just played fading away. Drag the dots to shape the decay, damping and tail EQ. New to the sound? Read <a href="guides/80s-reverb-sound/">how to get the 80s reverb sound</a>.</p>
+        </div>
+        <img class="shot lift" src="assets/img/reverb-view-920.webp" srcset="assets/img/reverb-view-920.webp 920w, assets/img/reverb-view-1380.webp 1380w" sizes="(max-width: 1100px) 94vw, 680px" width="1380" height="900" loading="lazy" decoding="async" alt="The reverb VIEW: how long the reverb rings at every frequency, with draggable decay and damping dots.">
+      </div>
       <div class="grid">
         <article class="mod">
           <div class="mod-h"><b style="background:var(--flamingo)" aria-hidden="true">A</b><h3>PALM / REVERB</h3></div>
@@ -603,11 +563,6 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
           <div class="mod-h"><b style="background:#45e6ff" aria-hidden="true">~</b><h3>LFO / SPECTRUM</h3></div>
           <p>Two LFOs that can move almost any knob. Drag a glowing cable onto a knob to connect it, and that knob shows a ring that moves with it. Pick from 17 shapes, from a sidechain pump to a trance gate, or click the screen and draw your own. A live spectrum shows your sound and the reverb side by side.</p>
           <p class="controls"><span>Drag to a knob</span> · <span>17 shapes</span> · <span>Draw your own</span> · <span>Tempo sync</span> · <span>Depth</span> · <span>Spectrum</span></p>
-        </article>
-        <article class="mod">
-          <div class="mod-h"><b style="background:#f6a06a" aria-hidden="true">3D</b><h3>ORBIT (FREE)</h3></div>
-          <p>A second plug-in that comes with Palm Life, free for everyone. On headphones it moves any sound round your head: orbits, ping-pong, front to back, figure 8 and spirals, locked to your song. Uses a real recorded head, or load your own head and headphone profiles.</p>
-          <p class="controls"><span>Motion</span> · <span>Sync</span> · <span>Distance</span> · <span>Height</span> · <span>Room</span> · <span>Your head (.sofa)</span> · <span>Your headphones (AutoEq)</span></p>
         </article>
       </div>
 
@@ -644,27 +599,25 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
           </ul>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="looks" class="below" aria-labelledby="looks-title">
-    <div class="panel">
-      <div class="sh"><span class="chip" style="background:var(--sunset)" aria-hidden="true"></span><h2 id="looks-title">FOUR LOOKS</h2><hr class="groove"></div>
-      <p class="intro">Pick the faceplate that suits your studio. In Sunset and Dusk the sky comes alive: stars twinkle, the horizon glows with your music and the palms lean with the auto-pan. Click one to see this page in it too.</p>
-      <div class="looks">
-        <button class="look" type="button" data-t="studio"   aria-pressed="false"><img src="assets/img/pl-studio-720.webp" width="720" height="505" loading="lazy" decoding="async" alt="Studio theme: champagne brushed metal."><span>STUDIO</span></button>
-        <button class="look" type="button" data-t="midnight" aria-pressed="false"><img src="assets/img/pl-midnight-720.webp" width="720" height="505" loading="lazy" decoding="async" alt="Midnight theme: dark graphite."><span>MIDNIGHT</span></button>
-        <button class="look" type="button" data-t="sunset"   aria-pressed="true"><img src="assets/img/pl-sunset-720.webp" width="720" height="505" loading="lazy" decoding="async" alt="Sunset theme: navy sky fading to an orange horizon."><span>SUNSET</span></button>
-        <button class="look" type="button" data-t="dusk"     aria-pressed="false"><img src="assets/img/pl-dusk-720.webp" width="720" height="505" loading="lazy" decoding="async" alt="Dusk theme: indigo sky fading to pink."><span>DUSK</span></button>
+      <div class="orbit" id="orbit">
+        <div class="ring" aria-hidden="true"><span class="o1"></span><span class="o2"></span><span class="head"></span><span class="spin"></span></div>
+        <div>
+          <p class="ch-k" style="color:var(--sun)">FREE WITH PALM LIFE</p>
+          <h2 style="margin-top:12px">Orbit moves sound round your head.</h2>
+          <p class="intro">Headphones on. Orbits, ping-pong, front to back, figure 8 and spirals, locked to your song. A recorded head by default, or load your own head and headphone profiles.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="presets" class="below" aria-labelledby="presets-title">
-    <div class="panel">
-      <div class="sh"><span class="chip" style="background:var(--flamingo)" aria-hidden="true"></span><h2 id="presets-title">PRESETS</h2><hr class="groove"></div>
-      <p class="intro">48 sounds, sorted by what you’re working on. Every preset plays at about the same volume as your dry sound, so you can compare them fairly.</p>
-      <div class="presets">
+  <section class="ch" id="presets" aria-labelledby="presets-title">
+    <div class="wrap">
+      <p class="ch-k">CH 04 · PRESETS</p>
+      <h2 id="presets-title">48 sounds, sorted by what you're making.</h2>
+      <p class="intro">Every preset plays at about the same volume as your dry sound, so you can compare them fairly.</p>
+      <details class="presets-box">
+        <summary>All 48 factory presets <span>LIST</span></summary>
+        <div class="presets">
     <div class="pcat">
       <h3><i style="background:var(--vfd)" aria-hidden="true"></i>START HERE <span>3</span></h3>
       <ul>
@@ -759,201 +712,144 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       </ul>
     </div>
   </div>
-      <p class="small" style="margin-top:24px">Plus three more that only appear once you’ve found After Hours.</p>
-    </div>
-  </section>
-
-  <section class="below" aria-labelledby="secret-title">
-    <div class="secret">
-      <div style="flex:1 1 360px;min-width:0">
-        <h2 id="secret-title">AFTER HOURS</h2>
-        <p>There are more controls on this faceplate than you can see. We won’t say where they are. Find them, and the night gets longer.</p>
-      </div>
-      <p class="hint">HINT: LOOK CLOSER</p>
-    </div>
-  </section>
-
-  <section id="try" class="below" aria-labelledby="try-title">
-    <div class="panel try">
-      <div class="try-copy">
-        <div class="sh"><span class="chip" style="background:var(--vfd)" aria-hidden="true"></span><h2 id="try-title">TRY IT FREE</h2><hr class="groove"></div>
-        <p class="intro">Use the full Palm Life in your own songs for 14 days. Every preset, every feature, no card and no account. If you love it, buy a key and paste it in: nothing to reinstall.</p>
-        <ol class="steps">
-          <li><b>Download</b> for your computer.</li>
-          <li><b>Install</b>, then open your DAW and add Palm Life to a track.</li>
-          <li><b>Make something.</b> After 14 days it drops out for a moment every 45 seconds until you buy.</li>
-        </ol>
-      </div>
-      <div class="try-dl">
-        <a class="btn big dl-win" href="https://raw.githubusercontent.com/NightfinAudio/palm-life-updates/main/builds/PalmLife-1.13.0-Windows.zip"><span class="led" aria-hidden="true"></span>Download for Windows</a>
-        <a class="btn big dl-mac" href="https://raw.githubusercontent.com/NightfinAudio/palm-life-updates/main/builds/PalmLife-1.13.0-Mac.zip"><span class="led" aria-hidden="true"></span>Download for Mac</a>
-        <p class="small" style="text-align:center"><span class="dl-version">Version 1.13.0</span> · about 20 MB</p>
+      </details>
+      <div class="secret">
+        <div><h3>AFTER HOURS</h3><p>There are more controls on the faceplate than you can see, and three presets that only appear once you've found them. Find them, and the night gets longer.</p></div>
+        <p class="hint">HINT: LOOK CLOSER</p>
       </div>
     </div>
   </section>
 
-  <section id="buy" class="below" aria-labelledby="buy-title">
-    <div class="buy panel">
-      <div class="what">
-        <h2 id="buy-title">PALM LIFE</h2>
-        <ul>
-          <li>Windows 10/11 (64-bit): VST3 and standalone app</li>
-          <li>macOS 11 or later, Apple Silicon and Intel: AU, VST3 and standalone app</li>
-          <li>One-click installer</li>
-          <li>48 factory presets and unlimited saved presets</li>
-          <li>Free updates for version 1, installed from inside the plug-in</li>
-          <li>A licence key for up to 3 computers</li>
-        </ul>
+  <section class="ch" id="nightfin" aria-labelledby="nightfin-title">
+    <div class="wrap">
+      <p class="ch-k" style="color:var(--sun)">MADE BY NIGHTFIN</p>
+      <h2 id="nightfin-title">From my records to yours.</h2>
+      <div class="artist">
+        <div>
+          <blockquote>"Palm Life started as the reverb I wanted on my own tracks: the wide, warm, slightly worn sound of the 80s."</blockquote>
+          <p class="who">NightFin is a UK producer. The demos on this page use one of my songs.</p>
+          <a class="btn ghost" href="https://open.spotify.com/artist/6GoEO9hz9h4lw1dHGUgewz" target="_blank" rel="noopener">Listen on Spotify</a>
+        </div>
+        <iframe title="NightFin on Spotify" src="https://open.spotify.com/embed/artist/6GoEO9hz9h4lw1dHGUgewz?utm_source=generator&amp;theme=0" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
       </div>
-      <div class="pay">
-        <div class="price">
-          <p class="launch-only" style="font-size:13px;letter-spacing:.18em;opacity:.8">LAUNCH PRICE</p>
+    </div>
+  </section>
+
+  <section class="ch play" id="try" aria-labelledby="try-title">
+    <div class="wrap">
+      <p class="osd-k">PRESS PLAY ▶</p>
+      <h2 id="try-title">14 days free. Then it's yours.</h2>
+      <div class="play-grid" id="buy">
+        <div class="panel">
+          <h3>Try it free</h3>
+          <ol class="steps">
+            <li><b>Download</b> for your computer.</li>
+            <li><b>Install</b>, then open your DAW and add Palm Life to a track.</li>
+            <li><b>Make something.</b> After 14 days it drops out for a moment every 45 seconds until you buy.</li>
+          </ol>
+          <div class="dl">
+            <a class="btn ghost dl-win" href="https://raw.githubusercontent.com/NightfinAudio/palm-life-updates/main/builds/PalmLife-1.13.0-Windows.zip">Download for Windows</a>
+            <a class="btn ghost dl-mac" href="https://raw.githubusercontent.com/NightfinAudio/palm-life-updates/main/builds/PalmLife-1.13.0-Mac.zip">Download for Mac</a>
+          </div>
+          <p class="small" style="margin-top:14px"><span class="dl-version">Version 1.13.0</span> · about 20 MB · no card, no account</p>
+        </div>
+        <div class="panel paybox">
+          <p class="k launch-only">LAUNCH PRICE</p>
           <p class="amount price-main">£14.99</p>
           <p class="alt-price price-alt">$19.99 in the US</p>
           <p class="was launch-only">Normally <span class="price-normal">£19.99 / $26.99</span>. <span class="days-left">Launch price until 7 December.</span></p>
+          <a class="btn solid" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy Palm Life</a>
+          <p class="small" style="margin-top:14px">Secure checkout by Polar. VAT handled at checkout. Already trying it? Your key unlocks the copy you have.</p>
+          <ul class="specs">
+            <li>Windows 10/11 (64-bit): VST3 and standalone app</li>
+            <li>macOS 11 or later, Apple Silicon and Intel: AU, VST3 and standalone</li>
+            <li>48 factory presets, unlimited of your own</li>
+            <li>A licence for up to 3 computers, free 1.x updates</li>
+            <li>Orbit 3D panner included</li>
+          </ul>
         </div>
-        <a class="btn big" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4"><span class="led" aria-hidden="true"></span>Buy now</a>
-        <p class="small" style="text-align:center">Secure checkout by Polar. VAT handled at checkout.<br>Already trying it? Your key unlocks the copy you have.</p>
       </div>
     </div>
   </section>
 
-  <section id="artist" class="below" aria-labelledby="artist-title">
-    <div class="panel artist">
-      <div class="artist-copy">
-        <div class="sh"><span class="chip" style="background:var(--sunset)" aria-hidden="true"></span><h2 id="artist-title">MADE BY NIGHTFIN</h2><hr class="groove"></div>
-        <p>NightFin is a UK producer. Palm Life started as the reverb I wanted on my own tracks: the wide, warm, slightly worn sound of the 80s. The demos on this page use one of my songs.</p>
-        <a class="btn" href="https://open.spotify.com/artist/6GoEO9hz9h4lw1dHGUgewz" target="_blank" rel="noopener"><span class="led" aria-hidden="true"></span>Listen on Spotify</a>
-      </div>
-      <div class="artist-player">
-        <iframe title="NightFin on Spotify" src="https://open.spotify.com/embed/artist/6GoEO9hz9h4lw1dHGUgewz?utm_source=generator&amp;theme=0"
-                width="100%" height="352" frameborder="0" loading="lazy"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="below" aria-labelledby="faq-title">
-    <div class="panel">
-      <div class="sh"><span class="chip" aria-hidden="true"></span><h2 id="faq-title">FAQ</h2><hr class="groove"></div>
+  <section class="ch" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <p class="ch-k">CH 05 · FAQ</p>
+      <h2 id="faq-title">Questions.</h2>
       <div class="faq">
-        <div><h3>WHAT IS ORBIT?</h3><p>A free 3D panner that installs with Palm Life, for everyone, with no licence key. On headphones it moves a sound round your head, in front, behind and above, and can follow your song's tempo. It uses a recorded dummy head by default; you can load your own head measurement (.sofa) and a correction for your headphones (an AutoEq profile).</p></div>
-        <div><h3>IS THERE A FREE TRIAL?</h3><p>Yes. <a href="#try">Download Palm Life</a> and you get the full plug-in for 14 days, with no card and no account. After that it keeps working but drops out for a moment every 45 seconds until you enter a licence key.</p></div>
-        <div><h3>WHICH DAWS WORK?</h3><p>Any DAW that loads VST3 or, on a Mac, Audio Units: Logic Pro, GarageBand, Ableton Live, FL Studio, Reaper, Cubase, Studio One and Bitwig. There’s also a standalone app if you just want to play through it.</p></div>
-        <div><h3>HOW DO I INSTALL IT?</h3><p>Unzip the download and double-click Palm Life Setup (Windows) or Palm Life Installer (Mac). It puts the plug-in in the right folders for you. If Windows shows a warning, choose More info, then Run anyway. Rescan plug-ins in your DAW, then click REGISTER and paste your key.</p></div>
-        <div><h3>ARE UPDATES FREE?</h3><p>Yes, every 1.x update. Palm Life shows an UPDATE button when one is out: click UPDATE NOW, allow the Windows prompt and restart your DAW. Your licence and presets carry over.</p></div>
-        <div><h3>IS THERE A MAC VERSION?</h3><p>Yes. The same licence works on Windows and Mac. Double-click Palm Life Installer. If your Mac says it can’t verify the developer, open System Settings, then Privacy &amp; Security, and click Open Anyway.</p></div>
-        <div><h3>NEW COMPUTER?</h3><p>In Palm Life click LICENCE, then DEACTIVATE, and register on the new one. You can also free up computers from your customer portal.</p></div>
-        <div><h3>SOMETHING NOT WORKING?</h3><p>Tell NightFin with the <a href="#support">support form</a>: what happened, your computer and DAW, and a screenshot if you can. Problems, questions and ideas are all welcome.</p></div>
-        <div><h3>REFUNDS?</h3><p>Full refund within 14 days if Palm Life doesn’t work on your system. Email <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a>. Refunded licence keys are deactivated.</p></div>
+        <details><summary>What is Orbit?</summary><p>A free 3D panner that installs with Palm Life, for everyone, with no licence key. On headphones it moves a sound round your head, in front, behind and above, and can follow your song's tempo. It uses a recorded dummy head by default; you can load your own head measurement (.sofa) and a correction for your headphones (an AutoEq profile).</p></details>
+        <details><summary>Is there a free trial?</summary><p>Yes. <a href="#try">Download Palm Life</a> and you get the full plug-in for 14 days, with no card and no account. After that it keeps working but drops out for a moment every 45 seconds until you enter a licence key.</p></details>
+        <details><summary>Which DAWs work?</summary><p>Any DAW that loads VST3 or, on a Mac, Audio Units: Logic Pro, GarageBand, Ableton Live, FL Studio, Reaper, Cubase, Studio One and Bitwig. There’s also a standalone app if you just want to play through it.</p></details>
+        <details><summary>How do I install it?</summary><p>Unzip the download and double-click Palm Life Setup (Windows) or Palm Life Installer (Mac). It puts the plug-in in the right folders for you. If Windows shows a warning, choose More info, then Run anyway. Rescan plug-ins in your DAW, then click REGISTER and paste your key.</p></details>
+        <details><summary>Are updates free?</summary><p>Yes, every 1.x update. Palm Life shows an UPDATE button when one is out: click UPDATE NOW, allow the Windows prompt and restart your DAW. Your licence and presets carry over.</p></details>
+        <details><summary>Is there a Mac version?</summary><p>Yes. The same licence works on Windows and Mac. Double-click Palm Life Installer. If your Mac says it can’t verify the developer, open System Settings, then Privacy &amp; Security, and click Open Anyway.</p></details>
+        <details><summary>Moving to a new computer?</summary><p>In Palm Life click LICENCE, then DEACTIVATE, and register on the new one. You can also free up computers from your customer portal.</p></details>
+        <details><summary>Something not working?</summary><p>Tell NightFin with the <a href="#support">support form</a>: what happened, your computer and DAW, and a screenshot if you can. Problems, questions and ideas are all welcome.</p></details>
+        <details><summary>Can I get a refund?</summary><p>Full refund within 14 days if Palm Life doesn’t work on your system. Email <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a>. Refunded licence keys are deactivated.</p></details>
       </div>
     </div>
   </section>
 
-  <section id="support" class="below" aria-labelledby="support-title">
-    <div class="panel">
-      <div class="sh"><span class="chip" style="background:var(--seafoam)" aria-hidden="true"></span><h2 id="support-title">SUPPORT</h2><hr class="groove"></div>
-      <p class="intro">Something not working, a question about your licence, or an idea for Palm Life or Orbit? Send it here and it goes straight to NightFin.</p>
+  <section class="ch" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <p class="ch-k">CH 06 · SUPPORT</p>
+      <h2 id="support-title">Something not right? Tell NightFin.</h2>
+      <p class="intro">Something not working, a question about your licence, or an idea for Palm Life or Orbit? It goes straight to NightFin.</p>
       <div class="support-form">
         <iframe data-tally-src="https://tally.so/embed/X50qlL?alignLeft=1&amp;hideTitle=1&amp;dynamicHeight=1&amp;source=website" loading="lazy" width="100%" height="900" title="Palm Life support form"></iframe>
         <noscript><p><a href="https://tally.so/r/X50qlL?source=website">Open the support form</a></p></noscript>
       </div>
-      <p class="small support-alt">Form not showing? <a href="https://tally.so/r/X50qlL?source=website" target="_blank" rel="noopener">Open it in a new tab</a>, or email <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a>.</p>
+      <p class="small" style="margin-top:14px">Form not showing? <a href="https://tally.so/r/X50qlL?source=website" target="_blank" rel="noopener">Open it in a new tab</a>, or email <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a>.</p>
     </div>
   </section>
 </main>
+
+<footer>
+  <div class="wrap">
+    <span>DESIGNED &amp; BUILT BY NIGHTFIN · STOP ■</span>
+    <nav aria-label="Footer"><a href="guides/80s-reverb-sound/">THE 80s REVERB GUIDE</a><a href="https://open.spotify.com/artist/6GoEO9hz9h4lw1dHGUgewz" target="_blank" rel="noopener">SPOTIFY</a><a href="#support">SUPPORT</a><a href="mailto:palmlifesupport@gmail.com">EMAIL</a></nav>
+    <p class="legal">Orders are processed by Polar, our online reseller and merchant of record. VST is a trademark of Steinberg Media Technologies GmbH.</p>
+  </div>
+</footer>
 <div class="stickybar">
-  <a class="btn trial-link" href="#try">Try free</a>
+  <a class="btn solid trial-link" href="#try">Try free</a>
   <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy <span class="price-now">£14.99 / $19.99</span></a>
 </div>
 
 <script>
 (function () {
-  var box = document.getElementById('support'); if (!box) return;
-  var loaded = false;
-  function load() {
-    if (loaded) return; loaded = true;
-    var sc = document.createElement('script'); sc.src = 'https://tally.so/widgets/embed.js'; sc.async = true;
-    sc.onload = function () { if (window.Tally) window.Tally.loadEmbeds(); };
-    document.body.appendChild(sc);
-  }
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (e, o) { if (e.some(function (x) { return x.isIntersecting; })) { o.disconnect(); load(); } }, { rootMargin: '600px' }).observe(box);
-  } else load();
-  if (location.hash === '#support') load();
-})();
-</script>
-
-<footer id="footer">
-  <div class="horizon" aria-hidden="true">
-    <div class="glow"></div>
-    <div class="palms">
-      <img class="palm" style="--ox:28%" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20260%20120%22%20fill%3D%22rgba%2820%2C6%2C10%2C.9%29%22%3E%3Cpath%20d%3D%22M60%20120%20Q66%2070%2072%2030%20L75%2030%20Q70%2072%2066%20120%20Z%22/%3E%3Cpath%20d%3D%22M73%2030%20q-30-8-52%208%20q24-14%2052-6Z%20M73%2030%20q-26%206-38%2030%20q16-24%2038-28Z%20M73%2030%20q8-22%2034-24%20q-28%208-32%2026Z%20M73%2030%20q30-6%2048%2014%20q-22-16-46-12Z%20M73%2030%20q20%2010%2024%2034%20q-8-22-26-32Z%20M73%2030%20q-10-20-30-26%20q22%204%2032%2024Z%22/%3E%3C/svg%3E" width="260" height="120" alt="" decoding="async">
-      <img class="palm" style="--ox:45%" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20260%20120%22%20fill%3D%22rgba%2820%2C6%2C10%2C.9%29%22%3E%3Cpath%20d%3D%22M112%20120%20Q115%2090%20118%2066%20L120%2066%20Q118%2092%20116%20120%20Z%22/%3E%3Cpath%20d%3D%22M119%2066%20q-22-6-38%206%20q18-10%2038-4Z%20M119%2066%20q-18%204-26%2022%20q12-18%2026-20Z%20M119%2066%20q6-16%2026-18%20q-20%206-24%2020Z%20M119%2066%20q22-4%2034%2010%20q-16-12-32-8Z%20M119%2066%20q14%208%2016%2024%20q-6-16-18-22Z%22/%3E%3C/svg%3E" width="260" height="120" alt="" decoding="async">
-      <img class="palm" style="--ox:74%" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20260%20120%22%20fill%3D%22rgba%2820%2C6%2C10%2C.9%29%22%3E%3Cpath%20d%3D%22M200%20120%20Q194%2076%20186%2040%20L189%2040%20Q198%2076%20205%20120%20Z%22/%3E%3Cpath%20d%3D%22M187%2040%20q-28-8-50%206%20q24-12%2050-4Z%20M187%2040%20q-22%206-34%2028%20q14-22%2034-26Z%20M187%2040%20q8-20%2032-22%20q-26%208-30%2024Z%20M187%2040%20q28-6%2046%2012%20q-22-14-44-10Z%20M187%2040%20q18%2010%2022%2032%20q-8-20-24-30Z%20M187%2040%20q-8-18-28-24%20q20%204%2030%2022Z%22/%3E%3C/svg%3E" width="260" height="120" alt="" decoding="async">
-    </div>
-  </div>
-  <div class="wrap">
-    <span class="badge">HI-FI STEREO</span>
-    <p class="credit"><img src="assets/img/nightfin-mark.svg" width="28" height="14" alt="">DESIGNED &amp; BUILT BY NIGHTFIN</p>
-    <span class="foot-links"><a href="guides/80s-reverb-sound/">Guide: the 80s reverb sound</a> · <a href="https://open.spotify.com/artist/6GoEO9hz9h4lw1dHGUgewz" target="_blank" rel="noopener">NightFin on Spotify</a> · <a href="#support">Support</a> · <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a></span>
-    <p class="legal">Orders are processed by Polar, our online reseller and merchant of record. VST is a trademark of Steinberg Media Technologies GmbH.</p>
-  </div>
-</footer>
-
-<script>
-(function () {
-  var root = document.documentElement;
+  var root = document.documentElement, hero = document.querySelector('.hero');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---- Themes ----
-  var caps = { studio: 'Studio theme: the original champagne metal.', midnight: 'Midnight theme: dark graphite.',
-               sunset: 'Sunset theme. Try the others with the swatches at the top.', dusk: 'Dusk theme: indigo to pink.' };
-  var hero = document.getElementById('hero-img');
-  function setTheme(t) {
-    root.dataset.theme = t;
-    try { localStorage.setItem('palm-theme', t); } catch (e) {}
-    document.querySelectorAll('[data-t]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.t === t ? 'true' : 'false'); });
-    var base = 'assets/img/pl-' + t;
-    hero.srcset = base + '-720.webp 720w, ' + base + '-1040.webp 1040w, ' + base + '-1560.webp 1560w';
-    hero.src = base + '-1040.webp';
-    document.getElementById('hero-cap').textContent = caps[t];
-    if (t === 'sunset' || t === 'dusk') drawStars();
-  }
+  // ---- Stars ----
+  var stars = document.querySelector('.stars'), seed = 7, html = '';
+  var rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  for (var s = 0; s < 70; s++)
+    html += '<i class="' + (rnd() < 0.2 ? 'big' : '') + '" style="left:' + (rnd() * 100).toFixed(1) + '%;top:' + (Math.pow(rnd(), 1.4) * 100).toFixed(1) +
+            '%;animation-duration:' + (2.5 + rnd() * 4).toFixed(1) + 's;animation-delay:-' + (rnd() * 6).toFixed(1) + 's"></i>';
+  stars.innerHTML = html;
 
-  // ---- Stars: one SVG, drawn once, two twinkle groups ----
-  // Stars: a still field drawn at the screen's real pixel size, plus small twinkling ones
-  var starsDrawn = false, starW = 0;
-  function drawStars() {
-    var w = Math.round(window.innerWidth), h = Math.round(window.innerHeight * 0.6);
-    if (starsDrawn && Math.abs(w - starW) < 80) return;
-    starsDrawn = true; starW = w;
-    var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
-    var count = Math.round(w * h / 9000), dots = '';
-    for (var i = 0; i < count; i++) {
-      var r = rnd() < 0.1 ? 1.1 : 0.7, a = (0.35 + rnd() * 0.65).toFixed(2);
-      dots += '<circle cx="' + (rnd() * w).toFixed(1) + '" cy="' + (Math.pow(rnd(), 1.5) * h).toFixed(1) + '" r="' + r + '" opacity="' + a + '"/>';
-    }
-    var url = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" fill="#fff">' + dots + '</svg>');
-    var html = '<div class="stars" style="background-image:url(&quot;' + url + '&quot;)"></div>';
-    for (var k = 0; k < 28; k++)
-      html += '<i class="twk' + (rnd() < 0.3 ? ' big' : '') + '" style="left:' + (rnd() * 100).toFixed(1) + '%;top:' + (Math.pow(rnd(), 1.5) * 56).toFixed(1) +
-              '%;animation-duration:' + (2.5 + rnd() * 4).toFixed(1) + 's;animation-delay:-' + (rnd() * 6).toFixed(1) + 's"></i>';
-    document.querySelector('.sky').innerHTML = html;
+  // ---- Looks: the four plug-in themes ----
+  var img = document.getElementById('hero-img');
+  var alts = { studio: 'Studio theme: champagne brushed metal', midnight: 'Midnight theme: dark graphite', sunset: 'Sunset theme: knobs on a navy-to-orange sky', dusk: 'Dusk theme: indigo sky fading to pink' };
+  function look(t) {
+    var base = 'assets/img/pl113-' + t;
+    img.srcset = base + '-720.webp 720w, ' + base + '-1040.webp 1040w, ' + base + '-1560.webp 1560w, ' + base + '-1950.webp 1950w';
+    img.src = base + '-1040.webp';
+    img.alt = 'The Palm Life plug-in in its ' + alts[t] + '.';
+    document.querySelectorAll('[data-t]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.t === t ? 'true' : 'false'); });
+    try { localStorage.setItem('palm-theme', t); } catch (e) {}
   }
-  var resizeT = 0;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeT);
-    resizeT = setTimeout(function () { var t = root.dataset.theme; if (t === 'sunset' || t === 'dusk') drawStars(); }, 250);
+  document.querySelectorAll('[data-t]').forEach(function (b) { b.addEventListener('click', function () { look(b.dataset.t); }); });
+  try { var saved = localStorage.getItem('palm-theme'); if (saved && alts[saved] && saved !== 'sunset') look(saved); } catch (e) {}
+
+  // ---- The sun hides something ----
+  var taps = 0, toast = document.querySelector('.toast'), toastT = 0;
+  document.querySelector('.sun').addEventListener('click', function () {
+    if (++taps < 3) return;
+    taps = 0; toast.hidden = false; clearTimeout(toastT);
+    toastT = setTimeout(function () { toast.hidden = true; }, 6000);
   });
-  document.querySelectorAll('[data-t]').forEach(function (b) { b.addEventListener('click', function () { setTheme(b.dataset.t); }); });
-  var scrollTimer = 0;
-  window.addEventListener('scroll', function () {
-    if (!scrollTimer) root.classList.add('scrolling');
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(function () { root.classList.remove('scrolling'); scrollTimer = 0; }, 180);
-  }, { passive: true });
-  setTheme(root.dataset.theme || 'sunset');
 
   // ---- 14-segment display (same glyphs as the plug-in) ----
   var SEG = (function () {
@@ -1000,6 +896,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     };
   })();
 
+
   // ---- Demo player ----
   var player = document.getElementById('player');
   var nameEl = document.getElementById('vfd-name');
@@ -1033,79 +930,71 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     });
   });
 
-  // ---- The page reacts to the music, only while it plays ----
-  var vfdGlow = document.getElementById('vfd-glow'), sunGlow = document.querySelector('.horizon .glow');
+
+  // ---- The scene reacts to the music, only while something plays ----
+  var vfdGlow = document.getElementById('vfd-glow');
   var meter = document.getElementById('meter'), bars = [], lastLit = -1;
   for (var m = 0; m < 24; m++) { var bar = document.createElement('i'); meter.appendChild(bar); bars.push(bar); }
-  var ctx = null, analyser = null, data = null, level = 0, running = false;
+  var ctx = null, sources = [], analyser = null, data = null, level = 0, running = false, playingEls = [];
+  function hook(el) {
+    try {
+      if (!ctx) {
+        var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+        ctx = new AC(); analyser = ctx.createAnalyser(); analyser.fftSize = 1024; data = new Float32Array(analyser.fftSize); analyser.connect(ctx.destination);
+      }
+      if (sources.indexOf(el) < 0) { ctx.createMediaElementSource(el).connect(analyser); sources.push(el); }
+      if (ctx.state === 'suspended') ctx.resume();
+    } catch (e) {}
+  }
+  function anyPlaying() { return playingEls.some(function (e) { return !e.paused && !e.muted; }); }
   function frame() {
     var target = 0;
-    if (analyser && !player.paused) {
+    if (analyser && anyPlaying()) {
       analyser.getFloatTimeDomainData(data);
-      var sum = 0;
-      for (var k = 0; k < data.length; k += 2) sum += data[k] * data[k];
+      var sum = 0; for (var k = 0; k < data.length; k += 2) sum += data[k] * data[k];
       var db = 20 * Math.log10(Math.sqrt(sum / (data.length / 2)) + 1e-6);
       target = Math.max(0, Math.min(1, (db + 48) / 42));
     }
     level += (target - level) * (target > level ? 0.35 : 0.06);
-    vfdGlow.style.opacity = level.toFixed(2);
-    sunGlow.style.opacity = (0.35 + level * 0.6).toFixed(2);
-    var lit = Math.round(level * bars.length);
+    root.style.setProperty('--level', level.toFixed(3));
+    vfdGlow.style.opacity = player.paused ? 0 : level.toFixed(2);
+    var lit = player.paused ? 0 : Math.round(level * bars.length);
     if (lit !== lastLit) { for (var b = 0; b < bars.length; b++) bars[b].className = b < lit ? 'on' : ''; lastLit = lit; }
-    if (!player.paused || level > 0.01) requestAnimationFrame(frame);
-    else { running = false; level = 0; vfdGlow.style.opacity = 0; sunGlow.style.opacity = 0.35; }
+    if (anyPlaying() || level > 0.01) requestAnimationFrame(frame);
+    else { running = false; level = 0; root.style.setProperty('--level', 0); vfdGlow.style.opacity = 0; }
   }
-  player.addEventListener('play', function () {
-    try {
-      if (!ctx) {
-        var AC = window.AudioContext || window.webkitAudioContext;
-        if (!AC) return;
-        ctx = new AC();
-        var src = ctx.createMediaElementSource(player);
-        analyser = ctx.createAnalyser();
-        analyser.fftSize = 1024;
-        data = new Float32Array(analyser.fftSize);
-        src.connect(analyser);
-        analyser.connect(ctx.destination);
-      }
-      if (ctx.state === 'suspended') ctx.resume();
-    } catch (e) {}
-    if (!running && !reduce) { running = true; requestAnimationFrame(frame); }
-  });
-})();
+  function startFrames(el) { hook(el); if (playingEls.indexOf(el) < 0) playingEls.push(el); if (!running && !reduce) { running = true; requestAnimationFrame(frame); } }
+  player.addEventListener('play', function () { startFrames(player); });
 
-// ---- v1.9 hooks ------------------------------------------------------------------
-(function () {
-  // Before/after in the hero: both clips play in step; the switch just changes which one you hear
+  // ---- Side A: the song, dry or through Palm Life, in step ----
   var box = document.querySelector('.hearit');
-  if (box) {
-    var dry = new Audio(), wet = new Audio(), started = false, listening = 'wet';
-    dry.preload = wet.preload = 'none';
-    var bar = box.querySelector('.hear-bar i');
-    function apply() {
-      dry.muted = listening !== 'dry'; wet.muted = listening !== 'wet';
-      box.querySelectorAll('.hear-switch button').forEach(function (b) { b.setAttribute('aria-checked', b.dataset.v === listening ? 'true' : 'false'); });
-    }
-    function stop() { dry.pause(); wet.pause(); box.classList.remove('playing'); }
-    function play() {
-      if (!started) { dry.src = 'assets/audio/demos/song-dry.mp3'; wet.src = 'assets/audio/demos/song-miami.mp3'; started = true; }
-      var main = document.getElementById('player'); if (main) main.pause();
-      apply();
-      wet.currentTime = dry.currentTime;
-      Promise.all([dry.play(), wet.play()]).then(function () { box.classList.add('playing'); }).catch(function () {});
-    }
-    box.querySelector('.hear-play').addEventListener('click', function () { box.classList.contains('playing') ? stop() : play(); });
-    box.querySelectorAll('.hear-switch button').forEach(function (b) {
-      b.addEventListener('click', function () { listening = b.dataset.v; apply(); if (!box.classList.contains('playing')) play(); });
-    });
-    wet.addEventListener('timeupdate', function () {
-      if (Math.abs(wet.currentTime - dry.currentTime) > 0.06) dry.currentTime = wet.currentTime;
-      if (wet.duration) bar.style.width = (100 * wet.currentTime / wet.duration) + '%';
-    });
-    wet.addEventListener('ended', function () { stop(); dry.currentTime = wet.currentTime = 0; bar.style.width = '0'; });
-    var main = document.getElementById('player');
-    if (main) main.addEventListener('play', stop);
+  var dry = new Audio(), wet = new Audio(), started = false, listening = 'wet';
+  dry.preload = wet.preload = 'none'; dry.crossOrigin = wet.crossOrigin = 'anonymous';
+  var hbar = box.querySelector('.hear-bar i'), mode = document.querySelector('.osd-mode'), count = document.querySelector('.osd-count');
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function osd(state) { mode.innerHTML = state === 'play' ? 'PLAY <span class="blink">▶</span>' : state === 'pause' ? 'PAUSE ❚❚' : 'STOP ■'; }
+  function apply() {
+    dry.muted = listening !== 'dry'; wet.muted = listening !== 'wet';
+    box.querySelectorAll('.hear-switch button').forEach(function (b) { b.setAttribute('aria-checked', b.dataset.v === listening ? 'true' : 'false'); });
   }
+  function stop() { dry.pause(); wet.pause(); box.classList.remove('playing'); osd(wet.currentTime > 0 ? 'pause' : 'stop'); }
+  function play() {
+    if (!started) { dry.src = 'assets/audio/demos/song-dry.mp3'; wet.src = 'assets/audio/demos/song-miami.mp3'; started = true; }
+    player.pause(); apply();
+    wet.currentTime = dry.currentTime;
+    Promise.all([dry.play(), wet.play()]).then(function () { box.classList.add('playing'); osd('play'); startFrames(dry); startFrames(wet); }).catch(function () {});
+  }
+  box.querySelector('.hear-play').addEventListener('click', function () { box.classList.contains('playing') ? stop() : play(); });
+  box.querySelectorAll('.hear-switch button').forEach(function (b) {
+    b.addEventListener('click', function () { listening = b.dataset.v; apply(); if (!box.classList.contains('playing')) play(); });
+  });
+  wet.addEventListener('timeupdate', function () {
+    if (Math.abs(wet.currentTime - dry.currentTime) > 0.06) dry.currentTime = wet.currentTime;
+    if (wet.duration) hbar.style.width = (100 * wet.currentTime / wet.duration) + '%';
+    var t = Math.floor(wet.currentTime); count.textContent = Math.floor(t / 3600) + ':' + pad(Math.floor(t / 60) % 60) + ':' + pad(t % 60);
+  });
+  wet.addEventListener('ended', function () { stop(); dry.currentTime = wet.currentTime = 0; hbar.style.width = '0'; count.textContent = '0:00:00'; osd('stop'); });
+  player.addEventListener('play', stop);
 
   // Free trial: offer the download for this computer, and keep the links on the newest version
   var ua = navigator.userAgent || '', mobile = /iPhone|iPad|Android/i.test(ua);
@@ -1164,10 +1053,23 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     else if (days === 1) e.innerHTML = '<b>Last day</b> of the ' + both + ' launch price.';
   });
 
+
   // Phones: a buy bar once you've scrolled past the top
-  var sb = document.querySelector('.stickybar'), hero = document.querySelector('.hero');
-  if (sb && hero && 'IntersectionObserver' in window)
+  var sb = document.querySelector('.stickybar');
+  if (sb && 'IntersectionObserver' in window)
     new IntersectionObserver(function (es) { sb.classList.toggle('show', !es[0].isIntersecting); }).observe(hero);
+
+  // Support form: load Tally only when the section comes near
+  var sup = document.getElementById('support'), tallyLoaded = false;
+  function loadTally() {
+    if (tallyLoaded) return; tallyLoaded = true;
+    var sc = document.createElement('script'); sc.src = 'https://tally.so/widgets/embed.js'; sc.async = true;
+    sc.onload = function () { if (window.Tally) window.Tally.loadEmbeds(); };
+    document.body.appendChild(sc);
+  }
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (e, o) { if (e.some(function (x) { return x.isIntersecting; })) { o.disconnect(); loadTally(); } }, { rootMargin: '600px' }).observe(sup);
+  else loadTally();
+  if (location.hash === '#support') loadTally();
 })();
 </script>
 </body>
