@@ -43,7 +43,7 @@
    "applicationCategory": "MultimediaApplication",
    "applicationSubCategory": "Audio plug-in (VST3, AU)",
    "operatingSystem": "Windows 10, Windows 11, macOS 11 or later",
-   "softwareVersion": "1.12.0",
+   "softwareVersion": "1.13.0",
    "description": "Palm Life is an 80s reverb plug-in by NightFin: lush hi-fi reverb, VHS tape ageing with tape, VHS or TV hiss, chorus, phaser, auto-pan, two LFOs you can draw yourself, a live spectrum and a Rewind button, with 48 presets. VST3 and AU for Windows and Mac.",
    "image": "https://nightfinaudio.com/assets/img/og.jpg",
    "screenshot": "https://nightfinaudio.com/assets/img/pl-sunset-1560.webp",
@@ -91,6 +91,17 @@
    "contentUrl": "https://nightfinaudio.com/assets/video/palm-life-demo.mp4",
    "uploadDate": "2026-11-25",
    "duration": "PT1M8S",
+   "embedUrl": "https://nightfinaudio.com/#watch"
+  },
+  {
+   "@type": "VideoObject",
+   "@id": "https://nightfinaudio.com/#demo-113",
+   "name": "Palm Life 1.13: reverb view, gate, knob help and Orbit 3D",
+   "description": "What's new in Palm Life 1.13 by NightFin: the reverb shown across the spectrum, a clearer gate with threshold, hold and release, right-click help on every knob, and Orbit, a free 3D panner for headphones.",
+   "thumbnailUrl": "https://nightfinaudio.com/assets/video/poster-113.webp",
+   "contentUrl": "https://nightfinaudio.com/assets/video/palm-life-new-113.mp4",
+   "uploadDate": "2026-11-27",
+   "duration": "PT1M9S",
    "embedUrl": "https://nightfinaudio.com/#watch"
   }
  ]
@@ -255,6 +266,7 @@ h1 { margin: 0; font: 400 clamp(32px, 4.6vw, 52px)/1.15 "Michroma", var(--sans);
 .demo[aria-pressed="true"]::before { background: var(--glass); }
 
 .demo-video { width: 100%; height: auto; display: block; border-radius: 10px; background: #000; aspect-ratio: 16 / 9; }
+.video-title { margin: 28px 0 6px; font-size: 15px; letter-spacing: .18em; }
 
 /* Modules */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px 36px; }
@@ -485,6 +497,11 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       <video class="demo-video" controls preload="none" playsinline poster="assets/video/poster.webp" width="1920" height="1080">
         <source src="assets/video/palm-life-demo.mp4?v=1100" type="video/mp4">
       </video>
+      <h3 class="video-title">NEW IN 1.13</h3>
+      <p class="intro">See your reverb across the spectrum and shape it with your mouse, the 80s gate made clear, a full explanation behind every knob, and Orbit: free 3D movement round your head. Headphones on for the end.</p>
+      <video class="demo-video" controls preload="none" playsinline poster="assets/video/poster-113.webp" width="1920" height="1080">
+        <source src="assets/video/palm-life-new-113.mp4?v=1130" type="video/mp4">
+      </video>
     </div>
   </section>
 
@@ -555,8 +572,8 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       <div class="grid">
         <article class="mod">
           <div class="mod-h"><b style="background:var(--flamingo)" aria-hidden="true">A</b><h3>PALM / REVERB</h3></div>
-          <p>The wide, shimmering digital reverb of late-80s records. Goes from a tight plate to a twenty-second wash, with a gate for the classic 80s drum sound.</p>
-          <p class="controls"><span>Size</span> · <span>Decay</span> · <span>Damping</span> · <span>Shimmer</span> · <span>Pre-delay</span> · <span>Width</span> · <span>Mix</span> · <span>Duck</span> · <span>Gate</span></p>
+          <p>The wide, shimmering digital reverb of late-80s records. Goes from a tight plate to a twenty-second wash, with a gate for the classic 80s drum sound. VIEW shows how long it rings at every frequency, and you can shape it by dragging.</p>
+          <p class="controls"><span>Size</span> · <span>Decay</span> · <span>Damping</span> · <span>Shimmer</span> · <span>Pre-delay</span> · <span>Width</span> · <span>Mix</span> · <span>Duck</span> · <span>Gate: threshold, hold, release</span></p>
         </article>
         <article class="mod">
           <div class="mod-h"><b style="background:var(--seafoam)" aria-hidden="true">B</b><h3>AGE / VHS</h3></div>
@@ -583,6 +600,11 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
           <p>Two LFOs that can move almost any knob. Drag a glowing cable onto a knob to connect it, and that knob shows a ring that moves with it. Pick from 17 shapes, from a sidechain pump to a trance gate, or click the screen and draw your own. A live spectrum shows your sound and the reverb side by side.</p>
           <p class="controls"><span>Drag to a knob</span> · <span>17 shapes</span> · <span>Draw your own</span> · <span>Tempo sync</span> · <span>Depth</span> · <span>Spectrum</span></p>
         </article>
+        <article class="mod">
+          <div class="mod-h"><b style="background:#f6a06a" aria-hidden="true">3D</b><h3>ORBIT (FREE)</h3></div>
+          <p>A second plug-in that comes with Palm Life, free for everyone. On headphones it moves any sound round your head: orbits, ping-pong, front to back, figure 8 and spirals, locked to your song. Uses a real recorded head, or load your own head and headphone profiles.</p>
+          <p class="controls"><span>Motion</span> · <span>Sync</span> · <span>Distance</span> · <span>Height</span> · <span>Room</span> · <span>Your head (.sofa)</span> · <span>Your headphones (AutoEq)</span></p>
+        </article>
       </div>
 
       <div class="groups">
@@ -593,7 +615,8 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
             <li><strong>Nostalgia</strong>One knob for chorus, shimmer and bloom at once. Turn it up and any sound turns into a memory.</li>
             <li><strong>Make anything move</strong>Two LFOs, 17 shapes or one you draw yourself. Pump the reverb on every beat, let the room breathe, or chop the tail like a trance gate.</li>
             <li><strong>Rewind</strong>Hold the button and the tape brakes, then spins backwards with that VHS squeal. Let go and it drops straight back in. Automate it to hit on the beat.</li>
-            <li><strong>Gated reverb you can see</strong>A huge room that slams shut after every hit. The Gate reads in milliseconds, a GATE light flashes and the shape display marks the cut.</li>
+            <li><strong>Gated reverb you can see</strong>A huge room that slams shut after every hit. Set the threshold, hold and release, and watch it open and close on your sound in a live picture.</li>
+            <li><strong>See your reverb</strong>VIEW shows how long the reverb rings at every frequency and what you just played fading away. Drag the dots to change the decay, damping and tail EQ.</li>
           </ul>
         </div>
         <div>
@@ -610,9 +633,9 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
           <ul>
             <li><strong>Simple or full</strong>SIMPLE shows the essentials, big. FULL shows every control. One click between them.</li>
             <li><strong>Preset browser</strong>Categories, search and favourites, with a short note on every sound.</li>
-            <li><strong>Built-in help</strong>Point at any control and the help bar says what it does. Double-click to reset a knob, hold Shift for fine control, or click a value to type one.</li>
+            <li><strong>Built-in help</strong>Point at any control and the help bar says what it does. Right-click any knob for the full story, a picture of what it does, an exact value, your own range and MIDI learn.</li>
             <li><strong>A faceplate that moves</strong>Spinning cassette reels, a live reverb monitor, a decay-shape display and knobs that glow with your sound.</li>
-            <li><strong>Four looks, any size</strong>Studio, Midnight, Sunset and Dusk. Scale the window from 75% to 200%.</li>
+            <li><strong>Four looks, any size</strong>Studio, Midnight, Sunset and Dusk. Pick a size from 100% to 200% or fit it to your screen, and it remembers.</li>
             <li><strong>One-click updates</strong>When a new version is out, click UPDATE NOW and Palm Life installs it for you.</li>
           </ul>
         </div>
@@ -758,9 +781,9 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
         </ol>
       </div>
       <div class="try-dl">
-        <a class="btn big dl-win" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.12.0-Windows.zip"><span class="led" aria-hidden="true"></span>Download for Windows</a>
-        <a class="btn big dl-mac" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.12.0-Mac.zip"><span class="led" aria-hidden="true"></span>Download for Mac</a>
-        <p class="small" style="text-align:center"><span class="dl-version">Version 1.12.0</span> · about 20 MB</p>
+        <a class="btn big dl-win" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.13.0-Windows.zip"><span class="led" aria-hidden="true"></span>Download for Windows</a>
+        <a class="btn big dl-mac" href="https://raw.githubusercontent.com/palmermilo-ship-it/palm-life-updates/main/builds/PalmLife-1.13.0-Mac.zip"><span class="led" aria-hidden="true"></span>Download for Mac</a>
+        <p class="small" style="text-align:center"><span class="dl-version">Version 1.13.0</span> · about 20 MB</p>
       </div>
     </div>
   </section>
@@ -810,6 +833,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
     <div class="panel">
       <div class="sh"><span class="chip" aria-hidden="true"></span><h2 id="faq-title">FAQ</h2><hr class="groove"></div>
       <div class="faq">
+        <div><h3>WHAT IS ORBIT?</h3><p>A free 3D panner that installs with Palm Life, for everyone, with no licence key. On headphones it moves a sound round your head, in front, behind and above, and can follow your song's tempo. It uses a recorded dummy head by default; you can load your own head measurement (.sofa) and a correction for your headphones (an AutoEq profile).</p></div>
         <div><h3>IS THERE A FREE TRIAL?</h3><p>Yes. <a href="#try">Download Palm Life</a> and you get the full plug-in for 14 days, with no card and no account. After that it keeps working but drops out for a moment every 45 seconds until you enter a licence key.</p></div>
         <div><h3>WHICH DAWS WORK?</h3><p>Any DAW that loads VST3 or, on a Mac, Audio Units: Logic Pro, GarageBand, Ableton Live, FL Studio, Reaper, Cubase, Studio One and Bitwig. There’s also a standalone app if you just want to play through it.</p></div>
         <div><h3>HOW DO I INSTALL IT?</h3><p>Unzip the download and double-click Palm Life Setup (Windows) or Palm Life Installer (Mac). It puts the plug-in in the right folders for you. If Windows shows a warning, choose More info, then Run anyway. Rescan plug-ins in your DAW, then click REGISTER and paste your key.</p></div>
