@@ -230,10 +230,9 @@ img, video { max-width: 100%; }
 .toast b { display: block; font-weight: 400; font-size: 34px; } .toast span { font-size: 20px; color: #cfeee7; }
 
 .hero.offscreen *, .hero.offscreen *::before, .hero.offscreen *::after, .orbit.offscreen *, .orbit.offscreen *::before, .orbit.offscreen *::after { animation-play-state: paused !important; }
-/* Firefox redraws the whole hero for every moving part, so it gets a still scene */
+/* Firefox: keep the gentle motion, hold the two heaviest movers still */
 @supports (-moz-appearance: none) {
-  .stars b, .palm, .sun, .tv { animation: none !important; }
-  .stars b { opacity: .6; }
+  .tv { animation: none !important; }
   .track { display: none; }
 }
 @keyframes sway { 0%,100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.8deg); } }
