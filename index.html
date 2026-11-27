@@ -333,6 +333,9 @@ h1 { margin: 0; font: 400 clamp(32px, 4.6vw, 52px)/1.15 "Michroma", var(--sans);
 .faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px 44px; }
 .faq h3 { margin: 0 0 6px; font: 600 15px var(--label); letter-spacing: .12em; }
 .faq p { color: var(--ink-2); }
+.support-form { border-radius: 12px; overflow: hidden; background: #1d1b21; padding: 8px 18px; margin-top: 18px; }
+.support-form iframe { display: block; width: 100%; min-height: 640px; border: 0; }
+.support-form noscript a, .support-alt a { color: inherit; }
 
 /* Footer + horizon */
 footer { position: relative; margin-top: 40px; border-top: 1px solid var(--rule); overflow: hidden; }
@@ -425,6 +428,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
       <a class="label" href="#inside">Inside</a>
       <a class="label" href="#presets">Presets</a>
       <a class="label" href="#faq">FAQ</a>
+      <a class="label" href="#support">Support</a>
       <div class="themes" role="group" aria-label="Page theme">
         <button class="swatch" type="button" data-t="studio"   aria-pressed="false" aria-label="Studio theme" title="Studio"></button>
         <button class="swatch" type="button" data-t="midnight" aria-pressed="false" aria-label="Midnight theme" title="Midnight"></button>
@@ -840,8 +844,21 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
         <div><h3>ARE UPDATES FREE?</h3><p>Yes, every 1.x update. Palm Life shows an UPDATE button when one is out: click UPDATE NOW, allow the Windows prompt and restart your DAW. Your licence and presets carry over.</p></div>
         <div><h3>IS THERE A MAC VERSION?</h3><p>Yes. The same licence works on Windows and Mac. Double-click Palm Life Installer. If your Mac says it can’t verify the developer, open System Settings, then Privacy &amp; Security, and click Open Anyway.</p></div>
         <div><h3>NEW COMPUTER?</h3><p>In Palm Life click LICENCE, then DEACTIVATE, and register on the new one. You can also free up computers from your customer portal.</p></div>
+        <div><h3>SOMETHING NOT WORKING?</h3><p>Tell NightFin with the <a href="#support">support form</a>: what happened, your computer and DAW, and a screenshot if you can. Problems, questions and ideas are all welcome.</p></div>
         <div><h3>REFUNDS?</h3><p>Full refund within 14 days if Palm Life doesn’t work on your system. Email <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a>. Refunded licence keys are deactivated.</p></div>
       </div>
+    </div>
+  </section>
+
+  <section id="support" class="below" aria-labelledby="support-title">
+    <div class="panel">
+      <div class="sh"><span class="chip" style="background:var(--seafoam)" aria-hidden="true"></span><h2 id="support-title">SUPPORT</h2><hr class="groove"></div>
+      <p class="intro">Something not working, a question about your licence, or an idea for Palm Life or Orbit? Send it here and it goes straight to NightFin.</p>
+      <div class="support-form">
+        <iframe data-tally-src="https://tally.so/embed/X50qlL?alignLeft=1&amp;hideTitle=1&amp;dynamicHeight=1&amp;source=website" loading="lazy" width="100%" height="900" title="Palm Life support form"></iframe>
+        <noscript><p><a href="https://tally.so/r/X50qlL?source=website">Open the support form</a></p></noscript>
+      </div>
+      <p class="small support-alt">Form not showing? <a href="https://tally.so/r/X50qlL?source=website" target="_blank" rel="noopener">Open it in a new tab</a>, or email <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a>.</p>
     </div>
   </section>
 </main>
@@ -849,6 +866,23 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   <a class="btn trial-link" href="#try">Try free</a>
   <a class="btn ghost" href="https://buy.polar.sh/polar_cl_Z6hWW8wcBNTjCknXiNJwFevRMqq932W9D2WHH42jSv4">Buy <span class="price-now">£14.99 / $19.99</span></a>
 </div>
+
+<script>
+(function () {
+  var box = document.getElementById('support'); if (!box) return;
+  var loaded = false;
+  function load() {
+    if (loaded) return; loaded = true;
+    var sc = document.createElement('script'); sc.src = 'https://tally.so/widgets/embed.js'; sc.async = true;
+    sc.onload = function () { if (window.Tally) window.Tally.loadEmbeds(); };
+    document.body.appendChild(sc);
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e, o) { if (e.some(function (x) { return x.isIntersecting; })) { o.disconnect(); load(); } }, { rootMargin: '600px' }).observe(box);
+  } else load();
+  if (location.hash === '#support') load();
+})();
+</script>
 
 <footer id="footer">
   <div class="horizon" aria-hidden="true">
@@ -862,7 +896,7 @@ footer .wrap { position: relative; z-index: 1; display: flex; flex-wrap: wrap; j
   <div class="wrap">
     <span class="badge">HI-FI STEREO</span>
     <p class="credit"><img src="assets/img/nightfin-mark.svg" width="28" height="14" alt="">DESIGNED &amp; BUILT BY NIGHTFIN</p>
-    <span class="foot-links"><a href="guides/80s-reverb-sound/">Guide: the 80s reverb sound</a> · <a href="https://open.spotify.com/artist/6GoEO9hz9h4lw1dHGUgewz" target="_blank" rel="noopener">NightFin on Spotify</a> · <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a></span>
+    <span class="foot-links"><a href="guides/80s-reverb-sound/">Guide: the 80s reverb sound</a> · <a href="https://open.spotify.com/artist/6GoEO9hz9h4lw1dHGUgewz" target="_blank" rel="noopener">NightFin on Spotify</a> · <a href="#support">Support</a> · <a href="mailto:palmlifesupport@gmail.com">palmlifesupport@gmail.com</a></span>
     <p class="legal">Orders are processed by Polar, our online reseller and merchant of record. VST is a trademark of Steinberg Media Technologies GmbH.</p>
   </div>
 </footer>
